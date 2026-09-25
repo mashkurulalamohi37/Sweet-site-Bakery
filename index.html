@@ -1541,7 +1541,22 @@ function bindPage(){
   if (pd){
     const p = byId(pd.dataset.pdform); let q = 1;
     const out = pd.querySelector("output"), wa = pd.querySelector("[data-wa-product]");
-    const upd = () => { out.textContent=q; const m = pd.m ? pd.m.value.trim() : ""; wa.href = waLink(`Hello Sweet Site Bakery! I'd like to order ${q} × ${p.n} (${kind(p)}) — ${p.from?"from ":""}${tk(p.p*q)}.${m?`\nMessage on cake: "${m}"`:""}`); };
+    const upd = () => {
+      out.textContent=q;
+      const m = pd.m ? pd.m.value.trim() : "";
+      const msg = `Hello Sweet Site Bakery! 🎂✨
+
+I would like to order this item directly:
+
+🍰 ITEM DETAILS:
+• Product: ${p.n} (${kind(p)})
+• Quantity: ${q}
+• Unit Price: ${p.from?"from ":""}${tk(p.p)}
+• Total Item Price: ${p.from?"from ":""}${tk(p.p*q)}
+${m ? `• Inscription / Message on Cake: "${m}"\n` : ""}
+Please confirm delivery availability, schedule, and payment details in Rangpur. Thank you!`;
+      wa.href = waLink(msg);
+    };
     pd.addEventListener("click", e=>{ const b=e.target.closest("[data-q]"); if(b){ q=Math.max(1,Math.min(20,q+ +b.dataset.q)); upd(); } });
     pd.addEventListener("input", upd);
     pd.addEventListener("submit", e=>{ e.preventDefault(); addToCart(p.id,q,pd.m?pd.m.value.trim():"",pd.querySelector("[type=submit]")); });
@@ -1563,8 +1578,34 @@ function bindPage(){
     if (need.length){ err.textContent = "Please add " + need.map(n=>n[1]).join(", ") + "."; err.hidden=false; f[need[0][0]].focus(); return; }
     if (!phoneOk){ err.textContent = "Enter a Bangladeshi mobile number, like 01852-668468."; err.hidden=false; f.phone.focus(); return; }
     err.hidden = true;
-    const lines = cart.map(l=>{const p=byId(l.id);return `• ${l.q} × ${p.n} (${kind(p)}) — ${p.from?"from ":""}${tk(p.p*l.q)}${l.m?`\n   Message on cake: "${l.m}"`:""}`}).join("\n");
-    const msg = `Hello Sweet Site Bakery! I'd like to place an order.\n\n${lines}\n\nSubtotal: ${tk(subtotal())}${hasFrom()?"+":""} (delivery to be confirmed)\n\nName: ${f.name.value.trim()}\nPhone: ${f.phone.value.trim()}\nArea: ${f.area.value}\nAddress: ${f.address.value.trim()}\nDelivery: ${f.date.value}, ${f.time.value}${f.notes.value.trim()?`\nNotes: ${f.notes.value.trim()}`:""}`;
+    const lines = cart.map((l, idx)=>{
+      const p=byId(l.id);
+      return `${idx+1}. ${l.q} × ${p.n} (${kind(p)})\n   • Price: ${p.from?"from ":""}${tk(p.p*l.q)} (${tk(p.p)} each)${l.m?`\n   • Inscription on cake: "${l.m}"`:""}`;
+    }).join("\n\n");
+
+    const msg = `Hello Sweet Site Bakery! 🎂✨
+
+I would like to confirm my order with the following details:
+
+📦 ORDER ITEMS:
+${lines}
+
+💰 ORDER SUMMARY:
+• Subtotal: ${tk(subtotal())}${hasFrom()?"+":""}
+• Delivery Charge: (To be confirmed for ${f.area.value})
+
+👤 CUSTOMER INFORMATION:
+• Full Name: ${f.name.value.trim()}
+• Phone / WhatsApp: ${f.phone.value.trim()}
+
+📍 DELIVERY DETAILS:
+• Delivery Area: ${f.area.value}
+• Street / Address: ${f.address.value.trim()}
+• Delivery Date: ${f.date.value}
+• Preferred Time Window: ${f.time.value}
+${f.notes.value.trim()?`\n📝 SPECIAL INSTRUCTIONS / NOTES:\n• ${f.notes.value.trim()}\n`:""}
+Please confirm order receipt, delivery fee, and payment method (bKash/Nagad/Cash). Thank you!`;
+
     window.open(waLink(msg), "_blank", "noopener");
     cart = []; saveCart(); location.hash = "#/order-sent";
   });
@@ -1573,7 +1614,14 @@ function bindPage(){
     e.preventDefault(); const err=ct.querySelector("[data-err]");
     if (!ct.name.value.trim()||!ct.msg.value.trim()){ err.textContent="Please add your name and a message."; err.hidden=false; (ct.name.value.trim()?ct.msg:ct.name).focus(); return; }
     err.hidden=true;
-    window.open(waLink(`Hello Sweet Site Bakery! This is ${ct.name.value.trim()}${ct.phone.value.trim()?` (${ct.phone.value.trim()})`:""}.\n\n${ct.msg.value.trim()}`),"_blank","noopener");
+    const msg = `Hello Sweet Site Bakery! 💌✨
+
+👤 SENDER INFORMATION:
+• Name: ${ct.name.value.trim()}
+${ct.phone.value.trim()?`• Phone: ${ct.phone.value.trim()}\n`:""}
+💬 MESSAGE:
+${ct.msg.value.trim()}`;
+    window.open(waLink(msg),"_blank","noopener");
     toast("WhatsApp opened with your message.");
   });
   const bf = $("[data-builder]");

@@ -102,7 +102,18 @@ export const ProductDetailPage: React.FC = () => {
   };
 
   const handleWhatsAppOrder = () => {
-    const msg = `Assalamu Alaikum Sweet Site Bakery! 🎂\n\nI would like to place an order for:\n*${product.name}*\n- Weight: ${selectedWeight} Lb\n- Quantity: ${quantity}\n- Message on Cake: ${customMsg || 'None'}\n- Total Price: ${formatBDT(totalPrice)}\n\nPlease let me know delivery availability in Rangpur!`;
+    const msg = `Hello Sweet Site Bakery! 🎂✨
+
+I would like to order this item directly:
+
+🍰 ITEM DETAILS:
+• Product: ${product.name}
+• Size / Weight: ${selectedWeight} Lb
+• Quantity: ${quantity}
+• Unit Price: ${formatBDT(product.price)}
+• Total Amount: ${formatBDT(totalPrice)}
+${customMsg ? `• Inscription / Message on Cake: "${customMsg}"\n` : ""}
+Please confirm delivery availability, schedule, and payment details in Rangpur. Thank you!`;
     window.open(getWhatsAppLink(msg), '_blank');
   };
 

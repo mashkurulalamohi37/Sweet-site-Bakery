@@ -35,7 +35,17 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({ product, onClose
   };
 
   const handleWhatsApp = () => {
-    const msg = `Assalamu Alaikum! I would like to order *${product.name}*\n- Size: ${currentWeight} Lb\n- Quantity: ${quantity}\n- Message on Cake: ${customMsg || 'None'}\n- Total: ${formatBDT(totalPrice)}`;
+    const msg = `Hello Sweet Site Bakery! 🎂✨
+
+I would like to order this item directly:
+
+🍰 ITEM DETAILS:
+• Product: ${product.name}
+• Size / Weight: ${currentWeight} Lb
+• Quantity: ${quantity}
+• Total Amount: ${formatBDT(totalPrice)}
+${customMsg ? `• Inscription / Message on Cake: "${customMsg}"\n` : ""}
+Please confirm delivery availability and payment details in Rangpur. Thank you!`;
     window.open(getWhatsAppLink(msg), '_blank');
   };
 

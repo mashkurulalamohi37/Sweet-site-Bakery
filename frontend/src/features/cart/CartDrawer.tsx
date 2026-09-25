@@ -55,15 +55,24 @@ export const CartDrawer: React.FC = () => {
     const itemsList = items
       .map(
         (i, idx) =>
-          `${idx + 1}. *${i.product.name}* (${i.selected_weight_lbs} Lb x ${i.quantity}) - ${formatBDT(
+          `${idx + 1}. *${i.product.name}* (${i.selected_weight_lbs} Lb × ${i.quantity})\n   • Price: ${formatBDT(
             i.unit_price * i.quantity
-          )}${i.customization_notes?.inscription_text ? `\n   Note: "${i.customization_notes.inscription_text}"` : ''}`
+          )} (${formatBDT(i.unit_price)} each)${i.customization_notes?.inscription_text ? `\n   • Message on Cake: "${i.customization_notes.inscription_text}"` : ''}`
       )
-      .join('\n');
+      .join('\n\n');
 
-    const msg = `Assalamu Alaikum! I would like to place an order from Sweet Site Bakery:\n\n${itemsList}\n\n*Total:* ${formatBDT(
-      totalPrice
-    )}\n\nPlease confirm availability and delivery slot in Rangpur.`;
+    const msg = `Hello Sweet Site Bakery! 🎂✨
+
+I would like to place an order for the following items:
+
+📦 ORDER ITEMS:
+${itemsList}
+
+💰 BASKET TOTAL:
+• Subtotal: ${formatBDT(totalPrice)}
+• Delivery: (To be confirmed in Rangpur)
+
+Please confirm order availability, delivery schedule, and payment details. Thank you!`;
 
     window.open(getWhatsAppLink(msg), '_blank');
   };

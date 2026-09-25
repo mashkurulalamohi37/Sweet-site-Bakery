@@ -183,7 +183,7 @@ export const TrackOrderPage: React.FC = () => {
 
                 <a
                   href={getWhatsAppLink(
-                    `Hi Sweet Site Bakery! Inquiring about my Order #${order.order_number} (${order.customer_name}).`
+                    `Hello Sweet Site Bakery! 🎂✨\n\nI would like to inquire about my Order #${order.order_number}:\n\n👤 CUSTOMER: ${order.customer_name} (${order.customer_phone})\n📍 DELIVERY: ${order.delivery_address}\n📅 DATE & TIME: ${order.delivery_date} (${order.delivery_time_slot})\n💰 TOTAL: ${formatBDT(order.total_amount)}\n📋 CURRENT STATUS: ${order.status.toUpperCase()}\n\nPlease provide an update on my baking and delivery status. Thank you!`
                   )}
                   target="_blank"
                   rel="noreferrer"
