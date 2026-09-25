@@ -313,24 +313,28 @@ fieldset{border:0;padding:0;margin:0}
 @media (prefers-reduced-motion:reduce){.fadein{animation:none}}
 
 /* cake visualizer stage */
-.cake-preview-card{background:linear-gradient(145deg,#FFFFFF 0%,var(--butter) 100%);border:1.5px solid var(--line);border-radius:var(--radius-m);padding:1.4rem;position:sticky;top:96px;box-shadow:0 12px 36px rgba(59,26,16,.08);display:flex;flex-direction:column;gap:1.2rem}
-.cake-stage-wrap{position:relative;width:100%;height:250px;background:radial-gradient(circle at 50% 35%,#FFFDFC 0%,#FDEFD9 70%,#F7E4C8 100%);border-radius:14px;border:1px solid rgba(110,74,134,.15);display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:inset 0 2px 10px rgba(110,74,134,.05)}
-.cake-stage-svg{width:100%;height:100%;max-width:320px;max-height:250px;overflow:visible;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
-.cake-stage-svg.pop{animation:cakeBounce .5s cubic-bezier(.34,1.56,.64,1)}
-@keyframes cakeBounce{0%{transform:scale(.92) translateY(6px)}60%{transform:scale(1.05) translateY(-4px)}100%{transform:scale(1) translateY(0)}}
-.stage-badge{position:absolute;top:10px;left:12px;background:rgba(255,255,255,.88);backdrop-filter:blur(4px);padding:.25rem .65rem;border-radius:999px;font-size:.76rem;font-weight:600;color:var(--plum);border:1px solid var(--line);display:flex;align-items:center;gap:.35rem;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-.stage-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);animation:ping 2s infinite}
-.stage-hint{position:absolute;bottom:8px;right:12px;font-size:.72rem;color:var(--muted);font-style:italic}
-.flame-anim{transform-box:fill-box;transform-origin:50% 100%;animation:flameFlicker 1.4s ease-in-out infinite}
-.flame-anim.f2{animation-duration:1.7s;animation-delay:-.5s}
-.flame-anim.f3{animation-duration:1.5s;animation-delay:-.9s}
-@keyframes flameFlicker{0%,100%{transform:scale(1) rotate(-3deg)}25%{transform:scale(.92,1.15) rotate(3deg)}50%{transform:scale(1.08,.92) rotate(-2deg)}75%{transform:scale(.95,1.08) rotate(4deg)}}
+.cake-preview-card{background:linear-gradient(160deg,#FFFFFF 0%,#FFF9F5 60%,#FDEFD9 100%);border:1.5px solid rgba(242,165,22,.35);border-radius:24px;padding:1.6rem;position:sticky;top:96px;box-shadow:0 16px 40px rgba(59,26,16,.09), 0 0 0 1px rgba(255,255,255,.9) inset;display:flex;flex-direction:column;gap:1.2rem;transition:box-shadow .3s ease}
+.cake-preview-card:hover{box-shadow:0 20px 48px rgba(59,26,16,.13)}
+.cake-stage-wrap{position:relative;width:100%;height:270px;background:radial-gradient(circle at 50% 30%,#FFFFFF 0%,#FFF6ED 55%,#F8E5CE 100%);border-radius:18px;border:1.5px solid rgba(110,74,134,.18);display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:inset 0 2px 14px rgba(110,74,134,.06), 0 8px 24px rgba(59,26,16,.05)}
+.cake-stage-wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 20%,rgba(242,165,22,.15) 0%,transparent 60%);pointer-events:none}
+.cake-stage-svg{width:100%;height:100%;max-width:320px;max-height:270px;overflow:visible;transition:transform .4s cubic-bezier(.34,1.56,.64,1);filter:drop-shadow(0 14px 22px rgba(59,26,16,.14))}
+.cake-stage-svg.pop{animation:cakeElevate .6s cubic-bezier(.34,1.56,.64,1)}
+@keyframes cakeElevate{0%{transform:scale(.92) translateY(8px)}50%{transform:scale(1.04) translateY(-6px)}100%{transform:scale(1) translateY(0)}}
+.stage-badge{position:absolute;top:12px;left:14px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);padding:.3rem .75rem;border-radius:999px;font-size:.78rem;font-weight:600;color:var(--lav-deep);border:1px solid rgba(242,165,22,.4);display:flex;align-items:center;gap:.4rem;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.stage-badge svg{width:14px;height:14px;color:var(--gold)}
+.stage-hint{position:absolute;bottom:10px;right:14px;font-size:.75rem;font-weight:500;color:var(--muted);background:rgba(255,255,255,.75);padding:.2rem .5rem;border-radius:6px;backdrop-filter:blur(4px)}
+.flame-anim{transform-box:fill-box;transform-origin:50% 100%;animation:flameFlicker 1.5s ease-in-out infinite}
+.flame-anim.f2{animation-duration:1.8s;animation-delay:-.6s}
+.flame-anim.f3{animation-duration:1.6s;animation-delay:-1s}
+@keyframes flameFlicker{0%,100%{transform:scale(1,1) rotate(-3deg)}25%{transform:scale(.9,1.18) rotate(3deg)}50%{transform:scale(1.1,.9) rotate(-1deg)}75%{transform:scale(.94,1.1) rotate(4deg)}}
 .sparkle-pop{animation:sprinklePop .6s cubic-bezier(.34,1.56,.64,1)}
 @keyframes sprinklePop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
-.drip-flow{animation:dripFlowIn .7s ease-out}
-@keyframes dripFlowIn{from{opacity:0;transform:scaleY(.5)}to{opacity:1;transform:scaleY(1)}}
-.rose-bloom{transform-box:fill-box;transform-origin:center;animation:roseBloomIn .6s cubic-bezier(.34,1.56,.64,1)}
-@keyframes roseBloomIn{from{opacity:0;transform:scale(0) rotate(-25deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+.drip-flow{animation:dripFlowIn .75s cubic-bezier(.2,.8,.3,1)}
+@keyframes dripFlowIn{from{opacity:0;transform:scaleY(.4)}to{opacity:1;transform:scaleY(1)}}
+.rose-bloom{transform-box:fill-box;transform-origin:center;animation:roseBloomIn .65s cubic-bezier(.34,1.56,.64,1)}
+@keyframes roseBloomIn{from{opacity:0;transform:scale(0) rotate(-30deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+.cake-floating{animation:cakeFloat 4s ease-in-out infinite}
+@keyframes cakeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 
 .bsum dl{display:grid;grid-template-columns:auto 1fr;gap:.45rem 1rem;font-size:.92rem;margin:0}
 .bsum dt{color:var(--muted)} .bsum dd{margin:0;font-weight:500;text-align:right}
@@ -1000,60 +1004,61 @@ function bPrice(){ const p = byId(bs.flavour); return p ? p : null; }
 
 function renderCakeStage(bs) {
   const p = bPrice();
-  // Sponge color logic
-  let sponge = "#F7E6C8";
+  
+  // 1. Precise Gourmet Sponge Colors
+  let spongeBase = "#F7E6C8", spongeDark = "#DFC49D";
   if (bs.flavour) {
     const fid = bs.flavour.toLowerCase();
-    if (fid.includes("red-velvet")) sponge = "#8B1E2E";
-    else if (fid.includes("chocolate") || fid.includes("mocha") || fid.includes("mud") || fid.includes("brownie") || fid.includes("moist") || fid.includes("ganache") || fid.includes("lava") || fid.includes("black-forest")) sponge = "#3B1B10";
-    else if (fid.includes("roshmalai")) sponge = "#F5E3B8";
-    else if (fid.includes("strawberry")) sponge = "#F28C9E";
-    else if (fid.includes("mango") || fid.includes("orange")) sponge = "#F2A72E";
-    else if (fid.includes("blueberry")) sponge = "#654578";
-    else if (fid.includes("pandan")) sponge = "#52855C";
-    else if (fid.includes("cheesecake")) sponge = "#E0B367";
-    else if (fid.includes("caramel") || fid.includes("butterscotch")) sponge = "#D89947";
+    if (fid.includes("red-velvet")) { spongeBase = "#991D2D"; spongeDark = "#730F1C"; }
+    else if (fid.includes("chocolate") || fid.includes("mocha") || fid.includes("mud") || fid.includes("brownie") || fid.includes("moist") || fid.includes("ganache") || fid.includes("lava") || fid.includes("black-forest")) { spongeBase = "#3D1D13"; spongeDark = "#281109"; }
+    else if (fid.includes("roshmalai")) { spongeBase = "#FCE8BA"; spongeDark = "#E5C88F"; }
+    else if (fid.includes("strawberry")) { spongeBase = "#F792A3"; spongeDark = "#D66A7D"; }
+    else if (fid.includes("mango") || fid.includes("orange")) { spongeBase = "#F7AB31"; spongeDark = "#D88B13"; }
+    else if (fid.includes("blueberry")) { spongeBase = "#6B4980"; spongeDark = "#4B2E5E"; }
+    else if (fid.includes("pandan")) { spongeBase = "#5E9469"; spongeDark = "#41704B"; }
+    else if (fid.includes("cheesecake")) { spongeBase = "#E5BA70"; spongeDark = "#C99A4A"; }
+    else if (fid.includes("caramel") || fid.includes("butterscotch")) { spongeBase = "#DE9F4D"; spongeDark = "#B87A28"; }
   }
 
-  // Frosting main color logic
-  let frost = "#FFF8F2";
+  // 2. Luxury Frosting Lighting Tones (3D Cylinder Highlights)
+  let fLight = "#FFFFFF", fMid = "#FFF9F5", fDark = "#F6E4D0";
   if (bs.colours && bs.colours.length) {
     const c0 = bs.colours[0];
-    if (c0 === "Blush pink") frost = "#F8D6E1";
-    else if (c0 === "Lavender") frost = "#EADCF3";
-    else if (c0 === "Ivory and gold") frost = "#FDEFD9";
-    else if (c0 === "Chocolate") frost = "#4B2418";
-    else if (c0 === "White") frost = "#FFFFFF";
-    else if (c0 === "Pastel mix") frost = "#F8D6E1";
+    if (c0 === "Blush pink") { fLight = "#FFE7ED"; fMid = "#F8D6E1"; fDark = "#E9B6C7"; }
+    else if (c0 === "Lavender") { fLight = "#F6EEFC"; fMid = "#EADCF3"; fDark = "#D2BFDF"; }
+    else if (c0 === "Ivory and gold") { fLight = "#FFFDF9"; fMid = "#FDEFD9"; fDark = "#ECD6B7"; }
+    else if (c0 === "Chocolate") { fLight = "#5A3022"; fMid = "#4B2418"; fDark = "#32140A"; }
+    else if (c0 === "White") { fLight = "#FFFFFF"; fMid = "#FAFAFA"; fDark = "#ECE8E5"; }
+    else if (c0 === "Pastel mix") { fLight = "#FFF0F4"; fMid = "#F8D6E1"; fDark = "#E2C3DB"; }
   } else if (bs.frosting) {
-    if (bs.frosting.includes("Chocolate ganache")) frost = "#3B1A10";
-    else if (bs.frosting.includes("White chocolate")) frost = "#FFF9ED";
-    else if (bs.frosting.includes("Ever Whipped")) frost = "#FFFFFF";
-    else if (bs.frosting.includes("butter cream")) frost = "#FFF5DB";
+    if (bs.frosting.includes("Chocolate ganache")) { fLight = "#4E2619"; fMid = "#3B1A10"; fDark = "#240E06"; }
+    else if (bs.frosting.includes("White chocolate")) { fLight = "#FFFFFF"; fMid = "#FFFBF2"; fDark = "#EFE3CD"; }
+    else if (bs.frosting.includes("Ever Whipped")) { fLight = "#FFFFFF"; fMid = "#FCFCFD"; fDark = "#EAEBF0"; }
+    else if (bs.frosting.includes("butter cream")) { fLight = "#FFFDF6"; fMid = "#FFF5DC"; fDark = "#F3E3B9"; }
   }
 
-  // Accent color
-  let accent = "#F2A516";
+  // 3. Royal Gold & Accent Accents
+  let accentColor = "#F2A516", accentDark = "#9A6200";
   if (bs.colours && bs.colours.length > 1) {
     const c1 = bs.colours[1];
-    if (c1 === "Blush pink") accent = "#EFB9CC";
-    else if (c1 === "Lavender") accent = "#C9A8DB";
-    else if (c1 === "Ivory and gold") accent = "#F2A516";
-    else if (c1 === "Chocolate") accent = "#7A4F95";
-    else if (c1 === "White") accent = "#FFFFFF";
+    if (c1 === "Blush pink") { accentColor = "#EFB9CC"; accentDark = "#9B5E74"; }
+    else if (c1 === "Lavender") { accentColor = "#C9A8DB"; accentDark = "#6E4A86"; }
+    else if (c1 === "Ivory and gold") { accentColor = "#F2A516"; accentDark = "#9A6200"; }
+    else if (c1 === "Chocolate") { accentColor = "#7A4F95"; accentDark = "#3B1A10"; }
+    else if (c1 === "White") { accentColor = "#FFFFFF"; accentDark = "#C0B8B0"; }
   }
 
-  // Size scale & tiers
+  // 4. Proportions & Tier Scales
   const isTiered = bs.size === "Bigger or tiered";
   const isSmall = bs.size === "0.5 pound";
   const isLarge = bs.size === "2 pound";
-  const baseScale = isSmall ? 0.82 : (isLarge ? 1.08 : 1);
-  const baseW = 180 * baseScale;
-  const baseH = 68 * baseScale;
-  const baseY = isTiered ? 136 : 124;
-  const topY = isTiered ? 78 : (baseY - baseH/2 + 6);
+  const scaleMult = isSmall ? 0.82 : (isLarge ? 1.08 : 1);
+  const w1 = 186 * scaleMult;
+  const h1 = 70 * scaleMult;
+  const y1 = isTiered ? 138 : 124;
+  const topSurfaceY = isTiered ? 78 : (y1 - h1/2 + 7);
 
-  // Extras flags
+  // 5. Addon Toggles
   const hasCandles = bs.extras && bs.extras.includes("Candles");
   const hasSprinkles = bs.extras && bs.extras.includes("Sprinkles");
   const hasDrip = (bs.extras && bs.extras.includes("Chocolate drip")) || (bs.frosting && bs.frosting.includes("ganache"));
@@ -1061,163 +1066,262 @@ function renderCakeStage(bs) {
   const hasTopper = bs.extras && bs.extras.includes("Name topper");
 
   return `
-  <div class="cake-stage-wrap" role="img" aria-label="Interactive animated preview of your custom cake">
-    <div class="stage-badge">✨ Live Cake Preview</div>
-    <div class="stage-hint">${esc(bs.size || '1.5 pound')} · ${esc(bs.frosting || 'Frosting')}</div>
-    <svg class="cake-stage-svg pop" viewBox="0 0 320 250" fill="none">
+  <div class="cake-stage-wrap" role="img" aria-label="Bespoke luxury custom cake atelier preview">
+    <div class="stage-badge">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2h7.6l-6.2 4.5 2.4 7.3-6.2-4.5-6.2 4.5 2.4-7.3-6.2-4.5h7.6z"/></svg>
+      Bespoke Atelier
+    </div>
+    <div class="stage-hint">${esc(bs.size || '1.5 pound')} · ${esc(bs.frosting || 'Gourmet Frosting')}</div>
+    
+    <svg class="cake-stage-svg pop cake-floating" viewBox="0 0 320 270" fill="none">
       <defs>
-        <filter id="cakeGlow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#3B1A10" flood-opacity="0.14"/>
+        <!-- Ambient Shadows -->
+        <filter id="royalShadow" x="-30%" y="-30%" width="160%" height="160%">
+          <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#3B1A10" flood-opacity="0.18"/>
         </filter>
-        <filter id="flameGlow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="4" result="glow"/>
-          <feComposite in="SourceGraphic" in2="glow" operator="over"/>
+        <filter id="flameVolumetric" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="5" result="blur"/>
+          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
         </filter>
-        <linearGradient id="standGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#FDEFD9"/>
-          <stop offset="50%" stop-color="#F2A516"/>
-          <stop offset="100%" stop-color="#9A6200"/>
+
+        <!-- Dynamic Frosting Cylindrical Shading -->
+        <linearGradient id="frostBodyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="${fLight}"/>
+          <stop offset="25%" stop-color="${fMid}"/>
+          <stop offset="75%" stop-color="${fMid}"/>
+          <stop offset="100%" stop-color="${fDark}"/>
         </linearGradient>
-        <linearGradient id="dripGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#3B1A10"/>
-          <stop offset="100%" stop-color="#240D07"/>
+        
+        <linearGradient id="topFrostGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="${fLight}"/>
+          <stop offset="60%" stop-color="${fMid}"/>
+          <stop offset="100%" stop-color="${fDark}"/>
+        </linearGradient>
+
+        <!-- 24K Champagne Gold Stand -->
+        <linearGradient id="goldLuster" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FFF5E0"/>
+          <stop offset="35%" stop-color="#F2A516"/>
+          <stop offset="70%" stop-color="#D48B08"/>
+          <stop offset="100%" stop-color="#7A4B00"/>
+        </linearGradient>
+
+        <!-- Mirror Glaze Chocolate Drip -->
+        <linearGradient id="mirrorGlaze" x1="20%" y1="0%" x2="80%" y2="100%">
+          <stop offset="0%" stop-color="#4E2619"/>
+          <stop offset="40%" stop-color="#3B1A10"/>
+          <stop offset="100%" stop-color="#1E0A04"/>
+        </linearGradient>
+
+        <!-- Ruby Strawberry -->
+        <linearGradient id="berryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FF4D5E"/>
+          <stop offset="60%" stop-color="#D91E36"/>
+          <stop offset="100%" stop-color="#780816"/>
         </linearGradient>
       </defs>
 
-      <!-- Pedestal Stand -->
-      <g filter="url(#cakeGlow)">
-        <ellipse cx="160" cy="208" rx="102" ry="14" fill="#FFFFFF" stroke="url(#standGrad)" stroke-width="2.5"/>
-        <ellipse cx="160" cy="210" rx="96" ry="10" fill="#F8E5CE" opacity="0.6"/>
-        <path d="M148 214h24l-4 18h-16z" fill="url(#standGrad)"/>
-        <ellipse cx="160" cy="232" rx="42" ry="6" fill="#F2A516"/>
+      <!-- Royal Fluted Gold & Porcelain Pedestal -->
+      <g filter="url(#royalShadow)">
+        <!-- Pedestal Base Plate -->
+        <ellipse cx="160" cy="222" rx="108" ry="16" fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="2.5"/>
+        <ellipse cx="160" cy="223" rx="102" ry="12" fill="#FDF7EE"/>
+        <ellipse cx="160" cy="224" rx="98" ry="9" fill="url(#goldLuster)" opacity="0.4"/>
+        
+        <!-- Fluted Center Column -->
+        <path d="M146 226 h28 l-5 24 h-18 z" fill="url(#goldLuster)"/>
+        <ellipse cx="160" cy="250" rx="46" ry="7" fill="url(#goldLuster)"/>
+        <ellipse cx="160" cy="250" rx="42" ry="5" fill="#5E3800" opacity="0.3"/>
       </g>
 
-      <!-- Main Base Tier (Tier 1) -->
-      <g filter="url(#cakeGlow)" class="tier-base" style="transition:all .4s ease">
-        <!-- Bottom cylinder body -->
-        <path d="M${160 - baseW/2} ${baseY} v${baseH} c0 14 ${baseW/2} 24 ${baseW/2} 24 s${baseW/2} -10 ${baseW/2} -24 v-${baseH} z" fill="${frost}" stroke="rgba(110,74,134,.18)" stroke-width="1.2"/>
+      <!-- Tier 1 Base Cylinder (Main Cake) -->
+      <g filter="url(#royalShadow)" class="tier-base" style="transition:all .5s cubic-bezier(.2,.8,.3,1)">
+        <!-- Cylinder Side Body -->
+        <path d="M${160 - w1/2} ${y1} 
+                 v${h1} 
+                 c0 15 ${w1/2} 26 ${w1/2} 26 
+                 s${w1/2} -11 ${w1/2} -26 
+                 v-${h1} z" 
+              fill="url(#frostBodyGrad)" stroke="rgba(110,74,134,.16)" stroke-width="1.2"/>
         
-        <!-- Exposed Sponge preview / shadow slice -->
-        <path d="M${160 - baseW/2 + 6} ${baseY + 14} v${baseH - 12} c0 8 ${baseW/2 - 6} 14 ${baseW/2 - 6} 14 s${baseW/2 - 6} -6 ${baseW/2 - 6} -14 v-${baseH - 12} z" fill="${sponge}" opacity="0.25"/>
+        <!-- Exposed Moisture Crumb Preview (Interior Cake Layer) -->
+        <path d="M${160 - w1/2 + 8} ${y1 + 16} 
+                 v${h1 - 15} 
+                 c0 9 ${w1/2 - 8} 16 ${w1/2 - 8} 16 
+                 s${w1/2 - 8} -7 ${w1/2 - 8} -16 
+                 v-${h1 - 15} z" 
+              fill="${spongeBase}" opacity="0.3"/>
+        <path d="M${160 - w1/2 + 12} ${y1 + 22} 
+                 v${h1 - 24} 
+                 c0 6 ${w1/2 - 12} 11 ${w1/2 - 12} 11 
+                 s${w1/2 - 12} -5 ${w1/2 - 12} -11 
+                 v-${h1 - 24} z" 
+              fill="${spongeDark}" opacity="0.2"/>
+
+        <!-- Bottom Pearl Piping Trim -->
+        ${[-80, -60, -40, -20, 0, 20, 40, 60, 80].map(dx => `
+          <circle cx="${160 + dx}" cy="${y1 + h1 + (1 - Math.abs(dx)/100)*12.5}" r="4" fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="1"/>
+        `).join('')}
+
+        <!-- Top Surface of Tier 1 -->
+        <ellipse cx="160" cy="${y1}" rx="${w1/2}" ry="${w1/8 + 5}" fill="url(#topFrostGrad)" stroke="rgba(110,74,134,.18)" stroke-width="1.2"/>
+        <ellipse cx="160" cy="${y1}" rx="${w1/2 - 6}" ry="${w1/8 + 1}" fill="${accentColor}" opacity="0.14"/>
         
-        <!-- Tier 1 Top Frosting Surface -->
-        <ellipse cx="160" cy="${baseY}" rx="${baseW/2}" ry="${baseW/8 + 4}" fill="${frost}" stroke="rgba(110,74,134,.2)" stroke-width="1.2"/>
-        <ellipse cx="160" cy="${baseY}" rx="${baseW/2 - 8}" ry="${baseW/8}" fill="${accent}" opacity="0.18"/>
+        <!-- Top Pearl Border -->
+        ${[-75, -55, -35, -15, 15, 35, 55, 75].map(dx => `
+          <circle cx="${160 + dx}" cy="${y1 + Math.abs(dx)*0.08}" r="3.5" fill="#FFFFFF" stroke="rgba(110,74,134,.25)" stroke-width="0.8"/>
+        `).join('')}
       </g>
 
-      <!-- Second Tier (if Bigger/Tiered is chosen) -->
+      <!-- Tier 2 (Grand Multi-Tier Edition) -->
       ${isTiered ? `
-      <g filter="url(#cakeGlow)" class="tier-top rose-bloom" style="transition:all .4s ease">
-        <path d="M112 88 v38 c0 9 48 16 48 16 s48 -7 48 -16 v-38 z" fill="${frost}" stroke="rgba(110,74,134,.2)" stroke-width="1.2"/>
-        <ellipse cx="160" cy="88" rx="48" ry="12" fill="${frost}" stroke="rgba(110,74,134,.2)" stroke-width="1.2"/>
-        <ellipse cx="160" cy="88" rx="40" ry="9" fill="${accent}" opacity="0.22"/>
+      <g filter="url(#royalShadow)" class="tier-top rose-bloom" style="transition:all .5s cubic-bezier(.2,.8,.3,1)">
+        <!-- Tier 2 Spacer / Gold Ring -->
+        <ellipse cx="160" cy="94" rx="54" ry="13" fill="url(#goldLuster)"/>
+        
+        <!-- Tier 2 Body -->
+        <path d="M106 88 v42 c0 10 54 18 54 18 s54 -8 54 -18 v-42 z" fill="url(#frostBodyGrad)" stroke="rgba(110,74,134,.18)" stroke-width="1.2"/>
+        
+        <!-- Tier 2 Top Surface -->
+        <ellipse cx="160" cy="88" rx="54" ry="14" fill="url(#topFrostGrad)" stroke="rgba(110,74,134,.18)" stroke-width="1.2"/>
+        <ellipse cx="160" cy="88" rx="46" ry="10" fill="${accentColor}" opacity="0.2"/>
+
+        <!-- Tier 2 Pearl Trim -->
+        ${[-40, -20, 0, 20, 40].map(dx => `
+          <circle cx="${160 + dx}" cy="${88 + Math.abs(dx)*0.08}" r="3" fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="0.8"/>
+        `).join('')}
       </g>
       ` : ''}
 
-      <!-- Chocolate Drip Layer -->
+      <!-- Flowing Mirror Glaze Chocolate Drip -->
       ${hasDrip ? `
       <g class="drip-flow">
-        <path d="M${160 - baseW/2} ${baseY} 
-                 q 12 18 20 6 t 22 22 t 22 -14 t 24 24 t 22 -18 t 24 16 t 22 -18 v-6 
-                 c0 -8 -${baseW/2} -14 -${baseW/2} -14 s-${baseW/2} 6 -${baseW/2} 14 z" 
-              fill="url(#dripGrad)" opacity="0.92"/>
+        <path d="M${160 - w1/2} ${y1} 
+                 q 12 24 22 8 t 24 28 t 24 -18 t 26 30 t 24 -22 t 26 20 t 24 -24 v-8 
+                 c0 -9 -${w1/2} -16 -${w1/2} -16 s-${w1/2} 7 -${w1/2} 16 z" 
+              fill="url(#mirrorGlaze)" opacity="0.94"/>
+        
+        <!-- Specular Droplet Highlights -->
+        <ellipse cx="${160 - w1/2 + 32}" cy="${y1 + 22}" rx="2" ry="4" fill="#FFFFFF" opacity="0.6"/>
+        <ellipse cx="${160 - w1/2 + 80}" cy="${y1 + 24}" rx="2.5" ry="5" fill="#FFFFFF" opacity="0.65"/>
+        <ellipse cx="${160 + 26}" cy="${y1 + 26}" rx="2.5" ry="5" fill="#FFFFFF" opacity="0.65"/>
+        <ellipse cx="${160 + 74}" cy="${y1 + 18}" rx="2" ry="4" fill="#FFFFFF" opacity="0.6"/>
+
         ${isTiered ? `
-        <path d="M112 88 q 10 12 16 4 t 18 14 t 18 -10 t 18 12 t 18 -12 v-4 c0 -6 -42 -10 -42 -10 s-42 4 -42 10 z" fill="url(#dripGrad)" opacity="0.92"/>
+        <path d="M106 88 q 12 16 18 6 t 20 18 t 20 -14 t 20 16 t 20 -16 v-6 c0 -8 -48 -12 -48 -12 s-48 4 -48 12 z" fill="url(#mirrorGlaze)" opacity="0.94"/>
         ` : ''}
       </g>
       ` : ''}
 
-      <!-- Vintage Piping Borders -->
+      <!-- Victorian Lambeth Ruffled Shells -->
       ${bs.design === "Vintage piping" ? `
-      <g fill="${accent}" stroke="var(--plum)" stroke-width="0.8">
-        ${[-70, -50, -30, -10, 10, 30, 50, 70].map(dx => `<circle cx="${160 + dx}" cy="${baseY + Math.abs(dx)*0.1}" r="4.5" fill="#FFFFFF" stroke="${accent}"/>`).join('')}
-        ${[-80, -60, -40, -20, 0, 20, 40, 60, 80].map(dx => `<circle cx="${160 + dx}" cy="${baseY + baseH + (1 - Math.abs(dx)/100)*12}" r="4" fill="#FFFFFF" stroke="${accent}"/>`).join('')}
+      <g fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="1.2" class="sparkle-pop">
+        <!-- Scalloped Swags -->
+        <path d="M${160 - w1/2 + 10} ${y1 + 14} q 22 18 44 0 q 22 18 44 0 q 22 18 44 0 q 22 18 44 0" fill="none" stroke="${accentColor}" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M${160 - w1/2 + 16} ${y1 + 22} q 18 14 36 0 q 18 14 36 0 q 18 14 36 0 q 18 14 36 0" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
       </g>
       ` : ''}
 
-      <!-- Floral Sugar Roses -->
+      <!-- Hand-Sculpted English Garden Sugar Roses -->
       ${bs.design === "Floral" ? `
       <g class="rose-bloom">
-        <g transform="translate(130, ${topY - 14}) scale(0.9)">
-          <circle cx="12" cy="12" r="10" fill="#EFB9CC" stroke="#8B62A3" stroke-width="1"/>
-          <path d="M8 12 c2-4 6-4 8 0 s-4 6-8 0z" fill="#F8D6E1"/>
-          <circle cx="12" cy="12" r="4" fill="#F2A516"/>
-          <path d="M2 14 c-6 4-8 10-4 12 s10 0 8-6z" fill="#7BAA80"/>
+        <!-- Main Blush Peony -->
+        <g transform="translate(132, ${topSurfaceY - 18}) scale(1.05)">
+          <ellipse cx="14" cy="14" rx="14" ry="12" fill="#F8D6E1" stroke="#8B62A3" stroke-width="1.2"/>
+          <path d="M8 12 c4-6 10-6 14 0 s-6 8-14 0z" fill="#EFB9CC"/>
+          <circle cx="14" cy="13" r="5" fill="#FFFFFF"/>
+          <circle cx="14" cy="13" r="2.5" fill="#F2A516"/>
+          <!-- Sage Leaf -->
+          <path d="M0 16 c-8 6-10 14-4 16 s14 0 10-8z" fill="#75A67D" stroke="#486D4E" stroke-width="0.8"/>
         </g>
-        <g transform="translate(164, ${topY - 16}) scale(0.8)">
-          <circle cx="12" cy="12" r="10" fill="#C9A8DB" stroke="#6E4A86" stroke-width="1"/>
-          <path d="M8 12 c2-4 6-4 8 0 s-4 6-8 0z" fill="#EADCF3"/>
-          <circle cx="12" cy="12" r="4" fill="#F2A516"/>
-          <path d="M18 10 c6-4 10-2 10 4 s-6 6-10 0z" fill="#7BAA80"/>
+        <!-- Lavender Rosebud -->
+        <g transform="translate(168, ${topSurfaceY - 20}) scale(0.9)">
+          <ellipse cx="14" cy="14" rx="13" ry="11" fill="#EADCF3" stroke="#6E4A86" stroke-width="1.2"/>
+          <path d="M8 12 c4-6 10-6 14 0 s-6 8-14 0z" fill="#C9A8DB"/>
+          <circle cx="14" cy="13" r="4" fill="#F2A516"/>
+          <path d="M22 12 c8-5 14-2 14 6 s-8 8-14 0z" fill="#75A67D" stroke="#486D4E" stroke-width="0.8"/>
         </g>
       </g>
       ` : ''}
 
-      <!-- Fresh Fruits -->
+      <!-- Glossy Fresh Market Fruits -->
       ${hasFruit ? `
       <g class="rose-bloom">
-        <!-- Strawberries -->
-        <g transform="translate(142, ${topY - 10}) scale(0.85)">
-          <path d="M10 2 C18 2 20 14 10 22 C0 14 2 2 10 2 Z" fill="#D92B3A" stroke="#8E1722" stroke-width="0.8"/>
-          <path d="M7 2 L10 6 L13 2 L10 0 Z" fill="#4B8548"/>
-          <circle cx="7" cy="8" r="0.7" fill="#FFE599"/><circle cx="12" cy="10" r="0.7" fill="#FFE599"/><circle cx="9" cy="15" r="0.7" fill="#FFE599"/>
+        <!-- Fresh Glazed Strawberry -->
+        <g transform="translate(144, ${topSurfaceY - 14}) scale(0.95)">
+          <path d="M12 2 C22 2 24 16 12 26 C0 16 2 2 12 2 Z" fill="url(#berryGrad)" stroke="#570811" stroke-width="1"/>
+          <path d="M8 2 L12 7 L16 2 L12 0 Z" fill="#3E783B"/>
+          <!-- Golden Seeds -->
+          <circle cx="8" cy="9" r="0.9" fill="#FFEBAA"/>
+          <circle cx="15" cy="11" r="0.9" fill="#FFEBAA"/>
+          <circle cx="11" cy="17" r="0.9" fill="#FFEBAA"/>
+          <!-- Gloss Highlights -->
+          <path d="M7 6 c-3 4-3 9 0 13" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.65"/>
         </g>
-        <!-- Blueberries -->
-        <circle cx="${160 - 24}" cy="${topY + 2}" r="5" fill="#3D406B" stroke="#252744" stroke-width="0.8"/>
-        <circle cx="${160 + 26}" cy="${topY + 3}" r="5.5" fill="#3D406B" stroke="#252744" stroke-width="0.8"/>
+        <!-- Indigo Blueberries with Bloom -->
+        <circle cx="${160 - 28}" cy="${topSurfaceY + 2}" r="6.5" fill="#2E335E" stroke="#1C1E38" stroke-width="1"/>
+        <circle cx="${160 - 28}" cy="${topSurfaceY + 2}" r="3" fill="#525B96" opacity="0.6"/>
+        <circle cx="${160 + 30}" cy="${topSurfaceY + 3}" r="7" fill="#2E335E" stroke="#1C1E38" stroke-width="1"/>
+        <circle cx="${160 + 30}" cy="${topSurfaceY + 3}" r="3.5" fill="#525B96" opacity="0.6"/>
       </g>
       ` : ''}
 
-      <!-- Rainbow / Gold Sprinkles -->
+      <!-- Artisanal Gold & Pastel Dragee Sprinkles -->
       ${hasSprinkles ? `
       <g class="sparkle-pop">
-        <rect x="135" y="${topY - 4}" width="6" height="2.5" rx="1.2" fill="#F2A516" transform="rotate(25 135 ${topY})"/>
-        <rect x="155" y="${topY - 2}" width="6" height="2.5" rx="1.2" fill="#EFB9CC" transform="rotate(-35 155 ${topY})"/>
-        <rect x="175" y="${topY - 3}" width="6" height="2.5" rx="1.2" fill="#C9A8DB" transform="rotate(15 175 ${topY})"/>
-        <rect x="145" y="${topY + 4}" width="6" height="2.5" rx="1.2" fill="#7BAA80" transform="rotate(60 145 ${topY})"/>
-        <rect x="168" y="${topY + 5}" width="6" height="2.5" rx="1.2" fill="#F2A516" transform="rotate(-20 168 ${topY})"/>
-        <rect x="120" y="${baseY + 4}" width="5" height="2" rx="1" fill="#EFB9CC" transform="rotate(45 120 ${baseY})"/>
-        <rect x="195" y="${baseY + 4}" width="5" height="2" rx="1" fill="#C9A8DB" transform="rotate(-40 195 ${baseY})"/>
+        <rect x="132" y="${topSurfaceY - 5}" width="7" height="3" rx="1.5" fill="#F2A516" stroke="#9A6200" stroke-width="0.5" transform="rotate(28 132 ${topSurfaceY})"/>
+        <rect x="156" y="${topSurfaceY - 3}" width="7" height="3" rx="1.5" fill="#EFB9CC" stroke="#8B62A3" stroke-width="0.5" transform="rotate(-40 156 ${topSurfaceY})"/>
+        <rect x="178" y="${topSurfaceY - 4}" width="7" height="3" rx="1.5" fill="#C9A8DB" stroke="#6E4A86" stroke-width="0.5" transform="rotate(18 178 ${topSurfaceY})"/>
+        <circle cx="146" cy="${topSurfaceY + 6}" r="2.2" fill="#F2A516"/>
+        <circle cx="170" cy="${topSurfaceY + 7}" r="2.2" fill="#EFB9CC"/>
+        <circle cx="120" cy="${y1 + 6}" r="2.5" fill="#C9A8DB"/>
+        <circle cx="200" cy="${y1 + 6}" r="2.5" fill="#F2A516"/>
       </g>
       ` : ''}
 
-      <!-- Birthday Candles with Glowing Flames -->
+      <!-- French Tapered Candles with Radiant Halos -->
       ${hasCandles ? `
       <g class="candles-group">
-        <!-- Center Candle -->
-        <rect x="157" y="${topY - 34}" width="6" height="34" rx="2" fill="#FFFFFF" stroke="#EFB9CC" stroke-width="1"/>
-        <path d="M157 ${topY-26} l6 -4 M157 ${topY-16} l6 -4 M157 ${topY-6} l6 -4" stroke="#F8D6E1" stroke-width="1.2"/>
-        <circle cx="160" cy="${topY - 42}" r="8" fill="#F2A516" opacity="0.3" filter="url(#flameGlow)"/>
-        <path class="flame-anim" d="M160 ${topY - 48} c-3 4-4 8-2 11 a3.5 3.5 0 0 0 5.5 0 c2-3 0.5-7-3.5-11z" fill="#F2A516" stroke="#9A6200" stroke-width="0.8"/>
+        <!-- Center Pillar Candle -->
+        <rect x="157" y="${topSurfaceY - 38}" width="6.5" height="38" rx="2" fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="1"/>
+        <path d="M157 ${topSurfaceY-30} l6.5 -4 M157 ${topSurfaceY-18} l6.5 -4 M157 ${topSurfaceY-8} l6.5 -4" stroke="#F8D6E1" stroke-width="1.4"/>
+        
+        <!-- Radiant Flame Glow -->
+        <circle cx="160.2" cy="${topSurfaceY - 46}" r="11" fill="#F2A516" opacity="0.3" filter="url(#flameVolumetric)"/>
+        <!-- Dancing Flame -->
+        <path class="flame-anim" d="M160.2 ${topSurfaceY - 52} c-3.5 4.5-4.5 9-2.2 12.5 a4 4 0 0 0 6.4 0 c2.2-3.5 0.5-8-4.2-12.5z" fill="#F2A516" stroke="#9A6200" stroke-width="0.9"/>
+        <circle cx="160.2" cy="${topSurfaceY - 43}" r="2" fill="#FFFFFF"/>
 
         <!-- Left Candle -->
-        <rect x="136" y="${topY - 28}" width="5" height="28" rx="1.5" fill="#FFFFFF" stroke="#C9A8DB" stroke-width="0.8"/>
-        <path class="flame-anim f2" d="M138.5 ${topY - 40} c-2.5 3.5-3.5 7-1.5 9.5 a3 3 0 0 0 4.5 0 c1.8-2.5 0.5-6-3-9.5z" fill="#F2A516" stroke="#9A6200" stroke-width="0.7"/>
+        <rect x="134" y="${topSurfaceY - 30}" width="5.5" height="30" rx="1.5" fill="#FFFFFF" stroke="#C9A8DB" stroke-width="0.9"/>
+        <circle cx="136.8" cy="${topSurfaceY - 38}" r="9" fill="#F2A516" opacity="0.25" filter="url(#flameVolumetric)"/>
+        <path class="flame-anim f2" d="M136.8 ${topSurfaceY - 44} c-2.8 4-3.8 8-1.8 10.5 a3.2 3.2 0 0 0 5 0 c1.8-2.5 0.5-6.5-3.2-10.5z" fill="#F2A516" stroke="#9A6200" stroke-width="0.8"/>
 
         <!-- Right Candle -->
-        <rect x="179" y="${topY - 28}" width="5" height="28" rx="1.5" fill="#FFFFFF" stroke="#FDEFD9" stroke-width="0.8"/>
-        <path class="flame-anim f3" d="M181.5 ${topY - 40} c-2.5 3.5-3.5 7-1.5 9.5 a3 3 0 0 0 4.5 0 c1.8-2.5 0.5-6-3-9.5z" fill="#F2A516" stroke="#9A6200" stroke-width="0.7"/>
+        <rect x="180" y="${topSurfaceY - 30}" width="5.5" height="30" rx="1.5" fill="#FFFFFF" stroke="#FDEFD9" stroke-width="0.9"/>
+        <circle cx="182.8" cy="${topSurfaceY - 38}" r="9" fill="#F2A516" opacity="0.25" filter="url(#flameVolumetric)"/>
+        <path class="flame-anim f3" d="M182.8 ${topSurfaceY - 44} c-2.8 4-3.8 8-1.8 10.5 a3.2 3.2 0 0 0 5 0 c1.8-2.5 0.5-6.5-3.2-10.5z" fill="#F2A516" stroke="#9A6200" stroke-width="0.8"/>
       </g>
       ` : ''}
 
-      <!-- Custom Acrylic Name Topper or Message -->
+      <!-- Bespoke Gold Mirrored Calligraphy Topper -->
       ${(hasTopper || bs.message) ? `
-      <g transform="translate(160, ${topY - (hasCandles ? 48 : 26)})" class="cake-topper sparkle-pop" filter="url(#cakeGlow)">
-        <rect x="-65" y="-14" width="130" height="22" rx="11" fill="rgba(255,255,255,0.92)" stroke="var(--gold)" stroke-width="1.4"/>
-        <text x="0" y="2" text-anchor="middle" font-family="var(--serif)" font-size="11" font-weight="700" fill="var(--plum)" font-style="italic">
-          ${esc(bs.message ? (bs.message.length > 20 ? bs.message.slice(0, 18) + '…' : bs.message) : (bs.occasion || 'Sweet Moments'))}
+      <g transform="translate(160, ${topSurfaceY - (hasCandles ? 52 : 30)})" class="cake-topper sparkle-pop" filter="url(#royalShadow)">
+        <rect x="-70" y="-16" width="140" height="26" rx="13" fill="rgba(255,255,255,0.95)" stroke="url(#goldLuster)" stroke-width="1.8"/>
+        <text x="0" y="3" text-anchor="middle" font-family="var(--serif)" font-size="12" font-weight="700" fill="var(--plum)" font-style="italic" letter-spacing="-0.01em">
+          ${esc(bs.message ? (bs.message.length > 22 ? bs.message.slice(0, 20) + '…' : bs.message) : (bs.occasion || 'Sweet Site Bespoke'))}
         </text>
-        <path d="M0 8 v18" stroke="var(--gold)" stroke-width="1.8"/>
+        <path d="M0 10 v22" stroke="url(#goldLuster)" stroke-width="2.2" stroke-linecap="round"/>
       </g>
       ` : ''}
 
-      <!-- Theme/Crown Topper -->
+      <!-- Royal Crown Motif -->
       ${bs.design === "Theme or character" && !hasTopper ? `
-      <g transform="translate(160, ${topY - 22})" class="sparkle-pop">
-        <path d="M-14 0 l4 -12 l10 6 l10 -6 l4 12 z" fill="#F2A516" stroke="#9A6200" stroke-width="0.8"/>
-        <circle cx="-10" cy="-12" r="1.8" fill="#FFFFFF"/>
-        <circle cx="0" cy="-6" r="1.8" fill="#FFFFFF"/>
-        <circle cx="10" cy="-12" r="1.8" fill="#FFFFFF"/>
+      <g transform="translate(160, ${topSurfaceY - 26})" class="sparkle-pop" filter="url(#royalShadow)">
+        <path d="M-16 0 l5 -14 l11 7 l11 -7 l5 14 z" fill="url(#goldLuster)" stroke="#7A4B00" stroke-width="1"/>
+        <circle cx="-11" cy="-14" r="2.2" fill="#FFFFFF"/>
+        <circle cx="0" cy="-7" r="2.2" fill="#FFFFFF"/>
+        <circle cx="11" cy="-14" r="2.2" fill="#FFFFFF"/>
       </g>
       ` : ''}
     </svg>
