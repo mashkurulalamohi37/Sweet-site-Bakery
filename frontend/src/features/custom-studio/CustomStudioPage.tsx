@@ -134,7 +134,23 @@ export const CustomStudioPage: React.FC = () => {
   };
 
   const handleWhatsAppConsultation = () => {
-    const msg = `Assalamu Alaikum Sweet Site Bakery! 🎂✨\n\nI designed a Custom Dream Cake on your Custom Studio:\n- *Size:* ${sizeTier} Lb (${selectedSizeObj.serves})\n- *Sponge Base:* ${selectedSpongeObj.name}\n- *Frosting:* ${selectedFrostingObj.name}\n- *Theme:* ${themeOptions.find((t) => t.id === theme)?.name}\n- *Add-ons:* ${selectedAddons.join(', ') || 'None'}\n- *Inscription:* "${inscription || 'None'}"\n- *Notes:* ${specialInstructions || 'None'}\n- *Estimated Quote:* ${formatBDT(calculatedTotal)}\n\nCan you confirm delivery and baking schedule in Rangpur?`;
+    const msg = `Hello Sweet Site Bakery! 🎂✨
+
+I designed a Custom Dream Cake on your Custom Studio with the following specifications:
+
+🎂 CUSTOM CAKE SPECIFICATIONS:
+• Sponge Base: ${selectedSpongeObj.name}
+• Frosting: ${selectedFrostingObj.name}
+• Size / Tier: ${sizeTier} Lb (${selectedSizeObj.serves})
+• Design Theme: ${themeOptions.find((t) => t.id === theme)?.name}
+• Selected Add-ons / Extras: ${selectedAddons.join(', ') || 'None'}
+• Inscription on Cake: ${inscription ? `"${inscription}"` : 'None'}
+• Special Baking Instructions / Notes: ${specialInstructions || 'None'}
+• Estimated Quote: ${formatBDT(calculatedTotal)}
+
+${referencePhoto ? '📸 REFERENCE PHOTO: I have uploaded a reference image and will send it in this chat.' : ''}
+
+Please confirm availability, baking schedule, and final delivery details in Rangpur. Thank you!`;
     window.open(getWhatsAppLink(msg), '_blank');
   };
 
