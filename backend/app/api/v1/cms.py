@@ -3,8 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from app.core.database import get_db
 from app.models.delivery import DeliveryZone, DeliverySlot
-from app.models.coupon import Coupon
-from app.models.cms import CMSSetting, FAQ, Review
+from app.models.cms import Coupon, CMSSetting, FAQ, Review
 from app.schemas.cms import (
     DeliveryZoneResponse,
     DeliverySlotResponse,

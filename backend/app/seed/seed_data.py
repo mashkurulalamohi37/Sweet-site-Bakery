@@ -112,7 +112,7 @@ async def seed_database(db: AsyncSession):
     await db.flush()
 
     # 3. Pound Cakes
-    for name, price, is_starting, img, is_choc, is_feat in POUND_CAKES:
+    for idx, (name, price, is_starting, img, is_choc, is_feat) in enumerate(POUND_CAKES, start=1):
         slug = slugify(name)
         desc = (
             f"Our most generous chocolate cake, loaded to order with truffles, brownies, and drip. Prices start at ৳{price:,}."
@@ -122,7 +122,7 @@ async def seed_database(db: AsyncSession):
         prod = Product(
             name=name if is_starting else f"{name} Cake",
             slug=slug if is_starting else f"{slug}-cake" if not slug.endswith("-cake") else slug,
-            sku=f"SSB-PND-{slug.upper()[:8]}",
+            sku=f"SSB-PND-{idx:03d}",
             category_id=cat_map["pound-cakes"].id,
             short_description=f"Fresh 1.5 lb {name} cake baked with homemade butter in Rangpur.",
             description=desc,
@@ -145,12 +145,12 @@ async def seed_database(db: AsyncSession):
         db.add(prod)
 
     # 4. Other Bakery Products
-    for cat_slug, name, price, unit, img, desc, is_feat in OTHER_PRODUCTS:
+    for idx, (cat_slug, name, price, unit, img, desc, is_feat) in enumerate(OTHER_PRODUCTS, start=1):
         slug = slugify(name)
         prod = Product(
             name=name,
             slug=slug,
-            sku=f"SSB-{cat_slug.upper()[:4]}-{slug.upper()[:6]}",
+            sku=f"SSB-{cat_slug.upper()[:3]}-{idx:03d}",
             category_id=cat_map[cat_slug].id,
             short_description=desc,
             description=f"{name}, baked fresh to order in our Rangpur kitchen. Sold {unit}.",

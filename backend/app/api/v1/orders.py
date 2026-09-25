@@ -6,7 +6,7 @@ from app.core.config import settings
 from app.models.order import Order, OrderItem
 from app.models.product import Product
 from app.models.delivery import DeliveryZone
-from app.models.coupon import Coupon
+from app.models.cms import Coupon
 from app.models.inventory import InventoryItem, InventoryTransaction
 from app.schemas.order import OrderCreate, OrderResponse
 from typing import List

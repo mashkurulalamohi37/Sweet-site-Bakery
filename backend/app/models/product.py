@@ -62,6 +62,6 @@ class Product(Base):
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
     updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
     
-    category = relationship("Category", back_populates="products")
-    reviews = relationship("Review", back_populates="product", cascade="all, delete-orphan")
+    category = relationship("Category", back_populates="products", lazy="selectin")
+    reviews = relationship("Review", back_populates="product", cascade="all, delete-orphan", lazy="selectin")
     order_items = relationship("OrderItem", back_populates="product")

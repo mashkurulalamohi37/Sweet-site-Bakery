@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func, or_
+from sqlalchemy.orm import selectinload
 from app.core.database import get_db
 from app.models.product import Category, Product
 from app.schemas.product import ProductResponse, CategoryResponse
@@ -35,7 +36,7 @@ async def get_products(
     offset: int = 0,
     db: AsyncSession = Depends(get_db)
 ):
-    query = select(Product).where(Product.is_active == True)
+    query = select(Product).options(selectinload(Product.category)).where(Product.is_active == True)
     
     if category:
         # Check if category slug
@@ -83,7 +84,11 @@ async def get_products(
 
 @router.get("/products/{slug}", response_model=ProductResponse)
 async def get_product_by_slug(slug: str, db: AsyncSession = Depends(get_db)):
-    res = await db.execute(select(Product).where(Product.slug == slug, Product.is_active == True))
+    res = await db.execute(
+        select(Product)
+        .options(selectinload(Product.category))
+        .where(Product.slug == slug, Product.is_active == True)
+    )
     prod = res.scalars().first()
     if not prod:
         raise HTTPException(status_code=404, detail="Product not found")
