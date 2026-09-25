@@ -57,8 +57,7 @@ p{margin:0}
 .textlink{color:var(--lav-deep);font-weight:500;text-underline-offset:4px;text-decoration-thickness:1px}
 .textlink:hover{text-decoration-thickness:2px}
 
-/* announcement + header */
-.announce{background:var(--plum);color:#fff;font-weight:500;text-align:center;font-size:.86rem;padding:.5rem 1rem}
+/* header */
 header.site{position:sticky;top:0;z-index:40;background:color-mix(in srgb,#fff 90%,transparent);backdrop-filter:saturate(1.2) blur(8px);-webkit-backdrop-filter:saturate(1.2) blur(8px);transition:box-shadow .25s ease,border-color .25s;border-bottom:1px solid transparent;padding-top:env(safe-area-inset-top,0px)}
 header.site.scrolled{border-bottom-color:var(--line)}
 .hbar{display:flex;align-items:center;gap:1.2rem;height:76px}
@@ -444,7 +443,6 @@ details.qa[open] p{animation:qaIn .45s ease}
 </head>
 <body>
 <a href="#main" class="sr" onfocus="this.classList.remove('sr')" onblur="this.classList.add('sr')">Skip to content</a>
-<div class="announce">Freshly baked with love in Rangpur ❤️</div>
 <header class="site" id="hdr"><span class="sprog" aria-hidden="true"></span>
   <div class="wrap hbar">
     <a class="brand" href="#/" aria-label="Sweet Site Bakery home">
