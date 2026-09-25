@@ -337,8 +337,17 @@ fieldset{border:0;padding:0;margin:0}
 
 .bsum dl{display:grid;grid-template-columns:auto 1fr;gap:.45rem 1rem;font-size:.92rem;margin:0}
 .bsum dt{color:var(--muted)} .bsum dd{margin:0;font-weight:500;text-align:right}
+.mobile-live-cake{display:none}
 .mbar{display:none}
-@media (max-width:899px){.builder{grid-template-columns:1fr}.cake-preview-card{position:static}.mbar{display:flex;position:fixed;left:0;right:0;bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px));z-index:43;background:var(--surface);border-top:1px solid var(--line);padding:.6rem clamp(18px,4vw,40px);justify-content:space-between;align-items:center;gap:1rem}.mbar b{font-variant-numeric:tabular-nums}.page-builder .float-wa{display:none}}
+@media (max-width:899px){
+  .builder{grid-template-columns:1fr}
+  .mobile-live-cake{display:block;margin-bottom:1.5rem;background:linear-gradient(160deg,#FFFFFF 0%,#FFF9F5 60%,#FDEFD9 100%);border:1.5px solid rgba(242,165,22,.35);border-radius:20px;padding:0.9rem;box-shadow:0 8px 24px rgba(59,26,16,.08)}
+  .mobile-live-cake .cake-stage-wrap{height:220px}
+  .cake-preview-card{position:static}
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px));z-index:43;background:var(--surface);border-top:1px solid var(--line);padding:.6rem clamp(18px,4vw,40px);justify-content:space-between;align-items:center;gap:1rem}
+  .mbar b{font-variant-numeric:tabular-nums}
+  .page-builder .float-wa{display:none}
+}
 
 /* about */
 .about-hero{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center;padding-top:clamp(32px,5vw,64px);padding-bottom:clamp(48px,6vw,88px)}
@@ -1360,12 +1369,15 @@ pages.builder = (qs) => {
   <div class="wrap pagehead"><div class="crumbs"><a href="#/">Home</a> / Create your dream cake</div><h1>Create Your Dream Cake</h1><p class="lede" style="margin-top:.8rem">Six short steps. Nothing is charged here — you'll get the final price from us on WhatsApp.</p></div>
   <div class="wrap builder">
     <div>
+      <!-- Live Mobile Cake Stage (Always visible at top on mobile) -->
+      <div class="mobile-live-cake" data-mcake>${renderCakeStage(bs)}</div>
+
       <ol class="stepper" aria-label="Progress">${BSTEPS.map((t,i)=>`<li class="${i<=bs.step?"on":""}"><span class="sr">${t}${i===bs.step?" (current)":""}</span></li>`).join("")}</ol>
       <p class="hint" data-steplabel aria-live="polite">Step ${bs.step+1} of ${BSTEPS.length}: ${BSTEPS[bs.step]}</p>
       <form data-builder><div class="stepbox fadein">${bStep()}</div>
       <div class="stepnav">${bs.step>0?`<button type="button" class="btn ghost" data-bprev>Back</button>`:"<span></span>"}${bs.step<BSTEPS.length-1?`<button type="submit" class="btn">Next: ${BSTEPS[bs.step+1]}</button>`:`<button type="submit" class="btn wa">${WA_ICON}Send design request</button>`}</div></form>
     </div>
-    <aside class="cake-preview-card bsum" aria-label="Your cake so far"><h2>Your cake</h2><div data-bsum>${bSummary()}</div></aside>
+    <aside class="cake-preview-card bsum hide-m" aria-label="Your cake so far"><h2>Your cake</h2><div data-bsum>${bSummary()}</div></aside>
   </div>
   <div class="mbar"><span class="hint">Base cake</span><b data-tick>${bPrice()?(bPrice().from?"From ":"")+tk(bPrice().p):"Choose a flavour"}</b></div>`;
 };
@@ -1586,27 +1598,27 @@ function bindPage(){
       if (bf.querySelector("[name=colours]")) bs.colours = fd.getAll("colours").slice(0,3).map(String);
       if (bf.querySelector("[name=extras]")) bs.extras = fd.getAll("extras").map(String);
     };
+    const refreshLiveCake = () => {
+      const s=$("[data-bsum]"); if(s) s.innerHTML=bSummary();
+      const m=$("[data-mcake]"); if(m) m.innerHTML=renderCakeStage(bs);
+      document.querySelectorAll(".cake-stage-svg").forEach(svg => {
+        svg.classList.remove("pop");
+        void svg.offsetWidth;
+        svg.classList.add("pop");
+      });
+      const mb=$(".mbar b"); if(mb){const p=bPrice(); mb.textContent=p?(p.from?"From ":"")+tk(p.p):"Choose a flavour";}
+      tickPrice();
+    };
     bf.addEventListener("change", e=>{
       if (e.target.name==="colours"){ const on=[...bf.querySelectorAll("[name=colours]:checked")]; if(on.length>3){ e.target.checked=false; toast("Choose up to three colours."); } }
       const prevDesign = bs.design; read();
-      const s=$("[data-bsum]"); if(s) {
-        s.innerHTML=bSummary();
-        const svg = s.querySelector(".cake-stage-svg");
-        if (svg) { svg.classList.remove("pop"); void svg.offsetWidth; svg.classList.add("pop"); }
-      }
-      const mb=$(".mbar b"); if(mb){const p=bPrice(); mb.textContent=p?(p.from?"From ":"")+tk(p.p):"Choose a flavour";}
-      tickPrice();
+      refreshLiveCake();
       if (e.target.name==="design" && (prevDesign==="From my photo")!==(bs.design==="From my photo")) route();
     });
     bf.addEventListener("input", e=>{ 
       if(e.target.matches("input[type=text],input:not([type]),textarea,input[type=tel],input[type=date]")){ 
         read(); 
-        const s=$("[data-bsum]"); 
-        if(s) {
-          s.innerHTML=bSummary();
-          const svg = s.querySelector(".cake-stage-svg");
-          if (svg) { svg.classList.remove("pop"); void svg.offsetWidth; svg.classList.add("pop"); }
-        }
+        refreshLiveCake();
       } 
     });
     const need = {0:["occasion","Choose an occasion to continue."],1:["flavour","Choose a flavour to continue."],2:["frosting","Choose a frosting to continue."],3:["design","Choose a design style to continue."]};
