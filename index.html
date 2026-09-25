@@ -1080,17 +1080,8 @@ function renderCakeStage(bs) {
     </div>
     <div class="stage-hint">${esc(bs.size || '1.5 pound')} · ${esc(bs.frosting || 'Gourmet Frosting')}</div>
     
-    <svg class="cake-stage-svg pop cake-floating" viewBox="0 0 320 270" fill="none">
+    <svg class="cake-stage-svg pop cake-floating" viewBox="0 0 320 240" fill="none">
       <defs>
-        <!-- Ambient Shadows -->
-        <filter id="royalShadow" x="-30%" y="-30%" width="160%" height="160%">
-          <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#3B1A10" flood-opacity="0.18"/>
-        </filter>
-        <filter id="flameVolumetric" x="-60%" y="-60%" width="220%" height="220%">
-          <feGaussianBlur stdDeviation="5" result="blur"/>
-          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-        </filter>
-
         <!-- Dynamic Frosting Cylindrical Shading -->
         <linearGradient id="frostBodyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stop-color="${fLight}"/>
@@ -1128,74 +1119,70 @@ function renderCakeStage(bs) {
         </linearGradient>
       </defs>
 
-      <!-- Royal Fluted Gold & Porcelain Pedestal -->
-      <g filter="url(#royalShadow)">
-        <!-- Pedestal Base Plate -->
-        <ellipse cx="160" cy="222" rx="108" ry="16" fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="2.5"/>
-        <ellipse cx="160" cy="223" rx="102" ry="12" fill="#FDF7EE"/>
-        <ellipse cx="160" cy="224" rx="98" ry="9" fill="url(#goldLuster)" opacity="0.4"/>
+      <!-- Royal Pedestal Stand -->
+      <g class="pedestal-stand">
+        <!-- Ground ambient shadow -->
+        <ellipse cx="160" cy="204" rx="100" ry="12" fill="rgba(59,26,16,0.12)"/>
         
-        <!-- Fluted Center Column -->
-        <path d="M146 226 h28 l-5 24 h-18 z" fill="url(#goldLuster)"/>
-        <ellipse cx="160" cy="250" rx="46" ry="7" fill="url(#goldLuster)"/>
-        <ellipse cx="160" cy="250" rx="42" ry="5" fill="#5E3800" opacity="0.3"/>
+        <!-- Pedestal Base Plate -->
+        <ellipse cx="160" cy="194" rx="94" ry="14" fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="2.5"/>
+        <ellipse cx="160" cy="195" rx="88" ry="10" fill="#FDF7EE"/>
+        <ellipse cx="160" cy="196" rx="84" ry="7" fill="url(#goldLuster)" opacity="0.35"/>
+        
+        <!-- Fluted Center Column & Base -->
+        <path d="M148 196 h24 l-4 16 h-16 z" fill="url(#goldLuster)"/>
+        <ellipse cx="160" cy="212" rx="42" ry="6" fill="url(#goldLuster)"/>
       </g>
 
       <!-- Tier 1 Base Cylinder (Main Cake) -->
-      <g filter="url(#royalShadow)" class="tier-base" style="transition:all .5s cubic-bezier(.2,.8,.3,1)">
+      <g class="tier-base" style="transition:all .5s cubic-bezier(.2,.8,.3,1)">
         <!-- Cylinder Side Body -->
         <path d="M${160 - w1/2} ${y1} 
                  v${h1} 
-                 c0 15 ${w1/2} 26 ${w1/2} 26 
-                 s${w1/2} -11 ${w1/2} -26 
+                 c0 16 ${w1/2} 24 ${w1/2} 24 
+                 s${w1/2} -8 ${w1/2} -24 
                  v-${h1} z" 
-              fill="url(#frostBodyGrad)" stroke="rgba(110,74,134,.16)" stroke-width="1.2"/>
+              fill="url(#frostBodyGrad)" stroke="rgba(110,74,134,.2)" stroke-width="1.2"/>
         
-        <!-- Exposed Moisture Crumb Preview (Interior Cake Layer) -->
-        <path d="M${160 - w1/2 + 8} ${y1 + 16} 
-                 v${h1 - 15} 
-                 c0 9 ${w1/2 - 8} 16 ${w1/2 - 8} 16 
-                 s${w1/2 - 8} -7 ${w1/2 - 8} -16 
-                 v-${h1 - 15} z" 
-              fill="${spongeBase}" opacity="0.3"/>
-        <path d="M${160 - w1/2 + 12} ${y1 + 22} 
-                 v${h1 - 24} 
-                 c0 6 ${w1/2 - 12} 11 ${w1/2 - 12} 11 
-                 s${w1/2 - 12} -5 ${w1/2 - 12} -11 
-                 v-${h1 - 24} z" 
-              fill="${spongeDark}" opacity="0.2"/>
+        <!-- Exposed Moisture Crumb Layer -->
+        <path d="M${160 - w1/2 + 8} ${y1 + 14} 
+                 v${h1 - 18} 
+                 c0 8 ${w1/2 - 8} 14 ${w1/2 - 8} 14 
+                 s${w1/2 - 8} -6 ${w1/2 - 8} -14 
+                 v-${h1 - 18} z" 
+              fill="${spongeBase}" opacity="0.32"/>
 
         <!-- Bottom Pearl Piping Trim -->
-        ${[-80, -60, -40, -20, 0, 20, 40, 60, 80].map(dx => `
-          <circle cx="${160 + dx}" cy="${y1 + h1 + (1 - Math.abs(dx)/100)*12.5}" r="4" fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="1"/>
+        ${[-70, -50, -30, -10, 10, 30, 50, 70].map(dx => `
+          <circle cx="${160 + dx}" cy="${y1 + h1 + (1 - Math.abs(dx)/90)*11}" r="3.8" fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="1"/>
         `).join('')}
 
         <!-- Top Surface of Tier 1 -->
-        <ellipse cx="160" cy="${y1}" rx="${w1/2}" ry="${w1/8 + 5}" fill="url(#topFrostGrad)" stroke="rgba(110,74,134,.18)" stroke-width="1.2"/>
-        <ellipse cx="160" cy="${y1}" rx="${w1/2 - 6}" ry="${w1/8 + 1}" fill="${accentColor}" opacity="0.14"/>
+        <ellipse cx="160" cy="${y1}" rx="${w1/2}" ry="${w1/8 + 6}" fill="url(#topFrostGrad)" stroke="rgba(110,74,134,.2)" stroke-width="1.2"/>
+        <ellipse cx="160" cy="${y1}" rx="${w1/2 - 6}" ry="${w1/8 + 2}" fill="${accentColor}" opacity="0.16"/>
         
         <!-- Top Pearl Border -->
-        ${[-75, -55, -35, -15, 15, 35, 55, 75].map(dx => `
-          <circle cx="${160 + dx}" cy="${y1 + Math.abs(dx)*0.08}" r="3.5" fill="#FFFFFF" stroke="rgba(110,74,134,.25)" stroke-width="0.8"/>
+        ${[-65, -45, -25, -5, 15, 35, 55].map(dx => `
+          <circle cx="${160 + dx}" cy="${y1 + Math.abs(dx)*0.08}" r="3.2" fill="#FFFFFF" stroke="rgba(110,74,134,.25)" stroke-width="0.8"/>
         `).join('')}
       </g>
 
       <!-- Tier 2 (Grand Multi-Tier Edition) -->
       ${isTiered ? `
-      <g filter="url(#royalShadow)" class="tier-top rose-bloom" style="transition:all .5s cubic-bezier(.2,.8,.3,1)">
+      <g class="tier-top rose-bloom" style="transition:all .5s cubic-bezier(.2,.8,.3,1)">
         <!-- Tier 2 Spacer / Gold Ring -->
-        <ellipse cx="160" cy="94" rx="54" ry="13" fill="url(#goldLuster)"/>
+        <ellipse cx="160" cy="72" rx="48" ry="12" fill="url(#goldLuster)"/>
         
         <!-- Tier 2 Body -->
-        <path d="M106 88 v42 c0 10 54 18 54 18 s54 -8 54 -18 v-42 z" fill="url(#frostBodyGrad)" stroke="rgba(110,74,134,.18)" stroke-width="1.2"/>
+        <path d="M114 66 v36 c0 10 46 14 46 14 s46 -4 46 -14 v-36 z" fill="url(#frostBodyGrad)" stroke="rgba(110,74,134,.2)" stroke-width="1.2"/>
         
         <!-- Tier 2 Top Surface -->
-        <ellipse cx="160" cy="88" rx="54" ry="14" fill="url(#topFrostGrad)" stroke="rgba(110,74,134,.18)" stroke-width="1.2"/>
-        <ellipse cx="160" cy="88" rx="46" ry="10" fill="${accentColor}" opacity="0.2"/>
+        <ellipse cx="160" cy="66" rx="46" ry="12" fill="url(#topFrostGrad)" stroke="rgba(110,74,134,.2)" stroke-width="1.2"/>
+        <ellipse cx="160" cy="66" rx="40" ry="9" fill="${accentColor}" opacity="0.2"/>
 
         <!-- Tier 2 Pearl Trim -->
-        ${[-40, -20, 0, 20, 40].map(dx => `
-          <circle cx="${160 + dx}" cy="${88 + Math.abs(dx)*0.08}" r="3" fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="0.8"/>
+        ${[-32, -16, 0, 16, 32].map(dx => `
+          <circle cx="${160 + dx}" cy="${66 + Math.abs(dx)*0.08}" r="2.8" fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="0.8"/>
         `).join('')}
       </g>
       ` : ''}
@@ -1204,28 +1191,23 @@ function renderCakeStage(bs) {
       ${hasDrip ? `
       <g class="drip-flow">
         <path d="M${160 - w1/2} ${y1} 
-                 q 12 24 22 8 t 24 28 t 24 -18 t 26 30 t 24 -22 t 26 20 t 24 -24 v-8 
-                 c0 -9 -${w1/2} -16 -${w1/2} -16 s-${w1/2} 7 -${w1/2} 16 z" 
+                 q 12 20 20 6 t 22 24 t 22 -16 t 24 26 t 22 -18 t 24 16 t 22 -20 v-6 
+                 c0 -8 -${w1/2} -14 -${w1/2} -14 s-${w1/2} 6 -${w1/2} 14 z" 
               fill="url(#mirrorGlaze)" opacity="0.94"/>
         
         <!-- Specular Droplet Highlights -->
-        <ellipse cx="${160 - w1/2 + 32}" cy="${y1 + 22}" rx="2" ry="4" fill="#FFFFFF" opacity="0.6"/>
-        <ellipse cx="${160 - w1/2 + 80}" cy="${y1 + 24}" rx="2.5" ry="5" fill="#FFFFFF" opacity="0.65"/>
-        <ellipse cx="${160 + 26}" cy="${y1 + 26}" rx="2.5" ry="5" fill="#FFFFFF" opacity="0.65"/>
-        <ellipse cx="${160 + 74}" cy="${y1 + 18}" rx="2" ry="4" fill="#FFFFFF" opacity="0.6"/>
-
-        ${isTiered ? `
-        <path d="M106 88 q 12 16 18 6 t 20 18 t 20 -14 t 20 16 t 20 -16 v-6 c0 -8 -48 -12 -48 -12 s-48 4 -48 12 z" fill="url(#mirrorGlaze)" opacity="0.94"/>
-        ` : ''}
+        <ellipse cx="${160 - w1/2 + 28}" cy="${y1 + 18}" rx="2" ry="3.5" fill="#FFFFFF" opacity="0.6"/>
+        <ellipse cx="${160 - w1/2 + 70}" cy="${y1 + 20}" rx="2.2" ry="4" fill="#FFFFFF" opacity="0.65"/>
+        <ellipse cx="${160 + 22}" cy="${y1 + 22}" rx="2.2" ry="4" fill="#FFFFFF" opacity="0.65"/>
+        <ellipse cx="${160 + 64}" cy="${y1 + 16}" rx="2" ry="3.5" fill="#FFFFFF" opacity="0.6"/>
       </g>
       ` : ''}
 
       <!-- Victorian Lambeth Ruffled Shells -->
       ${bs.design === "Vintage piping" ? `
       <g fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="1.2" class="sparkle-pop">
-        <!-- Scalloped Swags -->
-        <path d="M${160 - w1/2 + 10} ${y1 + 14} q 22 18 44 0 q 22 18 44 0 q 22 18 44 0 q 22 18 44 0" fill="none" stroke="${accentColor}" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M${160 - w1/2 + 16} ${y1 + 22} q 18 14 36 0 q 18 14 36 0 q 18 14 36 0 q 18 14 36 0" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M${160 - w1/2 + 10} ${y1 + 12} q 18 14 36 0 q 18 14 36 0 q 18 14 36 0 q 18 14 36 0" fill="none" stroke="${accentColor}" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M${160 - w1/2 + 14} ${y1 + 18} q 16 12 32 0 q 16 12 32 0 q 16 12 32 0 q 16 12 32 0" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
       </g>
       ` : ''}
 
@@ -1233,19 +1215,18 @@ function renderCakeStage(bs) {
       ${bs.design === "Floral" ? `
       <g class="rose-bloom">
         <!-- Main Blush Peony -->
-        <g transform="translate(132, ${topSurfaceY - 18}) scale(1.05)">
+        <g transform="translate(136, ${topSurfaceY - 14}) scale(0.95)">
           <ellipse cx="14" cy="14" rx="14" ry="12" fill="#F8D6E1" stroke="#8B62A3" stroke-width="1.2"/>
           <path d="M8 12 c4-6 10-6 14 0 s-6 8-14 0z" fill="#EFB9CC"/>
-          <circle cx="14" cy="13" r="5" fill="#FFFFFF"/>
-          <circle cx="14" cy="13" r="2.5" fill="#F2A516"/>
-          <!-- Sage Leaf -->
+          <circle cx="14" cy="13" r="4.5" fill="#FFFFFF"/>
+          <circle cx="14" cy="13" r="2.2" fill="#F2A516"/>
           <path d="M0 16 c-8 6-10 14-4 16 s14 0 10-8z" fill="#75A67D" stroke="#486D4E" stroke-width="0.8"/>
         </g>
         <!-- Lavender Rosebud -->
-        <g transform="translate(168, ${topSurfaceY - 20}) scale(0.9)">
+        <g transform="translate(166, ${topSurfaceY - 16}) scale(0.85)">
           <ellipse cx="14" cy="14" rx="13" ry="11" fill="#EADCF3" stroke="#6E4A86" stroke-width="1.2"/>
           <path d="M8 12 c4-6 10-6 14 0 s-6 8-14 0z" fill="#C9A8DB"/>
-          <circle cx="14" cy="13" r="4" fill="#F2A516"/>
+          <circle cx="14" cy="13" r="3.5" fill="#F2A516"/>
           <path d="M22 12 c8-5 14-2 14 6 s-8 8-14 0z" fill="#75A67D" stroke="#486D4E" stroke-width="0.8"/>
         </g>
       </g>
@@ -1254,81 +1235,74 @@ function renderCakeStage(bs) {
       <!-- Glossy Fresh Market Fruits -->
       ${hasFruit ? `
       <g class="rose-bloom">
-        <!-- Fresh Glazed Strawberry -->
-        <g transform="translate(144, ${topSurfaceY - 14}) scale(0.95)">
+        <g transform="translate(146, ${topSurfaceY - 12}) scale(0.88)">
           <path d="M12 2 C22 2 24 16 12 26 C0 16 2 2 12 2 Z" fill="url(#berryGrad)" stroke="#570811" stroke-width="1"/>
           <path d="M8 2 L12 7 L16 2 L12 0 Z" fill="#3E783B"/>
-          <!-- Golden Seeds -->
-          <circle cx="8" cy="9" r="0.9" fill="#FFEBAA"/>
-          <circle cx="15" cy="11" r="0.9" fill="#FFEBAA"/>
-          <circle cx="11" cy="17" r="0.9" fill="#FFEBAA"/>
-          <!-- Gloss Highlights -->
+          <circle cx="8" cy="9" r="0.8" fill="#FFEBAA"/>
+          <circle cx="15" cy="11" r="0.8" fill="#FFEBAA"/>
+          <circle cx="11" cy="17" r="0.8" fill="#FFEBAA"/>
           <path d="M7 6 c-3 4-3 9 0 13" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.65"/>
         </g>
-        <!-- Indigo Blueberries with Bloom -->
-        <circle cx="${160 - 28}" cy="${topSurfaceY + 2}" r="6.5" fill="#2E335E" stroke="#1C1E38" stroke-width="1"/>
-        <circle cx="${160 - 28}" cy="${topSurfaceY + 2}" r="3" fill="#525B96" opacity="0.6"/>
-        <circle cx="${160 + 30}" cy="${topSurfaceY + 3}" r="7" fill="#2E335E" stroke="#1C1E38" stroke-width="1"/>
-        <circle cx="${160 + 30}" cy="${topSurfaceY + 3}" r="3.5" fill="#525B96" opacity="0.6"/>
+        <circle cx="${160 - 24}" cy="${topSurfaceY + 2}" r="5.5" fill="#2E335E" stroke="#1C1E38" stroke-width="1"/>
+        <circle cx="${160 - 24}" cy="${topSurfaceY + 2}" r="2.5" fill="#525B96" opacity="0.6"/>
+        <circle cx="${160 + 26}" cy="${topSurfaceY + 3}" r="6" fill="#2E335E" stroke="#1C1E38" stroke-width="1"/>
+        <circle cx="${160 + 26}" cy="${topSurfaceY + 3}" r="3" fill="#525B96" opacity="0.6"/>
       </g>
       ` : ''}
 
       <!-- Artisanal Gold & Pastel Dragee Sprinkles -->
       ${hasSprinkles ? `
       <g class="sparkle-pop">
-        <rect x="132" y="${topSurfaceY - 5}" width="7" height="3" rx="1.5" fill="#F2A516" stroke="#9A6200" stroke-width="0.5" transform="rotate(28 132 ${topSurfaceY})"/>
-        <rect x="156" y="${topSurfaceY - 3}" width="7" height="3" rx="1.5" fill="#EFB9CC" stroke="#8B62A3" stroke-width="0.5" transform="rotate(-40 156 ${topSurfaceY})"/>
-        <rect x="178" y="${topSurfaceY - 4}" width="7" height="3" rx="1.5" fill="#C9A8DB" stroke="#6E4A86" stroke-width="0.5" transform="rotate(18 178 ${topSurfaceY})"/>
-        <circle cx="146" cy="${topSurfaceY + 6}" r="2.2" fill="#F2A516"/>
-        <circle cx="170" cy="${topSurfaceY + 7}" r="2.2" fill="#EFB9CC"/>
-        <circle cx="120" cy="${y1 + 6}" r="2.5" fill="#C9A8DB"/>
-        <circle cx="200" cy="${y1 + 6}" r="2.5" fill="#F2A516"/>
+        <rect x="134" y="${topSurfaceY - 4}" width="6" height="2.5" rx="1.2" fill="#F2A516" stroke="#9A6200" stroke-width="0.5" transform="rotate(28 134 ${topSurfaceY})"/>
+        <rect x="156" y="${topSurfaceY - 2}" width="6" height="2.5" rx="1.2" fill="#EFB9CC" stroke="#8B62A3" stroke-width="0.5" transform="rotate(-40 156 ${topSurfaceY})"/>
+        <rect x="176" y="${topSurfaceY - 3}" width="6" height="2.5" rx="1.2" fill="#C9A8DB" stroke="#6E4A86" stroke-width="0.5" transform="rotate(18 176 ${topSurfaceY})"/>
+        <circle cx="146" cy="${topSurfaceY + 5}" r="2" fill="#F2A516"/>
+        <circle cx="168" cy="${topSurfaceY + 6}" r="2" fill="#EFB9CC"/>
+        <circle cx="124" cy="${y1 + 5}" r="2.2" fill="#C9A8DB"/>
+        <circle cx="196" cy="${y1 + 5}" r="2.2" fill="#F2A516"/>
       </g>
       ` : ''}
 
       <!-- French Tapered Candles with Radiant Halos -->
       ${hasCandles ? `
       <g class="candles-group">
-        <!-- Center Pillar Candle -->
-        <rect x="157" y="${topSurfaceY - 38}" width="6.5" height="38" rx="2" fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="1"/>
-        <path d="M157 ${topSurfaceY-30} l6.5 -4 M157 ${topSurfaceY-18} l6.5 -4 M157 ${topSurfaceY-8} l6.5 -4" stroke="#F8D6E1" stroke-width="1.4"/>
+        <!-- Center Candle -->
+        <rect x="157" y="${topSurfaceY - 32}" width="6" height="32" rx="2" fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="1"/>
+        <path d="M157 ${topSurfaceY-25} l6 -3 M157 ${topSurfaceY-15} l6 -3 M157 ${topSurfaceY-5} l6 -3" stroke="#F8D6E1" stroke-width="1.2"/>
         
-        <!-- Radiant Flame Glow -->
-        <circle cx="160.2" cy="${topSurfaceY - 46}" r="11" fill="#F2A516" opacity="0.3" filter="url(#flameVolumetric)"/>
-        <!-- Dancing Flame -->
-        <path class="flame-anim" d="M160.2 ${topSurfaceY - 52} c-3.5 4.5-4.5 9-2.2 12.5 a4 4 0 0 0 6.4 0 c2.2-3.5 0.5-8-4.2-12.5z" fill="#F2A516" stroke="#9A6200" stroke-width="0.9"/>
-        <circle cx="160.2" cy="${topSurfaceY - 43}" r="2" fill="#FFFFFF"/>
+        <!-- Radiant Flame -->
+        <circle cx="160" cy="${topSurfaceY - 38}" r="9" fill="#F2A516" opacity="0.3"/>
+        <path class="flame-anim" d="M160 ${topSurfaceY - 44} c-3 4-4 7.5-2 10.5 a3.5 3.5 0 0 0 5.5 0 c2-3 0.5-6.5-3.5-10.5z" fill="#F2A516" stroke="#9A6200" stroke-width="0.8"/>
+        <circle cx="160" cy="${topSurfaceY - 36}" r="1.8" fill="#FFFFFF"/>
 
         <!-- Left Candle -->
-        <rect x="134" y="${topSurfaceY - 30}" width="5.5" height="30" rx="1.5" fill="#FFFFFF" stroke="#C9A8DB" stroke-width="0.9"/>
-        <circle cx="136.8" cy="${topSurfaceY - 38}" r="9" fill="#F2A516" opacity="0.25" filter="url(#flameVolumetric)"/>
-        <path class="flame-anim f2" d="M136.8 ${topSurfaceY - 44} c-2.8 4-3.8 8-1.8 10.5 a3.2 3.2 0 0 0 5 0 c1.8-2.5 0.5-6.5-3.2-10.5z" fill="#F2A516" stroke="#9A6200" stroke-width="0.8"/>
+        <rect x="136" y="${topSurfaceY - 26}" width="5" height="26" rx="1.5" fill="#FFFFFF" stroke="#C9A8DB" stroke-width="0.8"/>
+        <path class="flame-anim f2" d="M138.5 ${topSurfaceY - 36} c-2.5 3.5-3.5 6.5-1.5 9 a3 3 0 0 0 4.5 0 c1.8-2.5 0.5-5.5-3-9z" fill="#F2A516" stroke="#9A6200" stroke-width="0.7"/>
 
         <!-- Right Candle -->
-        <rect x="180" y="${topSurfaceY - 30}" width="5.5" height="30" rx="1.5" fill="#FFFFFF" stroke="#FDEFD9" stroke-width="0.9"/>
-        <circle cx="182.8" cy="${topSurfaceY - 38}" r="9" fill="#F2A516" opacity="0.25" filter="url(#flameVolumetric)"/>
-        <path class="flame-anim f3" d="M182.8 ${topSurfaceY - 44} c-2.8 4-3.8 8-1.8 10.5 a3.2 3.2 0 0 0 5 0 c1.8-2.5 0.5-6.5-3.2-10.5z" fill="#F2A516" stroke="#9A6200" stroke-width="0.8"/>
+        <rect x="180" y="${topSurfaceY - 26}" width="5" height="26" rx="1.5" fill="#FFFFFF" stroke="#FDEFD9" stroke-width="0.8"/>
+        <path class="flame-anim f3" d="M182.5 ${topSurfaceY - 36} c-2.5 3.5-3.5 6.5-1.5 9 a3 3 0 0 0 4.5 0 c1.8-2.5 0.5-5.5-3-9z" fill="#F2A516" stroke="#9A6200" stroke-width="0.7"/>
       </g>
       ` : ''}
 
       <!-- Bespoke Gold Mirrored Calligraphy Topper -->
       ${(hasTopper || bs.message) ? `
-      <g transform="translate(160, ${topSurfaceY - (hasCandles ? 52 : 30)})" class="cake-topper sparkle-pop" filter="url(#royalShadow)">
-        <rect x="-70" y="-16" width="140" height="26" rx="13" fill="rgba(255,255,255,0.95)" stroke="url(#goldLuster)" stroke-width="1.8"/>
-        <text x="0" y="3" text-anchor="middle" font-family="var(--serif)" font-size="12" font-weight="700" fill="var(--plum)" font-style="italic" letter-spacing="-0.01em">
-          ${esc(bs.message ? (bs.message.length > 22 ? bs.message.slice(0, 20) + '…' : bs.message) : (bs.occasion || 'Sweet Site Bespoke'))}
+      <g transform="translate(160, ${topSurfaceY - (hasCandles ? 46 : 24)})" class="cake-topper sparkle-pop">
+        <rect x="-65" y="-13" width="130" height="24" rx="12" fill="rgba(255,255,255,0.95)" stroke="url(#goldLuster)" stroke-width="1.6"/>
+        <text x="0" y="3" text-anchor="middle" font-family="var(--serif)" font-size="11.5" font-weight="700" fill="var(--plum)" font-style="italic">
+          ${esc(bs.message ? (bs.message.length > 20 ? bs.message.slice(0, 18) + '…' : bs.message) : (bs.occasion || 'Sweet Site Bespoke'))}
         </text>
-        <path d="M0 10 v22" stroke="url(#goldLuster)" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M0 11 v16" stroke="url(#goldLuster)" stroke-width="2" stroke-linecap="round"/>
       </g>
       ` : ''}
 
       <!-- Royal Crown Motif -->
       ${bs.design === "Theme or character" && !hasTopper ? `
-      <g transform="translate(160, ${topSurfaceY - 26})" class="sparkle-pop" filter="url(#royalShadow)">
-        <path d="M-16 0 l5 -14 l11 7 l11 -7 l5 14 z" fill="url(#goldLuster)" stroke="#7A4B00" stroke-width="1"/>
-        <circle cx="-11" cy="-14" r="2.2" fill="#FFFFFF"/>
-        <circle cx="0" cy="-7" r="2.2" fill="#FFFFFF"/>
-        <circle cx="11" cy="-14" r="2.2" fill="#FFFFFF"/>
+      <g transform="translate(160, ${topSurfaceY - 20})" class="sparkle-pop">
+        <path d="M-14 0 l4 -12 l10 6 l10 -6 l4 12 z" fill="url(#goldLuster)" stroke="#7A4B00" stroke-width="0.8"/>
+        <circle cx="-10" cy="-12" r="1.8" fill="#FFFFFF"/>
+        <circle cx="0" cy="-6" r="1.8" fill="#FFFFFF"/>
+        <circle cx="10" cy="-12" r="1.8" fill="#FFFFFF"/>
       </g>
       ` : ''}
     </svg>
