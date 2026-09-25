@@ -1,169 +1,248 @@
-# 🍰 Sweet Site Bakery — Premium Homemade Cakes
+# 🎂 Sweet Site Bakery — Enterprise E-Commerce Platform
 
-<div align="center">
+[![React](https://img.shields.io/badge/Frontend-React%2018%20%7C%20TypeScript%20%7C%20Vite%20%7C%20TailwindCSS-61DAFB?logo=react&logoColor=black)](https://reactjs.org/)
+[![FastAPI](https://img.shields.io/badge/Backend-FastAPI%20%7C%20Python%203.11+-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![SQLAlchemy](https://img.shields.io/badge/ORM-SQLAlchemy%202.0%20%7C%20PostgreSQL%20%7C%20SQLite-D71F00?logo=sqlite&logoColor=white)](https://www.sqlalchemy.org/)
+[![Docker](https://img.shields.io/badge/DevOps-Docker%20Compose%20%7C%20Nginx-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+[![Location](https://img.shields.io/badge/Location-Rangpur%2C%20Bangladesh-006A4E)](https://maps.google.com/?q=Rangpur+Bangladesh)
 
-![Sweet Site Bakery](assets/cakes/pound-cakes.jpg)
-
-### *“Aesthetic bakes, unforgettable tastes. Made fresh, made for YOU.”* 🎂✨
-
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![WhatsApp Order](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/8801852668468)
-[![Zero Dependencies](https://img.shields.io/badge/Dependencies-0-brightgreen?style=for-the-badge)](package.json)
-
-**Sweet Site Bakery** is a modern, high-performance storefront and interactive single-page web application (SPA) built for an artisanal home bakery based in Rangpur, Bangladesh.
-
-[Features](#-key-features) • [Quick Start](#-quick-start--local-development) • [Architecture](#-tech-stack--architecture) • [Menu & Catalog](#-menu--product-catalog) • [Deployment](#-deployment) • [Contact](#-contact)
-
-</div>
+> **"Love at first bite. Made to melt Hearts."**  
+> *"Where every cake is a vibe. Aesthetic bakes, unforgettable tastes. Made fresh, made for YOU. 🎂✨"*  
+> **Quality Promise:** *All cakes are 100% royal & premium quality + homemade butter, Ever Whipped and white chocolate frosting.*
 
 ---
 
-## 🌟 Key Features
-
-- 🎂 **Interactive Product Catalog**:
-  - 45+ gourmet bakery products categorized across 12 product lines (Pound Cakes, Cupcakes, Jar Cakes, Lunch Box Cakes, Basque Cheesecakes, Swiss Rolls, Lava Cakes, Muffins, etc.).
-  - Real-time instant search with suggestions and keyboard hotkey (`/`).
-  - Multi-criteria sorting (Price: Low to High, Price: High to Low, Name A-Z, Menu Order).
-
-- 🎨 **"Create Your Dream Cake" (6-Step Custom Cake Builder)**:
-  - Step-by-step custom wizard allowing customers to choose:
-    1. Occasion (Birthdays, Anniversaries, Weddings, etc.)
-    2. Base flavour with live price calculations
-    3. Custom cake size (0.5 lb to 2+ lb) & frosting types (Homemade butter, Ever Whipped, White chocolate)
-    4. Design styling (Floral, Vintage piping, "From my photo") + color selection & extras
-    5. Custom inscription message and date/time selector
-    6. Seamless WhatsApp quotation dispatch
-
-- 🛒 **Smart Cart & WhatsApp Checkout System**:
-  - Persistent shopping cart backed by browser `localStorage`.
-  - Automatic minimum order validation (৳499) with real-time visual progress indicator.
-  - Generates pre-filled, structured WhatsApp order summaries with delivery address, phone number validation, and order itemization for direct fulfillment.
-
-- ✨ **Boutique Aesthetic & Micro-Interactions**:
-  - Responsive design tailored for mobile, tablet, and desktop viewports.
-  - Interactive hero with 3D perspective tilt, animated candle glow, and drifting flower petal particles.
-  - Smooth fly-to-cart animations, sprinkle particle bursts, and count-up price tickers.
-  - Full `@media (prefers-reduced-motion: reduce)` accessibility compliance.
-
-- 📸 **High-Resolution Custom Imagery**:
-  - Integrated studio-grade photography across all categories and products.
+## 📖 Table of Contents
+1. [Business & Brand Profile](#-business--brand-profile)
+2. [Key Capabilities & Features](#-key-capabilities--features)
+3. [Official Product Catalog & BDT Pricing Matrix](#-official-product-catalog--bdt-pricing-matrix)
+4. [System Architecture](#-system-architecture)
+5. [Tech Stack](#-tech-stack)
+6. [Getting Started (Local Development)](#-getting-started-local-development)
+   - [Prerequisites](#prerequisites)
+   - [Backend Setup (FastAPI)](#backend-setup-fastapi)
+   - [Frontend Setup (React + Vite)](#frontend-setup-react--vite)
+   - [One-Command Docker Deployment](#one-command-docker-deployment)
+7. [API Endpoints Reference](#-api-endpoints-reference)
+8. [Admin Dashboard & Store Operations](#-admin-dashboard--store-operations)
+9. [Payment & Delivery Logistics (Rangpur, BD)](#-payment--delivery-logistics-rangpur-bd)
 
 ---
 
-## 🚀 Quick Start & Local Development
+## 🌟 Business & Brand Profile
 
-Because this project is built with standard web technologies and zero build step dependencies, it can be run immediately on any system:
+- **Brand Name:** Sweet Site Bakery
+- **Headquarters:** Rangpur City, Bangladesh
+- **Direct Hotline & WhatsApp:** `+880 1852-668468`
+- **Minimum Order Requirement:** ৳499 (enforced on both client and API validation layers)
+- **Primary Color Palette:**
+  - Deep Chocolate Brown: `#3B1A10`
+  - Soft Lavender: `#C9A8DB`
+  - Warm Golden Yellow: `#F2A516`
+  - Cream Background: `#FFF8F3`
+  - Blush Accent: `#F8D6E1`
+  - WhatsApp Green: `#1F7A4A`
+- **Typography:** *Cormorant Garamond* (Royal Display Headings) & *Inter* (Clean Body Text).
 
-### Option 1: Direct Browser Launch
-Simply double-click `index.html` to open it in any web browser.
+---
 
-### Option 2: Local HTTP Server (Recommended)
+## 🚀 Key Capabilities & Features
 
-Using **Node.js**:
+### 🛍️ Customer Experience (Storefront)
+- **Royal Hero & Brand Showcase:** High-fidelity hero showcase featuring the official slogan and copyright-free generated bakery photography.
+- **28 Signature Pound Cake Catalog + 17 Bakery Items:** Filter by category, price slider, and live instant search with debounced querying.
+- **Interactive 6-Step Custom Dream Cake Studio:**
+  1. *Sponge Selection* (Belgian Dark Chocolate, French Vanilla, Red Velvet, Roshmalai, Lotus Biscoff, Pistachio Rose).
+  2. *Frosting Selection* (White Chocolate Truffle, Ever-Whipped Silk, Nutella Ganache, Salted Butter Caramel, Cream Cheese).
+  3. *Size & Tiers* (1 Lb to 4 Lb 2-Tier options with serving calculations).
+  4. *Aesthetic Theme & Colors* (Pastel Lavender, Golden Royalty, Korean Bento, Romantic Crimson, Botanical Pearl).
+  5. *Toppings & Add-ons* (24K Edible Gold Leaf, Ferrero Crown, Fresh Berries, Macarons, Sparkler Candles).
+  6. *Live Dynamic Quote Calculator & Reference Photo Uploader*.
+- **QuickView Modal & Direct WhatsApp Ordering:** Order instantly with pre-formatted WhatsApp messages containing items, weight, quantities, and custom inscriptions.
+- **Cart Slide-Over Drawer:** Real-time ৳499 minimum order progress bar, coupon code engine (`SWEET10`, `WELCOME50`), and weight breakdown.
+- **Rangpur Local Checkout:** Zone-based shipping (Dhap, Medical Mor, Jahaj Company, RK Road, Modern Mor, Lalbagh), date/time slot picker, and Bangladesh mobile number validation (`+880` / `01XXXXXXXXX`).
+- **8-Stage Live Order Tracker:** Visual tracking from *Order Received* ➔ *Confirmed* ➔ *Baking in Oven* ➔ *Piping & Frosting* ➔ *Quality Inspection* ➔ *Out for Delivery* ➔ *Delivered*, plus printable digital invoices.
+- **Customer Portal:** Member profile, past order history, re-order shortcuts, and digital receipts.
+
+### 🛡️ SaaS Admin Dashboard & Kitchen Operations
+- **Real-Time KPIs:** Today's revenue, active kitchen orders, catalog totals, and butter/cream ingredient inventory health.
+- **Order State Machine:** Move orders through baking, piping, and dispatch stages.
+- **Product Catalog CRUD:** Live price editor, stock adjustments, bestseller tagging.
+- **Raw Ingredient Tracker:** Manage stocks of homemade butter, Belgian cocoa, Ever-Whipped cream, and gold leaf sheets.
+- **Store CMS Configurator:** Modify top announcement banners, hotline numbers, and festival promotions.
+
+---
+
+## 📋 Official Product Catalog & BDT Pricing Matrix
+
+### 28 Signature Pound Cake Flavours
+| ID | Flavour Name | Base Price (1 Lb) | ID | Flavour Name | Base Price (1 Lb) |
+|---|---|---|---|---|---|
+| 1 | Standard Vanilla / Orange Pound Cake | **৳599** | 15 | Strawberry / Blueberry Pound Cake | **৳900** |
+| 2 | Pure Butter / Tutti Frutti Pound Cake | **৳650** | 16 | Lemon / Mango / Pineapple Pound Cake | **৳900** |
+| 3 | Chocolate / Marble Pound Cake | **৳700** | 17 | Roshmalai Cake | **৳950** |
+| 4 | Lemon Pound Cake | **৳700** | 18 | Pistachio Cardamom Pound Cake | **৳950** |
+| 5 | Coconut / Coffee Pound Cake | **৳750** | 19 | Red Velvet Cake | **৳950** |
+| 6 | Red Velvet Pound Cake | **৳750** | 20 | Tiramisu Pound Cake | **৳950** |
+| 7 | Mixed Nut / Dry Fruit Pound Cake | **৳800** | 21 | Basque Burnt Cheesecake | **৳1,050** |
+| 8 | Pineapple / Mango Pound Cake | **৳800** | 22 | Lotus Biscoff Pound Cake | **৳1,100** |
+| 9 | Blueberry / Strawberry Pound Cake | **৳850** | 23 | Nutella Hazelnut Pound Cake | **৳1,100** |
+| 10 | Banana Walnut Pound Cake | **৳850** | 24 | Ferrero Rocher Luxury Pound Cake | **৳1,200** |
+| 11 | Caramel / Dulce de Leche Pound Cake | **৳850** | 25 | Mango Mousse Pound Cake | **৳1,200** |
+| 12 | Chocolate Chip Pound Cake | **৳850** | 26 | Strawberry Mousse Pound Cake | **৳1,200** |
+| 13 | Vanilla Birthday Cake | **৳850** | 27 | Chocolate Mousse Luxury Pound Cake | **৳1,250** |
+| 14 | Chocolate Truffle Cake | **৳900** | 28 | **Chocolate Over Loaded Cake (Royal Signature)** | **৳1,999** |
+
+### 17 Artisanal Bakery Items
+| Item Name | Category | Unit Price |
+|---|---|---|
+| Korean Bento Lunch Box Cake | `lunch_box_cake` | **৳380** |
+| Bento Lunch Box Cake (2-pack gift box) | `lunch_box_cake` | **৳720** |
+| Premium Vanilla Bean Cupcake | `cupcakes` | **৳120** |
+| Belgian Chocolate Fudge Cupcake | `cupcakes` | **৳140** |
+| Red Velvet & Cream Cheese Cupcake | `cupcakes` | **৳150** |
+| Gourmet Cupcakes Assorted Box (6 pcs) | `cupcakes` | **৳750** |
+| Belgian Chocolate Jar Cake | `jar_cake` | **৳180** |
+| Red Velvet & White Chocolate Jar Cake | `jar_cake` | **৳190** |
+| Roshmalai Kheer Jar Cake | `jar_cake` | **৳210** |
+| Lotus Biscoff Crunch Jar Cake | `jar_cake` | **৳230** |
+| Tab Cake - Chocolate Mud Dream Box | `tab_cake` | **৳320** |
+| Tab Cake - Tiramisu Espresso Box | `tab_cake` | **৳350** |
+| Royal Basque Burnt Cheesecake Slice | `cheesecake` | **৳220** |
+| Black Forest Pastry Slice | `pastry_slices` | **৳140** |
+| Molten Chocolate Lava Cake | `lava_cake` | **৳180** |
+| Gourmet Blueberry Crumble Muffin | `muffins` | **৳110** |
+| Swiss Roll Slices Box (4 pcs) | `swiss_rolls` | **৳280** |
+
+---
+
+## 🏛️ System Architecture
+
+```
+d:\sweet-site-bakery\
+├── backend/
+│   ├── app/
+│   │   ├── core/           # Config, Database Engine, JWT Security
+│   │   ├── models/         # User, Product, Customization, Order, Inventory, CMS
+│   │   ├── schemas/        # Pydantic validation schemas
+│   │   ├── api/v1/         # REST API route endpoints
+│   │   ├── seed/           # Official catalog seeder script
+│   │   └── main.py         # FastAPI App Entrypoint & Middleware
+│   ├── requirements.txt
+│   └── Dockerfile
+├── frontend/
+│   ├── public/assets/cakes/# High-res copyright-free bakery photography
+│   ├── src/
+│   │   ├── components/     # Layout, Navbar, Footer, FloatingWhatsApp, MobileNav, ProductCard
+│   │   ├── features/       # Home, Shop, ProductDetail, CustomStudio, Checkout, Tracker, Admin
+│   │   ├── store/          # Zustand CartStore & AuthStore
+│   │   ├── services/       # Axios API client with resilient fallbacks
+│   │   ├── types/          # TypeScript interfaces
+│   │   ├── App.tsx         # BrowserRouter & Route Mapping
+│   │   └── main.tsx        # React 18 Entrypoint
+│   ├── package.json
+│   ├── tailwind.config.js
+│   ├── vite.config.ts
+│   └── Dockerfile
+├── nginx/
+│   └── nginx.conf          # Reverse proxy routing /api to backend and / to frontend
+├── docker-compose.yml       # Production-ready multi-container orchestration
+└── README.md
+```
+
+---
+
+## 💻 Tech Stack
+
+- **Frontend:** React 18, TypeScript, Vite, Tailwind CSS, Lucide Icons, Zustand (State Management), Axios.
+- **Backend:** Python 3.11+, FastAPI (Async), SQLAlchemy 2.0 ORM, Pydantic v2, Passlib (Bcrypt), Python-Jose (JWT).
+- **Database:** PostgreSQL (Production Docker) / SQLite (Zero-config local mode).
+- **DevOps:** Docker, Docker Compose, Nginx Reverse Proxy with Gzip compression and browser caching.
+
+---
+
+## 🛠️ Getting Started (Local Development)
+
+### Prerequisites
+- Node.js (v18+) & `npm`
+- Python 3.10+ & `pip`
+- Git
+
+### Backend Setup (FastAPI)
 ```bash
-# Using npx serve
-npx serve .
+# 1. Navigate to backend directory
+cd backend
 
-# Or using http-server
-npx http-server -p 8080 .
+# 2. Create and activate virtual environment
+python -m venv venv
+# On Windows:
+.\venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+
+# 3. Install backend dependencies
+pip install -r requirements.txt
+
+# 4. Seed database with the official 45+ catalog and admin user
+python -m app.seed.seed_data
+
+# 5. Start development API server
+uvicorn app.main:app --reload --port 8000
 ```
+> The interactive Swagger API Docs will be live at: `http://localhost:8000/docs`
 
-Using **Python**:
+### Frontend Setup (React + Vite)
 ```bash
-# Python 3
-python -m http.server 8080
-```
+# 1. Open a new terminal and navigate to frontend directory
+cd frontend
 
-Open your browser at `http://localhost:8080`.
+# 2. Install dependencies
+npm install
+
+# 3. Launch Vite development server
+npm run dev
+```
+> The storefront will be accessible at: `http://localhost:5173`
 
 ---
 
-## 🛠️ Tech Stack & Architecture
+### 🐳 One-Command Docker Deployment
 
-```
-sweet-site-bakery/
-├── index.html           # Core application (HTML5, Design Tokens, Vanilla JS & Router)
-├── README.md            # Comprehensive project documentation
-├── README.txt           # Deployment cheat-sheet
-└── assets/
-    ├── logo.jpg         # Official brand logo
-    └── cakes/           # High-resolution product & category photography
-        ├── red-velvet.jpg
-        ├── chocolate-overloaded.jpg
-        ├── basque-cheesecake.jpg
-        ├── roshmalai.jpg
-        ├── black-forest.jpg
-        ├── chocolate-mousse.jpg
-        ├── lava-cake.jpg
-        ├── jar-cakes.jpg
-        ├── cup-cakes.jpg
-        ├── lunch-box-cakes.jpg
-        ├── muffins.jpg
-        ├── pastry-cakes.jpg
-        ├── pound-cakes.jpg
-        ├── pound-slices.jpg
-        ├── swiss-rolls.jpg
-        ├── cheesecakes.jpg
-        ├── chocolate-cakes.jpg
-        └── tab-cakes.jpg
-```
-
-- **Frontend**: HTML5 Semantic markup, ARIA accessibility attributes, landmark navigation.
-- **Styling**: Vanilla CSS3 custom variables (`--butter`, `--blush`, `--lav`, `--gold`, `--cocoa`), CSS Grid, Flexbox, keyframe animations, clamp typography.
-- **Client-Side Routing**: Hash-based single-page navigation (`#/`, `#/shop`, `#/cakes/:id`, `#/cart`, `#/checkout`, `#/customize-cake`, `#/about`, `#/contact`, `#/faq`).
-- **Typography**: Google Fonts ([`Cormorant Garamond`](https://fonts.google.com/specimen/Cormorant+Garamond) + [`Inter`](https://fonts.google.com/specimen/Inter)).
-
----
-
-## 📋 Menu & Product Catalog
-
-| Category | Size / Unit | Flavours & Highlights | Starting Price |
-| :--- | :--- | :--- | :--- |
-| **Pound Cakes** | 1.5 lb | Vanilla, Orange, Strawberry, Mango, Lemon, Chocolate, Red Velvet, Black Forest, Roshmalai, Basque Burnt Cheesecake | ৳599 – ৳1,999 |
-| **Cupcakes** | Per piece | Vanilla, Chocolate with rich swirl buttercream | ৳39 – ৳49 |
-| **Pastry Cakes** | Per piece | Vanilla Opera, Dark Chocolate slice | ৳79 – ৳99 |
-| **Jar Cakes** | Per piece | Multi-layered cake, cream, and fudge in glass jars | ৳149 – ৳199 |
-| **Tab / Tub Cakes** | Per piece | Creamy dessert tub cakes | ৳279 – ৳349 |
-| **Lunch Box Cakes** | Per piece | Korean Bento aesthetic mini cakes | ৳299 – ৳379 |
-| **Muffins** | Per box | Freshly baked blueberry and chocolate chip | ৳499 – ৳599 |
-| **Swiss Rolls** | Per box | Swirled vanilla cream and strawberry sponge | ৳599 – ৳699 |
-| **Lava Cakes** | Per piece | Molten warm dark chocolate | ৳999 |
-
----
-
-## 🌐 Deployment
-
-The project can be deployed instantly to any static host:
-
-### GitHub Pages
-1. Push this repository to GitHub.
-2. In your repo settings, navigate to **Pages**.
-3. Under **Build and deployment > Branch**, select `main` and root `/`.
-4. Click **Save**.
-
-### Netlify
-1. Go to [app.netlify.com/drop](https://app.netlify.com/drop).
-2. Drag and drop the `sweet-site-bakery` folder onto the browser window.
-
-### Vercel
+To launch the full production stack (Frontend + Backend + PostgreSQL + Nginx reverse proxy):
 ```bash
-npx vercel
+docker-compose up --build -d
 ```
+- **Storefront & App:** `http://localhost`
+- **Backend API Docs:** `http://localhost/docs` or `http://localhost:8000/docs`
 
 ---
 
-## 📞 Contact & Bakery Details
+## 🔑 Admin Credentials (Pre-Seeded)
 
-- **Bakery**: Sweet Site Bakery
-- **Location**: Rangpur, Bangladesh
-- **Phone**: [+880 1852-668468](tel:+8801852668468)
-- **WhatsApp**: [01852-668468](https://wa.me/8801852668468)
-- **Facebook**: [facebook.com/sweetsitebakery1229](https://www.facebook.com/sweetsitebakery1229)
+- **Admin Portal URL:** `http://localhost:5173/admin` (or via Account ➔ Admin Dashboard)
+- **Admin Email:** `admin@sweetsite.com`
+- **Admin Password:** `admin123`
 
 ---
 
-<div align="center">
-  <sub>Handcrafted with ❤️ for Sweet Site Bakery, Rangpur.</sub>
-</div>
+## 📦 Payment & Delivery Logistics (Rangpur, BD)
+
+1. **Rangpur City Zones Covered:**
+   - Dhap / Medical Mor (৳60)
+   - Central Rangpur / Jahaj Company Mor (৳60)
+   - RK Road / Bus Terminal (৳70)
+   - Modern Mor / Lalbagh (৳70)
+   - Carmichael College / Station (৳80)
+   - Outer Suburbs (৳100)
+2. **Accepted Payment Channels:**
+   - Cash on Delivery (COD)
+   - bKash Send Money: `+880 1852-668468`
+   - Nagad Send Money: `+880 1852-668468`
+   - SSLCOMMERZ Payment Gateway ready.
+
+---
+
+## 📄 License & Attribution
+
+All custom photographic assets and code were handcrafted for **Sweet Site Bakery (Rangpur, Bangladesh)**.  
+*Copyright © 2026 Sweet Site Bakery. All Rights Reserved.*
