@@ -69,18 +69,18 @@ export const Footer: React.FC = () => {
                 href="https://wa.me/8801852668468" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 bg-wa text-white px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold hover:brightness-110 transition-all shadow-sm"
+                className="flex items-center gap-2.5 bg-white border border-lav-2/50 text-cocoa px-4 py-2 rounded-full text-xs sm:text-sm font-medium hover:border-wa hover:shadow-md transition-all"
               >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3"/></svg>
+                <svg viewBox="0 0 32 32" className="w-5 h-5 flex-shrink-0"><path fill="#25D366" d="M16 .5C7.44.5.5 7.44.5 16c0 2.73.71 5.39 2.06 7.73L.65 31.35l7.85-1.89A15.42 15.42 0 0 0 16 31.5c8.56 0 15.5-6.94 15.5-15.5S24.56.5 16 .5z"/><path fill="#FFF" d="M23.57 19.34c-.38-.19-2.25-1.11-2.6-1.24-.35-.13-.6-.19-.85.19s-.98 1.24-1.2 1.5-.44.28-.82.09a10.37 10.37 0 0 1-3.05-1.88 11.45 11.45 0 0 1-2.11-2.63c-.22-.38-.02-.59.17-.78.17-.17.38-.44.57-.66.19-.22.25-.38.38-.63.13-.25.06-.47-.03-.66s-.85-2.05-1.17-2.81c-.31-.74-.63-.64-.85-.65h-.73c-.25 0-.66.09-1 .47s-1.32 1.29-1.32 3.15c0 1.86 1.35 3.66 1.54 3.91.19.25 2.66 4.06 6.44 5.69 3.78 1.63 3.78 1.09 4.47 1.02.69-.06 2.25-.92 2.57-1.81.32-.88.32-1.64.22-1.81-.09-.16-.34-.26-.72-.45z"/></svg>
                 <span>WhatsApp: 01852-668468</span>
               </a>
               <a 
                 href="https://www.facebook.com/sweetsitebakery1229" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 bg-[#1877F2] text-white px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold hover:brightness-110 transition-all shadow-sm"
+                className="flex items-center gap-2.5 bg-white border border-lav-2/50 text-cocoa px-4 py-2 rounded-full text-xs sm:text-sm font-medium hover:border-[#1877F2] hover:shadow-md transition-all"
               >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <svg viewBox="0 0 32 32" className="w-5 h-5 flex-shrink-0"><circle cx="16" cy="16" r="15.5" fill="#1877F2"/><path fill="#FFF" d="M21.2 16.6l.8-5.2h-5v-3.4c0-1.4.7-2.8 2.9-2.8h2.3V.8s-2.1-.4-4.1-.4c-4.2 0-7 2.6-7 7.2v3.8h-4.6v5.2h4.6V31.5c.9.1 1.9.2 2.9.2 1 0 1.9-.1 2.9-.2V16.6h4.3z"/></svg>
                 <span>Facebook: sweetsitebakery1229</span>
               </a>
               <a 
