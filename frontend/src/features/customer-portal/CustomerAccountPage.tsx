@@ -256,7 +256,7 @@ export const CustomerAccountPage: React.FC = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="sajia123"
+                  placeholder="••••••••"
                   className="w-full text-xs px-3.5 py-2.5 rounded-xl bg-brand-cream/40 border border-brand-brown/10 focus:outline-none focus:ring-1 focus:ring-brand-brown"
                 />
               </div>
@@ -267,62 +267,6 @@ export const CustomerAccountPage: React.FC = () => {
               >
                 {isLoginTab ? 'Sign In to Account' : 'Create Account'}
               </button>
-
-              <div className="pt-2 border-t border-brand-brown/10 space-y-2">
-                <p className="text-[11px] font-bold uppercase tracking-wider text-brand-muted text-center">
-                  Quick Demo 1-Click Logins
-                </p>
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      login(
-                        {
-                          id: 1,
-                          email: 'sajia@gmail.com',
-                          name: 'Sajia (Bakery Admin)',
-                          phone: '+880 1852-668468',
-                          role: 'admin',
-                        },
-                        'token_sweet_site_auth_admin_2026'
-                      );
-                    }}
-                    className="py-2.5 px-3 rounded-xl bg-brand-accent/20 hover:bg-brand-accent text-brand-brown text-xs font-bold border border-brand-accent/40 transition-all text-center flex items-center justify-center gap-1.5"
-                  >
-                    <Sparkles className="w-3.5 h-3.5 text-brand-brown" />
-                    <span>Sajia (Admin)</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      login(
-                        {
-                          id: 2,
-                          email: 'customer@sweetsite.com',
-                          name: 'Tanzila Akter',
-                          phone: '+880 1711-223344',
-                          role: 'customer',
-                        },
-                        'token_sweet_site_auth_cust_2026'
-                      );
-                    }}
-                    className="py-2.5 px-3 rounded-xl bg-brand-cream hover:bg-brand-cream/80 text-brand-brown text-xs font-bold border border-brand-brown/15 transition-all text-center"
-                  >
-                    Customer Demo
-                  </button>
-                </div>
-                <div className="p-2.5 bg-brand-cream/40 rounded-xl text-[11px] text-brand-muted text-center">
-                  <span><strong>Admin Credentials:</strong> <code>sajia@gmail.com</code> / <code>sajia123</code></span>
-                </div>
-                <div className="text-center pt-1">
-                  <Link
-                    to="/admin"
-                    className="text-[11px] font-semibold text-brand-brown underline hover:text-brand-accent"
-                  >
-                    Direct jump to Admin Dashboard →
-                  </Link>
-                </div>
-              </div>
             </form>
           </div>
         )}
