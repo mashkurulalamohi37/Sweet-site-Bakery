@@ -219,9 +219,10 @@ docker-compose up --build -d
 
 ## 🔑 Admin Credentials (Pre-Seeded)
 
-- **Admin Portal URL:** `http://localhost:5173/admin` (or via Account ➔ Admin Dashboard)
-- **Admin Email:** `admin@sweetsite.com`
-- **Admin Password:** `admin123`
+- **Admin Portal URL:** `http://localhost:5173/admin` (or via `/account` ➔ Admin Dashboard)
+- **Admin Email:** `sajia@gmail.com`
+- **Admin Password:** `sajia123`
+- **Alternative Admin:** `admin@sweetsitebakery.com` / `Admin@2026`
 
 ---
 

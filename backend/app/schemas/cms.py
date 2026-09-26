@@ -111,6 +111,27 @@ class CMSSettingResponse(BaseModel):
     class Config:
         from_attributes = True
 
+class BestSellingCake(BaseModel):
+    product_name: str
+    total_quantity_sold: int
+    total_revenue: int
+    estimated_profit: int
+    percentage_of_sales: float
+    category: Optional[str] = None
+    image_url: Optional[str] = None
+
+class AdminAnalyticsResponse(BaseModel):
+    total_revenue: int
+    cogs_cost: int
+    gross_profit: int
+    net_profit: int
+    profit_margin_percent: float
+    total_orders_count: int
+    avg_order_value: int
+    all_time_best_sellers: List[BestSellingCake]
+    orders_by_status: Dict[str, int]
+    revenue_by_zone: Dict[str, int]
+
 class AdminDashboardStats(BaseModel):
     total_revenue: int
     today_revenue: int
@@ -123,3 +144,5 @@ class AdminDashboardStats(BaseModel):
     low_stock_items: int
     pending_customizations: int
     recent_orders: List[Any]
+    analytics: Optional[AdminAnalyticsResponse] = None
+

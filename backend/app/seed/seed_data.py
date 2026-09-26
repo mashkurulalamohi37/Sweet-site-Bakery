@@ -91,10 +91,21 @@ async def seed_database(db: AsyncSession):
 
     print("Seeding Sweet Site Bakery database...")
     
-    # 1. Admin User
+    # 1. Admin Users
+    sajia_admin = User(
+        name="Sajia (Admin)",
+        phone="01852668468",
+        email="sajia@gmail.com",
+        hashed_password=get_password_hash("sajia123"),
+        role=UserRole.ADMIN.value,
+        is_active=True,
+        is_verified=True
+    )
+    db.add(sajia_admin)
+
     admin = User(
         name="Sweet Site Bakery Admin",
-        phone="01852668468",
+        phone="01700000000",
         email="admin@sweetsitebakery.com",
         hashed_password=get_password_hash("Admin@2026"),
         role=UserRole.ADMIN.value,

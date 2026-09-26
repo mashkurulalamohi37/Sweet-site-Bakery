@@ -11,8 +11,11 @@ class UserCreate(UserBase):
     password: str
 
 class UserLogin(BaseModel):
-    phone: str
+    phone: Optional[str] = None
+    email: Optional[str] = None
+    identifier: Optional[str] = None # can be email or phone
     password: str
+
 
 class UserResponse(UserBase):
     id: str

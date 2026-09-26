@@ -52,10 +52,18 @@ async def register(req: UserCreate, db: AsyncSession = Depends(get_db)):
 
 @router.post("/login", response_model=Token)
 async def login(req: UserLogin, db: AsyncSession = Depends(get_db)):
-    res = await db.execute(select(User).where(User.phone == req.phone))
+    ident = req.identifier or req.email or req.phone
+    if not ident:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Email or phone number is required")
+        
+    res = await db.execute(
+        select(User).where(
+            (User.email == ident) | (User.phone == ident)
+        )
+    )
     user = res.scalars().first()
     if not user or not verify_password(req.password, user.hashed_password):
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid phone number or password")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid email/phone or password")
     
     if not user.is_active:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Account is disabled")
@@ -63,6 +71,7 @@ async def login(req: UserLogin, db: AsyncSession = Depends(get_db)):
     access = create_access_token(user.id, user.role)
     refresh = create_refresh_token(user.id)
     return Token(access_token=access, refresh_token=refresh, user=UserResponse.model_validate(user))
+
 
 @router.get("/me", response_model=UserResponse)
 async def get_profile(user: User = Depends(get_current_user)):
