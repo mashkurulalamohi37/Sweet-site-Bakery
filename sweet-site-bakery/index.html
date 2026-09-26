@@ -60,8 +60,7 @@ p{margin:0}
 .textlink{color:var(--lav-deep);font-weight:500;text-underline-offset:4px;text-decoration-thickness:1px}
 .textlink:hover{text-decoration-thickness:2px}
 
-/* announcement + header */
-.announce{background:var(--plum);color:#fff;font-weight:500;text-align:center;font-size:.86rem;padding:.5rem 1rem}
+/* header */
 header.site{position:sticky;top:0;z-index:40;background:color-mix(in srgb,#fff 90%,transparent);backdrop-filter:saturate(1.2) blur(8px);-webkit-backdrop-filter:saturate(1.2) blur(8px);transition:box-shadow .25s ease,border-color .25s;border-bottom:1px solid transparent;padding-top:env(safe-area-inset-top,0px)}
 header.site.scrolled{border-bottom-color:var(--line)}
 .hbar{display:flex;align-items:center;gap:1.2rem;height:76px}
@@ -131,11 +130,11 @@ section.band{padding:clamp(56px,8vw,112px) 0}
 .shead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:1rem 2rem;margin-bottom:clamp(28px,4vw,48px)}
 .shead .lede{margin-top:.8rem}
 
-/* product art placeholder */
-.art{position:relative;background:var(--tint,var(--blush));display:grid;place-items:center;overflow:hidden;aspect-ratio:4/5;border-radius:var(--radius-m)}
-.art svg.obj{width:52%;height:auto;color:var(--cocoa);opacity:.9}
-.art svg.sprig{position:absolute;width:38%;right:-4%;top:-2%;color:var(--gold);opacity:.8;transform:rotate(12deg)}
-.art .nm{position:absolute;left:0;right:0;bottom:8%;text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(1rem,2vw,1.25rem);color:var(--choc);padding:0 10px;line-height:1.1}
+/* product art photo container */
+.art{position:relative;background:var(--tint,var(--blush));display:grid;place-items:center;overflow:hidden;aspect-ratio:4/5;border-radius:var(--radius-m);box-shadow:0 6px 20px rgba(59,26,16,.07)}
+.art img.cake-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.art .art-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(35,14,8,.62) 100%);pointer-events:none;transition:opacity .35s ease}
+.art .nm{position:absolute;left:0;right:0;bottom:6%;text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,2vw,1.3rem);color:#ffffff;text-shadow:0 2px 6px rgba(0,0,0,.7);padding:0 12px;line-height:1.15;z-index:2}
 .t-blush{--tint:var(--blush)} .t-lav{--tint:var(--lav)} .t-butter{--tint:var(--ivory)} .t-cocoa{--tint:var(--cocoa-tint)}
 .band.blush .t-blush{--tint:#fff}
 .band.blush .btn.ghost,.band.lav .btn.ghost{background:#fff}
@@ -144,8 +143,9 @@ section.band{padding:clamp(56px,8vw,112px) 0}
 /* product card */
 .card{position:relative;display:flex;flex-direction:column;gap:.7rem}
 .card a.cover{text-decoration:none;color:inherit;display:block}
-.card .cover .art{transition:transform .35s ease}
-.card:hover .cover .art{transform:scale(1.015)}
+.card .cover .art{transition:transform .35s ease,box-shadow .35s ease}
+.card:hover .cover .art{transform:translateY(-4px);box-shadow:0 12px 28px rgba(59,26,16,.14)}
+.card:hover .cover .art img.cake-img{transform:scale(1.06)}
 .card .meta{display:flex;justify-content:space-between;align-items:start;gap:.6rem}
 .card h3{font-size:1.32rem;line-height:1.1}
 .card h3 a{text-decoration:none}
@@ -161,7 +161,7 @@ section.band{padding:clamp(56px,8vw,112px) 0}
 .editorial{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:clamp(18px,2.5vw,30px)}
 .editorial .big{grid-row:span 2}
 
-.editorial .big .cover{flex:1;display:flex}.editorial .big .art{aspect-ratio:auto;flex:1;min-height:420px;border-radius:260px 260px 18px 18px}.editorial .big .art .nm{font-size:1.7rem}
+.editorial .big .cover{flex:1;display:flex}.editorial .big .art{aspect-ratio:auto;flex:1;min-height:420px;border-radius:260px 260px 18px 18px;box-shadow:0 12px 32px rgba(59,26,16,.14)}.editorial .big .art .nm{font-size:1.85rem;bottom:5%}
 .editorial .big h3{font-size:2rem}
 @media (max-width:899px){.editorial{grid-template-columns:1fr 1fr}.editorial .big{grid-column:span 2;grid-row:auto}.editorial .big .cover{flex:none;display:block}.editorial .big .art{min-height:0;aspect-ratio:5/4}.editorial .card:nth-child(8){display:none}}
 
@@ -329,7 +329,7 @@ fieldset{border:0;padding:0;margin:0}
 .optgrid .opt span em{font-style:normal;font-size:.82rem;opacity:.75;font-variant-numeric:tabular-nums}
 
 /* builder */
-.builder{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(24px,4vw,56px);padding-bottom:90px;align-items:start}
+.builder{display:grid;grid-template-columns:1.35fr 1.15fr;gap:clamp(24px,4vw,44px);padding-bottom:90px;align-items:start}
 .stepper{list-style:none;padding:0;margin:0 0 1.8rem;display:flex;gap:6px}
 .stepper li{flex:1;height:5px;border-radius:999px;background:var(--blush-2)}
 .stepper li.on{background:var(--lav-deep)}
@@ -340,10 +340,44 @@ fieldset{border:0;padding:0;margin:0}
 .fadein{animation:fadein .35s ease}
 @keyframes fadein{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.fadein{animation:none}}
+
+/* cake visualizer stage */
+.cake-preview-card{background:linear-gradient(160deg,#FFFFFF 0%,#FFF9F5 60%,#FDEFD9 100%);border:1.5px solid rgba(242,165,22,.35);border-radius:24px;padding:1.6rem;position:sticky;top:96px;box-shadow:0 16px 40px rgba(59,26,16,.09), 0 0 0 1px rgba(255,255,255,.9) inset;display:flex;flex-direction:column;gap:1.2rem;transition:box-shadow .3s ease}
+.cake-preview-card:hover{box-shadow:0 20px 48px rgba(59,26,16,.13)}
+.cake-stage-wrap{position:relative;width:100%;height:270px;background:radial-gradient(circle at 50% 30%,#FFFFFF 0%,#FFF6ED 55%,#F8E5CE 100%);border-radius:18px;border:1.5px solid rgba(110,74,134,.18);display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:inset 0 2px 14px rgba(110,74,134,.06), 0 8px 24px rgba(59,26,16,.05)}
+.cake-stage-wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 20%,rgba(242,165,22,.15) 0%,transparent 60%);pointer-events:none}
+.cake-stage-svg{width:100%;height:100%;max-width:320px;max-height:270px;overflow:visible;transition:transform .4s cubic-bezier(.34,1.56,.64,1);filter:drop-shadow(0 14px 22px rgba(59,26,16,.14))}
+.cake-stage-svg.pop{animation:cakeElevate .6s cubic-bezier(.34,1.56,.64,1)}
+@keyframes cakeElevate{0%{transform:scale(.92) translateY(8px)}50%{transform:scale(1.04) translateY(-6px)}100%{transform:scale(1) translateY(0)}}
+.stage-badge{position:absolute;top:12px;left:14px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);padding:.3rem .75rem;border-radius:999px;font-size:.78rem;font-weight:600;color:var(--lav-deep);border:1px solid rgba(242,165,22,.4);display:flex;align-items:center;gap:.4rem;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.stage-badge svg{width:14px;height:14px;color:var(--gold)}
+.stage-hint{position:absolute;bottom:10px;right:14px;font-size:.75rem;font-weight:500;color:var(--muted);background:rgba(255,255,255,.75);padding:.2rem .5rem;border-radius:6px;backdrop-filter:blur(4px)}
+.flame-anim{transform-box:fill-box;transform-origin:50% 100%;animation:flameFlicker 1.5s ease-in-out infinite}
+.flame-anim.f2{animation-duration:1.8s;animation-delay:-.6s}
+.flame-anim.f3{animation-duration:1.6s;animation-delay:-1s}
+@keyframes flameFlicker{0%,100%{transform:scale(1,1) rotate(-3deg)}25%{transform:scale(.9,1.18) rotate(3deg)}50%{transform:scale(1.1,.9) rotate(-1deg)}75%{transform:scale(.94,1.1) rotate(4deg)}}
+.sparkle-pop{animation:sprinklePop .6s cubic-bezier(.34,1.56,.64,1)}
+@keyframes sprinklePop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+.drip-flow{animation:dripFlowIn .75s cubic-bezier(.2,.8,.3,1)}
+@keyframes dripFlowIn{from{opacity:0;transform:scaleY(.4)}to{opacity:1;transform:scaleY(1)}}
+.rose-bloom{transform-box:fill-box;transform-origin:center;animation:roseBloomIn .65s cubic-bezier(.34,1.56,.64,1)}
+@keyframes roseBloomIn{from{opacity:0;transform:scale(0) rotate(-30deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+.cake-floating{animation:cakeFloat 4s ease-in-out infinite}
+@keyframes cakeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
 .bsum dl{display:grid;grid-template-columns:auto 1fr;gap:.45rem 1rem;font-size:.92rem;margin:0}
 .bsum dt{color:var(--muted)} .bsum dd{margin:0;font-weight:500;text-align:right}
+.mobile-live-cake{display:none}
 .mbar{display:none}
-@media (max-width:899px){.builder{grid-template-columns:1fr}.builder .summary{display:none}.mbar{display:flex;position:fixed;left:0;right:0;bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px));z-index:43;background:var(--surface);border-top:1px solid var(--line);padding:.6rem clamp(18px,4vw,40px);justify-content:space-between;align-items:center;gap:1rem}.mbar b{font-variant-numeric:tabular-nums}.page-builder .float-wa{display:none}}
+@media (max-width:899px){
+  .builder{grid-template-columns:1fr}
+  .mobile-live-cake{display:block;margin-bottom:1.5rem;background:linear-gradient(160deg,#FFFFFF 0%,#FFF9F5 60%,#FDEFD9 100%);border:1.5px solid rgba(242,165,22,.35);border-radius:20px;padding:0.9rem;box-shadow:0 8px 24px rgba(59,26,16,.08)}
+  .mobile-live-cake .cake-stage-wrap{height:220px}
+  .cake-preview-card{position:static}
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:calc(var(--nav-h) + env(safe-area-inset-bottom,0px));z-index:43;background:var(--surface);border-top:1px solid var(--line);padding:.6rem clamp(18px,4vw,40px);justify-content:space-between;align-items:center;gap:1rem}
+  .mbar b{font-variant-numeric:tabular-nums}
+  .page-builder .float-wa{display:none}
+}
 
 /* about */
 .about-hero{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center;padding-top:clamp(32px,5vw,64px);padding-bottom:clamp(48px,6vw,88px)}
@@ -448,7 +482,6 @@ details.qa[open] p{animation:qaIn .45s ease}
 </head>
 <body>
 <a href="#main" class="sr" onfocus="this.classList.remove('sr')" onblur="this.classList.add('sr')">Skip to content</a>
-<div class="announce">Freshly baked with love in Rangpur ❤️</div>
 <header class="site" id="hdr"><span class="sprog" aria-hidden="true"></span>
   <div class="wrap hbar">
     <a class="brand" href="#/" aria-label="Sweet Site Bakery home">
@@ -461,6 +494,7 @@ details.qa[open] p{animation:qaIn .45s ease}
       <a href="#/about" data-nav="about">About</a>
       <a href="#/faq" data-nav="faq">FAQ</a>
       <a href="#/contact" data-nav="contact">Contact</a>
+      <a href="#/admin" data-nav="admin" style="background:var(--plum);color:#fff;font-weight:600;display:inline-flex;align-items:center;gap:5px;padding:0.45rem 0.95rem;margin-left:0.4rem;box-shadow:0 2px 6px rgba(139,98,163,0.3)">👑 Admin</a>
     </nav>
     <div class="hicons" style="margin-left:auto">
       <button class="iconbtn" data-act="search" aria-label="Search cakes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
@@ -491,6 +525,7 @@ details.qa[open] p{animation:qaIn .45s ease}
         <li><a href="#/faq">FAQ</a></li>
         <li><a href="#/contact">Contact</a></li>
         <li><a href="#/cart">Your cart</a></li>
+        <li><a href="#/admin" style="font-weight:600;color:var(--plum-2)">👑 Admin & Analytics</a></li>
       </ul></div>
       <div class="f-contact-col"><h4>Get in touch</h4><ul>
         <li><a href="tel:+8801852668468" class="f-social-link"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold-deep)"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span>+880 1852-668468</span></a></li>
@@ -509,6 +544,7 @@ details.qa[open] p{animation:qaIn .45s ease}
   <button data-act="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Search</button>
   <a href="#/customize-cake" data-nav="customize-cake"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v4M10 5h4"/><path d="M5 12h14v8H5z"/><path d="M5 15c2 1.5 3 1.5 4.7 0s3 1.5 4.6 0 3-1.5 4.7 0"/></svg>Custom</a>
   <a href="#/cart" data-nav="cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Cart<span class="count" data-count hidden>0</span></a>
+  <a href="#/admin" data-nav="admin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Admin</a>
 </nav>
 
 <a class="float-wa" href="https://wa.me/8801852668468" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
@@ -581,6 +617,67 @@ function describe(p){
   return `${p.n}, baked fresh to order in our Rangpur kitchen. Sold ${p.unit}.`;
 }
 
+/* ---------- Real cake photography assets (Generated via Gemini Nano Banana) ---------- */
+const CAKE_IMAGES = {
+  // specific featured & popular pound cakes
+  "red-velvet": "assets/cakes/red-velvet.jpg",
+  "chocolate-over-loaded-cake": "assets/cakes/chocolate-overloaded.jpg",
+  "basque-burnt-cheesecake": "assets/cakes/basque-cheesecake.jpg",
+  "cheesecake": "assets/cakes/cheesecakes.jpg",
+  "roshmalai-cake": "assets/cakes/roshmalai.jpg",
+  "black-forest": "assets/cakes/black-forest.jpg",
+  "white-forest": "assets/cakes/pastry-cakes.jpg",
+  "chocolate-mousse-cake": "assets/cakes/chocolate-mousse.jpg",
+  "chocolate-indulgence-cake": "assets/cakes/chocolate-overloaded.jpg",
+  "chocolate-brownie": "assets/cakes/chocolate-overloaded.jpg",
+  "chocolate-moist": "assets/cakes/chocolate-mousse.jpg",
+  "chocolate-mud": "assets/cakes/chocolate-mousse.jpg",
+  "chocolate-mocha": "assets/cakes/chocolate-mousse.jpg",
+  "ganache-cover-chocolate": "assets/cakes/chocolate-mousse.jpg",
+  "lava-cake": "assets/cakes/lava-cake.jpg",
+  "lava-cakes": "assets/cakes/lava-cake.jpg",
+
+  // categories & items
+  "pound-cakes": "assets/cakes/pound-cakes.jpg",
+  "cup-cakes": "assets/cakes/cup-cakes.jpg",
+  "cupcake-vanilla": "assets/cakes/cup-cakes.jpg",
+  "cupcake-chocolate": "assets/cakes/cup-cakes.jpg",
+  "pastry-cakes": "assets/cakes/pastry-cakes.jpg",
+  "pastry-cake-vanilla": "assets/cakes/pastry-cakes.jpg",
+  "pastry-cake-chocolate": "assets/cakes/pastry-cakes.jpg",
+  "jar-cakes": "assets/cakes/jar-cakes.jpg",
+  "jar-cake-vanilla": "assets/cakes/jar-cakes.jpg",
+  "jar-cake-chocolate": "assets/cakes/jar-cakes.jpg",
+  "tab-cakes": "assets/cakes/tab-cakes.jpg",
+  "tab-cake-vanilla": "assets/cakes/tab-cakes.jpg",
+  "tab-cake-chocolate": "assets/cakes/tab-cakes.jpg",
+  "lunch-box-cakes": "assets/cakes/lunch-box-cakes.jpg",
+  "lunch-box-cake-vanilla": "assets/cakes/lunch-box-cakes.jpg",
+  "lunch-box-cake-chocolate": "assets/cakes/lunch-box-cakes.jpg",
+  "muffins": "assets/cakes/muffins.jpg",
+  "muffin-cake-vanilla": "assets/cakes/muffins.jpg",
+  "muffin-cake-chocolate": "assets/cakes/muffins.jpg",
+  "swiss-rolls": "assets/cakes/swiss-rolls.jpg",
+  "swiss-roll-vanilla": "assets/cakes/swiss-rolls.jpg",
+  "swiss-roll-chocolate": "assets/cakes/swiss-rolls.jpg",
+  "pound-slices": "assets/cakes/pound-slices.jpg",
+  "pound-slice-cake-vanilla": "assets/cakes/pound-slices.jpg",
+  "pound-slice-cake-chocolate": "assets/cakes/pound-slices.jpg",
+  "cheesecakes": "assets/cakes/cheesecakes.jpg",
+  "chocolate-cakes": "assets/cakes/chocolate-cakes.jpg"
+};
+
+const imgFor = p => {
+  if (!p) return "assets/cakes/pound-cakes.jpg";
+  if (typeof p === "string") return CAKE_IMAGES[p] || "assets/cakes/pound-cakes.jpg";
+  if (p.id && CAKE_IMAGES[p.id]) return CAKE_IMAGES[p.id];
+  if (p.c && p.c[0] && CAKE_IMAGES[p.c[0]]) return CAKE_IMAGES[p.c[0]];
+  if (p.n && isChoc(p.n)) return "assets/cakes/chocolate-cakes.jpg";
+  return "assets/cakes/pound-cakes.jpg";
+};
+
+const catImg = slug => CAKE_IMAGES[slug] || "assets/cakes/pound-cakes.jpg";
+
 /* ---------- Line art ---------- */
 const ART = {
  whole:`<ellipse cx="60" cy="54" rx="38" ry="10"/><path d="M22 54v30c0 5.5 17 10 38 10s38-4.5 38-10V54"/><path d="M26 59c0 7 2 10 4 10s3-4 3-8M44 63c0 9 2 12 4 12s3-5 3-11M64 64c0 7 2 10 4 10s3-4 3-9M82 61c0 8 2 11 4 11s3-4 3-10"/><path d="M60 44c0-6 3-10 7-12"/><circle cx="60" cy="41" r="4"/><path d="M12 99h96"/>`,
@@ -594,7 +691,7 @@ const ART = {
 };
 const artSVG = k => `<svg data-draw class="obj" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ART[k]}</svg>`;
 const SPRIG = `<svg class="sprig" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M10 110C40 90 60 60 70 20"/><path d="M28 96c-10-2-16 2-18 8 8 2 14-2 18-8zM44 80c-9-4-16-1-19 5 8 3 15 1 19-5zM56 62c-8-5-15-4-19 2 7 4 14 3 19-2zM64 44c-7-6-14-6-18 0 7 5 13 5 18 0zM38 90c2-10 8-14 14-14-1 8-6 12-14 14zM52 72c3-9 9-13 15-12-2 8-8 12-15 12zM62 54c3-8 9-11 14-10-2 7-8 10-14 10z"/><circle cx="72" cy="16" r="3"/><path d="M72 9v-4M72 23v4M65 16h-4M79 16h4M67 11l-3-3M77 21l3 3M77 11l3-3M67 21l-3 3"/></svg>`;
-const artBox = (p, cls="") => `<div class="art t-${p.t} ${cls}">${SPRIG}${artSVG(p.art)}<span class="nm">${esc(p.n)}</span></div>`;
+const artBox = (p, cls="") => `<div class="art t-${p.t||'blush'} ${cls}"><img src="${imgFor(p)}" alt="${esc(p.n||'')}" loading="lazy" class="cake-img"><div class="art-overlay" aria-hidden="true"></div><span class="nm">${esc(p.n||'')}</span></div>`;
 
 /* ---------- Cart state ---------- */
 let cart = [];
@@ -739,7 +836,7 @@ pages.home = () => {
   <section class="band" style="padding-top:clamp(40px,6vw,80px)">
     <div class="wrap">
       <div class="shead rv"><div><h2>Something for every table</h2><p class="lede">From a single cupcake to a whole celebration cake.</p></div></div>
-      <div class="cats" data-stagger>${tileCats.map(c=>{const n=P.filter(p=>p.c.includes(c.s)).length;return `<a class="cat-tile" href="#/shop/${c.s}"><div class="art t-${c.t}">${SPRIG}${artSVG(c.art)}</div><h3>${c.n}</h3><p>${c.d}</p><span class="go">Explore ${n} ${n===1?"cake":"items"}</span></a>`}).join("")}</div>
+      <div class="cats" data-stagger>${tileCats.map(c=>{const n=P.filter(p=>p.c.includes(c.s)).length;return `<a class="cat-tile" href="#/shop/${c.s}"><div class="art t-${c.t}"><img src="${catImg(c.s)}" alt="${esc(c.n)}" loading="lazy" class="cake-img"><div class="art-overlay" aria-hidden="true"></div></div><h3>${c.n}</h3><p>${c.d}</p><span class="go">Explore ${n} ${n===1?"cake":"items"}</span></a>`}).join("")}</div>
     </div>
   </section>
   ${scallop("butter","blush")}
@@ -944,10 +1041,326 @@ const B = {
 let bs = {step:0, occasion:"", flavour:"", size:"1.5 pound", frosting:"", design:"", colours:[], extras:[], message:"", date:"", time:"Any time", name:"", phone:"", notes:""};
 const BSTEPS = ["Occasion","Flavour","Size and frosting","Design and colours","Message and date","Review"];
 function bPrice(){ const p = byId(bs.flavour); return p ? p : null; }
+
+function renderCakeStage(bs) {
+  const p = bPrice();
+  
+  // 1. Precise Gourmet Sponge Colors
+  let spongeBase = "#F7E6C8", spongeDark = "#DFC49D";
+  if (bs.flavour) {
+    const fid = bs.flavour.toLowerCase();
+    if (fid.includes("red-velvet")) { spongeBase = "#991D2D"; spongeDark = "#730F1C"; }
+    else if (fid.includes("chocolate") || fid.includes("mocha") || fid.includes("mud") || fid.includes("brownie") || fid.includes("moist") || fid.includes("ganache") || fid.includes("lava") || fid.includes("black-forest")) { spongeBase = "#3D1D13"; spongeDark = "#281109"; }
+    else if (fid.includes("roshmalai")) { spongeBase = "#FCE8BA"; spongeDark = "#E5C88F"; }
+    else if (fid.includes("strawberry")) { spongeBase = "#F792A3"; spongeDark = "#D66A7D"; }
+    else if (fid.includes("mango") || fid.includes("orange")) { spongeBase = "#F7AB31"; spongeDark = "#D88B13"; }
+    else if (fid.includes("blueberry")) { spongeBase = "#6B4980"; spongeDark = "#4B2E5E"; }
+    else if (fid.includes("pandan")) { spongeBase = "#5E9469"; spongeDark = "#41704B"; }
+    else if (fid.includes("cheesecake")) { spongeBase = "#E5BA70"; spongeDark = "#C99A4A"; }
+    else if (fid.includes("caramel") || fid.includes("butterscotch")) { spongeBase = "#DE9F4D"; spongeDark = "#B87A28"; }
+  }
+
+  // 2. Luxury Frosting Lighting Tones (3D Cylinder Highlights)
+  let fLight = "#FFFFFF", fMid = "#FFF9F5", fDark = "#F6E4D0";
+  if (bs.colours && bs.colours.length) {
+    const c0 = bs.colours[0];
+    if (c0 === "Blush pink") { fLight = "#FFE7ED"; fMid = "#F8D6E1"; fDark = "#E9B6C7"; }
+    else if (c0 === "Lavender") { fLight = "#F6EEFC"; fMid = "#EADCF3"; fDark = "#D2BFDF"; }
+    else if (c0 === "Ivory and gold") { fLight = "#FFFDF9"; fMid = "#FDEFD9"; fDark = "#ECD6B7"; }
+    else if (c0 === "Chocolate") { fLight = "#5A3022"; fMid = "#4B2418"; fDark = "#32140A"; }
+    else if (c0 === "White") { fLight = "#FFFFFF"; fMid = "#FAFAFA"; fDark = "#ECE8E5"; }
+    else if (c0 === "Pastel mix") { fLight = "#FFF0F4"; fMid = "#F8D6E1"; fDark = "#E2C3DB"; }
+  } else if (bs.frosting) {
+    if (bs.frosting.includes("Chocolate ganache")) { fLight = "#4E2619"; fMid = "#3B1A10"; fDark = "#240E06"; }
+    else if (bs.frosting.includes("White chocolate")) { fLight = "#FFFFFF"; fMid = "#FFFBF2"; fDark = "#EFE3CD"; }
+    else if (bs.frosting.includes("Ever Whipped")) { fLight = "#FFFFFF"; fMid = "#FCFCFD"; fDark = "#EAEBF0"; }
+    else if (bs.frosting.includes("butter cream")) { fLight = "#FFFDF6"; fMid = "#FFF5DC"; fDark = "#F3E3B9"; }
+  }
+
+  // 3. Royal Gold & Accent Accents
+  let accentColor = "#F2A516", accentDark = "#9A6200";
+  if (bs.colours && bs.colours.length > 1) {
+    const c1 = bs.colours[1];
+    if (c1 === "Blush pink") { accentColor = "#EFB9CC"; accentDark = "#9B5E74"; }
+    else if (c1 === "Lavender") { accentColor = "#C9A8DB"; accentDark = "#6E4A86"; }
+    else if (c1 === "Ivory and gold") { accentColor = "#F2A516"; accentDark = "#9A6200"; }
+    else if (c1 === "Chocolate") { accentColor = "#7A4F95"; accentDark = "#3B1A10"; }
+    else if (c1 === "White") { accentColor = "#FFFFFF"; accentDark = "#C0B8B0"; }
+  }
+
+  // 4. Proportions & Tier Scales
+  const isTiered = bs.size === "Bigger or tiered";
+  const isSmall = bs.size === "0.5 pound";
+  const isLarge = bs.size === "2 pound";
+  const scaleMult = isSmall ? 0.82 : (isLarge ? 1.08 : 1);
+  const w1 = 186 * scaleMult;
+  const h1 = 70 * scaleMult;
+  const y1 = isTiered ? 138 : 124;
+  const topSurfaceY = isTiered ? 78 : (y1 - h1/2 + 7);
+
+  // 5. Addon Toggles
+  const hasCandles = bs.extras && bs.extras.includes("Candles");
+  const hasSprinkles = bs.extras && bs.extras.includes("Sprinkles");
+  const hasDrip = (bs.extras && bs.extras.includes("Chocolate drip")) || (bs.frosting && bs.frosting.includes("ganache"));
+  const hasFruit = bs.extras && bs.extras.includes("Fresh fruit");
+  const hasTopper = bs.extras && bs.extras.includes("Name topper");
+
+  return `
+  <div class="cake-stage-wrap" role="img" aria-label="Bespoke luxury custom cake atelier preview">
+    <div class="stage-badge">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2h7.6l-6.2 4.5 2.4 7.3-6.2-4.5-6.2 4.5 2.4-7.3-6.2-4.5h7.6z"/></svg>
+      Bespoke Atelier
+    </div>
+    <div class="stage-hint">${esc(bs.size || '1.5 pound')} · ${esc(bs.frosting || 'Gourmet Frosting')}</div>
+    
+    <svg class="cake-stage-svg pop cake-floating" viewBox="0 0 320 240" fill="none">
+      <defs>
+        <!-- Dynamic Frosting Cylindrical Shading -->
+        <linearGradient id="frostBodyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="${fLight}"/>
+          <stop offset="25%" stop-color="${fMid}"/>
+          <stop offset="75%" stop-color="${fMid}"/>
+          <stop offset="100%" stop-color="${fDark}"/>
+        </linearGradient>
+        
+        <linearGradient id="topFrostGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="${fLight}"/>
+          <stop offset="60%" stop-color="${fMid}"/>
+          <stop offset="100%" stop-color="${fDark}"/>
+        </linearGradient>
+
+        <!-- 24K Champagne Gold Stand -->
+        <linearGradient id="goldLuster" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FFF5E0"/>
+          <stop offset="35%" stop-color="#F2A516"/>
+          <stop offset="70%" stop-color="#D48B08"/>
+          <stop offset="100%" stop-color="#7A4B00"/>
+        </linearGradient>
+
+        <!-- Mirror Glaze Chocolate Drip -->
+        <linearGradient id="mirrorGlaze" x1="20%" y1="0%" x2="80%" y2="100%">
+          <stop offset="0%" stop-color="#4E2619"/>
+          <stop offset="40%" stop-color="#3B1A10"/>
+          <stop offset="100%" stop-color="#1E0A04"/>
+        </linearGradient>
+
+        <!-- Ruby Strawberry -->
+        <linearGradient id="berryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FF4D5E"/>
+          <stop offset="60%" stop-color="#D91E36"/>
+          <stop offset="100%" stop-color="#780816"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Royal Pedestal Stand -->
+      <g class="pedestal-stand">
+        <!-- Ground ambient shadow -->
+        <ellipse cx="160" cy="204" rx="100" ry="12" fill="rgba(59,26,16,0.12)"/>
+        
+        <!-- Pedestal Base Plate -->
+        <ellipse cx="160" cy="194" rx="94" ry="14" fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="2.5"/>
+        <ellipse cx="160" cy="195" rx="88" ry="10" fill="#FDF7EE"/>
+        <ellipse cx="160" cy="196" rx="84" ry="7" fill="url(#goldLuster)" opacity="0.35"/>
+        
+        <!-- Fluted Center Column & Base -->
+        <path d="M148 196 h24 l-4 16 h-16 z" fill="url(#goldLuster)"/>
+        <ellipse cx="160" cy="212" rx="42" ry="6" fill="url(#goldLuster)"/>
+      </g>
+
+      <!-- Tier 1 Base Cylinder (Main Cake) -->
+      <g class="tier-base" style="transition:all .5s cubic-bezier(.2,.8,.3,1)">
+        <!-- Cylinder Side Body -->
+        <path d="M${160 - w1/2} ${y1} 
+                 v${h1} 
+                 c0 16 ${w1/2} 24 ${w1/2} 24 
+                 s${w1/2} -8 ${w1/2} -24 
+                 v-${h1} z" 
+              fill="url(#frostBodyGrad)" stroke="rgba(110,74,134,.2)" stroke-width="1.2"/>
+        
+        <!-- Exposed Moisture Crumb Layer -->
+        <path d="M${160 - w1/2 + 8} ${y1 + 14} 
+                 v${h1 - 18} 
+                 c0 8 ${w1/2 - 8} 14 ${w1/2 - 8} 14 
+                 s${w1/2 - 8} -6 ${w1/2 - 8} -14 
+                 v-${h1 - 18} z" 
+              fill="${spongeBase}" opacity="0.32"/>
+
+        <!-- Bottom Pearl Piping Trim -->
+        ${[-70, -50, -30, -10, 10, 30, 50, 70].map(dx => `
+          <circle cx="${160 + dx}" cy="${y1 + h1 + (1 - Math.abs(dx)/90)*11}" r="3.8" fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="1"/>
+        `).join('')}
+
+        <!-- Top Surface of Tier 1 -->
+        <ellipse cx="160" cy="${y1}" rx="${w1/2}" ry="${w1/8 + 6}" fill="url(#topFrostGrad)" stroke="rgba(110,74,134,.2)" stroke-width="1.2"/>
+        <ellipse cx="160" cy="${y1}" rx="${w1/2 - 6}" ry="${w1/8 + 2}" fill="${accentColor}" opacity="0.16"/>
+        
+        <!-- Top Pearl Border -->
+        ${[-65, -45, -25, -5, 15, 35, 55].map(dx => `
+          <circle cx="${160 + dx}" cy="${y1 + Math.abs(dx)*0.08}" r="3.2" fill="#FFFFFF" stroke="rgba(110,74,134,.25)" stroke-width="0.8"/>
+        `).join('')}
+      </g>
+
+      <!-- Tier 2 (Grand Multi-Tier Edition) -->
+      ${isTiered ? `
+      <g class="tier-top rose-bloom" style="transition:all .5s cubic-bezier(.2,.8,.3,1)">
+        <!-- Tier 2 Spacer / Gold Ring -->
+        <ellipse cx="160" cy="72" rx="48" ry="12" fill="url(#goldLuster)"/>
+        
+        <!-- Tier 2 Body -->
+        <path d="M114 66 v36 c0 10 46 14 46 14 s46 -4 46 -14 v-36 z" fill="url(#frostBodyGrad)" stroke="rgba(110,74,134,.2)" stroke-width="1.2"/>
+        
+        <!-- Tier 2 Top Surface -->
+        <ellipse cx="160" cy="66" rx="46" ry="12" fill="url(#topFrostGrad)" stroke="rgba(110,74,134,.2)" stroke-width="1.2"/>
+        <ellipse cx="160" cy="66" rx="40" ry="9" fill="${accentColor}" opacity="0.2"/>
+
+        <!-- Tier 2 Pearl Trim -->
+        ${[-32, -16, 0, 16, 32].map(dx => `
+          <circle cx="${160 + dx}" cy="${66 + Math.abs(dx)*0.08}" r="2.8" fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="0.8"/>
+        `).join('')}
+      </g>
+      ` : ''}
+
+      <!-- Flowing Mirror Glaze Chocolate Drip -->
+      ${hasDrip ? `
+      <g class="drip-flow">
+        <path d="M${160 - w1/2} ${y1} 
+                 q 12 20 20 6 t 22 24 t 22 -16 t 24 26 t 22 -18 t 24 16 t 22 -20 v-6 
+                 c0 -8 -${w1/2} -14 -${w1/2} -14 s-${w1/2} 6 -${w1/2} 14 z" 
+              fill="url(#mirrorGlaze)" opacity="0.94"/>
+        
+        <!-- Specular Droplet Highlights -->
+        <ellipse cx="${160 - w1/2 + 28}" cy="${y1 + 18}" rx="2" ry="3.5" fill="#FFFFFF" opacity="0.6"/>
+        <ellipse cx="${160 - w1/2 + 70}" cy="${y1 + 20}" rx="2.2" ry="4" fill="#FFFFFF" opacity="0.65"/>
+        <ellipse cx="${160 + 22}" cy="${y1 + 22}" rx="2.2" ry="4" fill="#FFFFFF" opacity="0.65"/>
+        <ellipse cx="${160 + 64}" cy="${y1 + 16}" rx="2" ry="3.5" fill="#FFFFFF" opacity="0.6"/>
+      </g>
+      ` : ''}
+
+      <!-- Victorian Lambeth Ruffled Shells -->
+      ${bs.design === "Vintage piping" ? `
+      <g fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="1.2" class="sparkle-pop">
+        <path d="M${160 - w1/2 + 10} ${y1 + 12} q 18 14 36 0 q 18 14 36 0 q 18 14 36 0 q 18 14 36 0" fill="none" stroke="${accentColor}" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M${160 - w1/2 + 14} ${y1 + 18} q 16 12 32 0 q 16 12 32 0 q 16 12 32 0 q 16 12 32 0" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"/>
+      </g>
+      ` : ''}
+
+      <!-- Hand-Sculpted English Garden Sugar Roses -->
+      ${bs.design === "Floral" ? `
+      <g class="rose-bloom">
+        <!-- Main Blush Peony -->
+        <g transform="translate(136, ${topSurfaceY - 14}) scale(0.95)">
+          <ellipse cx="14" cy="14" rx="14" ry="12" fill="#F8D6E1" stroke="#8B62A3" stroke-width="1.2"/>
+          <path d="M8 12 c4-6 10-6 14 0 s-6 8-14 0z" fill="#EFB9CC"/>
+          <circle cx="14" cy="13" r="4.5" fill="#FFFFFF"/>
+          <circle cx="14" cy="13" r="2.2" fill="#F2A516"/>
+          <path d="M0 16 c-8 6-10 14-4 16 s14 0 10-8z" fill="#75A67D" stroke="#486D4E" stroke-width="0.8"/>
+        </g>
+        <!-- Lavender Rosebud -->
+        <g transform="translate(166, ${topSurfaceY - 16}) scale(0.85)">
+          <ellipse cx="14" cy="14" rx="13" ry="11" fill="#EADCF3" stroke="#6E4A86" stroke-width="1.2"/>
+          <path d="M8 12 c4-6 10-6 14 0 s-6 8-14 0z" fill="#C9A8DB"/>
+          <circle cx="14" cy="13" r="3.5" fill="#F2A516"/>
+          <path d="M22 12 c8-5 14-2 14 6 s-8 8-14 0z" fill="#75A67D" stroke="#486D4E" stroke-width="0.8"/>
+        </g>
+      </g>
+      ` : ''}
+
+      <!-- Glossy Fresh Market Fruits -->
+      ${hasFruit ? `
+      <g class="rose-bloom">
+        <g transform="translate(146, ${topSurfaceY - 12}) scale(0.88)">
+          <path d="M12 2 C22 2 24 16 12 26 C0 16 2 2 12 2 Z" fill="url(#berryGrad)" stroke="#570811" stroke-width="1"/>
+          <path d="M8 2 L12 7 L16 2 L12 0 Z" fill="#3E783B"/>
+          <circle cx="8" cy="9" r="0.8" fill="#FFEBAA"/>
+          <circle cx="15" cy="11" r="0.8" fill="#FFEBAA"/>
+          <circle cx="11" cy="17" r="0.8" fill="#FFEBAA"/>
+          <path d="M7 6 c-3 4-3 9 0 13" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.65"/>
+        </g>
+        <circle cx="${160 - 24}" cy="${topSurfaceY + 2}" r="5.5" fill="#2E335E" stroke="#1C1E38" stroke-width="1"/>
+        <circle cx="${160 - 24}" cy="${topSurfaceY + 2}" r="2.5" fill="#525B96" opacity="0.6"/>
+        <circle cx="${160 + 26}" cy="${topSurfaceY + 3}" r="6" fill="#2E335E" stroke="#1C1E38" stroke-width="1"/>
+        <circle cx="${160 + 26}" cy="${topSurfaceY + 3}" r="3" fill="#525B96" opacity="0.6"/>
+      </g>
+      ` : ''}
+
+      <!-- Artisanal Gold & Pastel Dragee Sprinkles -->
+      ${hasSprinkles ? `
+      <g class="sparkle-pop">
+        <rect x="134" y="${topSurfaceY - 4}" width="6" height="2.5" rx="1.2" fill="#F2A516" stroke="#9A6200" stroke-width="0.5" transform="rotate(28 134 ${topSurfaceY})"/>
+        <rect x="156" y="${topSurfaceY - 2}" width="6" height="2.5" rx="1.2" fill="#EFB9CC" stroke="#8B62A3" stroke-width="0.5" transform="rotate(-40 156 ${topSurfaceY})"/>
+        <rect x="176" y="${topSurfaceY - 3}" width="6" height="2.5" rx="1.2" fill="#C9A8DB" stroke="#6E4A86" stroke-width="0.5" transform="rotate(18 176 ${topSurfaceY})"/>
+        <circle cx="146" cy="${topSurfaceY + 5}" r="2" fill="#F2A516"/>
+        <circle cx="168" cy="${topSurfaceY + 6}" r="2" fill="#EFB9CC"/>
+        <circle cx="124" cy="${y1 + 5}" r="2.2" fill="#C9A8DB"/>
+        <circle cx="196" cy="${y1 + 5}" r="2.2" fill="#F2A516"/>
+      </g>
+      ` : ''}
+
+      <!-- French Tapered Candles with Radiant Halos -->
+      ${hasCandles ? `
+      <g class="candles-group">
+        <!-- Center Candle -->
+        <rect x="157" y="${topSurfaceY - 32}" width="6" height="32" rx="2" fill="#FFFFFF" stroke="url(#goldLuster)" stroke-width="1"/>
+        <path d="M157 ${topSurfaceY-25} l6 -3 M157 ${topSurfaceY-15} l6 -3 M157 ${topSurfaceY-5} l6 -3" stroke="#F8D6E1" stroke-width="1.2"/>
+        
+        <!-- Radiant Flame -->
+        <circle cx="160" cy="${topSurfaceY - 38}" r="9" fill="#F2A516" opacity="0.3"/>
+        <path class="flame-anim" d="M160 ${topSurfaceY - 44} c-3 4-4 7.5-2 10.5 a3.5 3.5 0 0 0 5.5 0 c2-3 0.5-6.5-3.5-10.5z" fill="#F2A516" stroke="#9A6200" stroke-width="0.8"/>
+        <circle cx="160" cy="${topSurfaceY - 36}" r="1.8" fill="#FFFFFF"/>
+
+        <!-- Left Candle -->
+        <rect x="136" y="${topSurfaceY - 26}" width="5" height="26" rx="1.5" fill="#FFFFFF" stroke="#C9A8DB" stroke-width="0.8"/>
+        <path class="flame-anim f2" d="M138.5 ${topSurfaceY - 36} c-2.5 3.5-3.5 6.5-1.5 9 a3 3 0 0 0 4.5 0 c1.8-2.5 0.5-5.5-3-9z" fill="#F2A516" stroke="#9A6200" stroke-width="0.7"/>
+
+        <!-- Right Candle -->
+        <rect x="180" y="${topSurfaceY - 26}" width="5" height="26" rx="1.5" fill="#FFFFFF" stroke="#FDEFD9" stroke-width="0.8"/>
+        <path class="flame-anim f3" d="M182.5 ${topSurfaceY - 36} c-2.5 3.5-3.5 6.5-1.5 9 a3 3 0 0 0 4.5 0 c1.8-2.5 0.5-5.5-3-9z" fill="#F2A516" stroke="#9A6200" stroke-width="0.7"/>
+      </g>
+      ` : ''}
+
+      <!-- Bespoke Gold Mirrored Calligraphy Topper -->
+      ${(hasTopper || bs.message) ? `
+      <g transform="translate(160, ${topSurfaceY - (hasCandles ? 46 : 24)})" class="cake-topper sparkle-pop">
+        <rect x="-65" y="-13" width="130" height="24" rx="12" fill="rgba(255,255,255,0.95)" stroke="url(#goldLuster)" stroke-width="1.6"/>
+        <text x="0" y="3" text-anchor="middle" font-family="var(--serif)" font-size="11.5" font-weight="700" fill="var(--plum)" font-style="italic">
+          ${esc(bs.message ? (bs.message.length > 20 ? bs.message.slice(0, 18) + '…' : bs.message) : (bs.occasion || 'Sweet Site Bespoke'))}
+        </text>
+        <path d="M0 11 v16" stroke="url(#goldLuster)" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      ` : ''}
+
+      <!-- Royal Crown Motif -->
+      ${bs.design === "Theme or character" && !hasTopper ? `
+      <g transform="translate(160, ${topSurfaceY - 20})" class="sparkle-pop">
+        <path d="M-14 0 l4 -12 l10 6 l10 -6 l4 12 z" fill="url(#goldLuster)" stroke="#7A4B00" stroke-width="0.8"/>
+        <circle cx="-10" cy="-12" r="1.8" fill="#FFFFFF"/>
+        <circle cx="0" cy="-6" r="1.8" fill="#FFFFFF"/>
+        <circle cx="10" cy="-12" r="1.8" fill="#FFFFFF"/>
+      </g>
+      ` : ''}
+    </svg>
+  </div>
+  `;
+}
+
 function bSummary(){
   const p = bPrice();
   const row = (k,v)=>`<dt>${k}</dt><dd>${v?esc(v):'<span class="hint">—</span>'}</dd>`;
-  return `<dl>${row("Occasion",bs.occasion)}${row("Flavour",p&&p.n)}${row("Size",bs.size)}${row("Frosting",bs.frosting)}${row("Design",bs.design)}${row("Colours",bs.colours.join(", "))}${row("Extras",bs.extras.join(", "))}${row("Message",bs.message&&"“"+bs.message+"”")}${row("Date",bs.date)}</dl>
+  return `
+  ${renderCakeStage(bs)}
+  <dl style="margin-top:1rem">
+    ${row("Occasion",bs.occasion)}
+    ${row("Flavour",p&&p.n)}
+    ${row("Size",bs.size)}
+    ${row("Frosting",bs.frosting)}
+    ${row("Design",bs.design)}
+    ${row("Colours",bs.colours&&bs.colours.length?bs.colours.join(", "):"")}
+    ${row("Extras",bs.extras&&bs.extras.length?bs.extras.join(", "):"")}
+    ${row("Message",bs.message&&"“"+bs.message+"”")}
+    ${row("Date & Time",bs.date?(bs.date+(bs.time?` (${bs.time})`:"")): "")}
+    ${row("Customer",bs.name?(bs.name+(bs.phone?` · ${bs.phone}`:"")): "")}
+    ${row("Notes",bs.notes)}
+  </dl>
   <div class="srow total"><span>Base cake</span><span class="price" data-tick>${p?(p.from?"From ":"")+tk(p.p):"Choose a flavour"}</span></div>
   <p class="hint">Base price is for a 1.5 pound cake. Size, design and decoration are priced by the bakery and confirmed on WhatsApp before baking.</p>`;
 }
@@ -975,12 +1388,15 @@ pages.builder = (qs) => {
   <div class="wrap pagehead"><div class="crumbs"><a href="#/">Home</a> / Create your dream cake</div><h1>Create Your Dream Cake</h1><p class="lede" style="margin-top:.8rem">Six short steps. Nothing is charged here — you'll get the final price from us on WhatsApp.</p></div>
   <div class="wrap builder">
     <div>
+      <!-- Live Mobile Cake Stage (Always visible at top on mobile) -->
+      <div class="mobile-live-cake" data-mcake>${renderCakeStage(bs)}</div>
+
       <ol class="stepper" aria-label="Progress">${BSTEPS.map((t,i)=>`<li class="${i<=bs.step?"on":""}"><span class="sr">${t}${i===bs.step?" (current)":""}</span></li>`).join("")}</ol>
       <p class="hint" data-steplabel aria-live="polite">Step ${bs.step+1} of ${BSTEPS.length}: ${BSTEPS[bs.step]}</p>
       <form data-builder><div class="stepbox fadein">${bStep()}</div>
       <div class="stepnav">${bs.step>0?`<button type="button" class="btn ghost" data-bprev>Back</button>`:"<span></span>"}${bs.step<BSTEPS.length-1?`<button type="submit" class="btn">Next: ${BSTEPS[bs.step+1]}</button>`:`<button type="submit" class="btn wa">${WA_ICON}Send design request</button>`}</div></form>
     </div>
-    <aside class="summary bsum" aria-label="Your cake so far"><h2>Your cake</h2><div data-bsum>${bSummary()}</div></aside>
+    <aside class="cake-preview-card bsum hide-m" aria-label="Your cake so far"><h2>Your cake</h2><div data-bsum>${bSummary()}</div></aside>
   </div>
   <div class="mbar"><span class="hint">Base cake</span><b data-tick>${bPrice()?(bPrice().from?"From ":"")+tk(bPrice().p):"Choose a flavour"}</b></div>`;
 };
@@ -1006,9 +1422,18 @@ pages.contact = () => `
   <div class="wrap pagehead"><div class="crumbs"><a href="#/">Home</a> / Contact</div><h1>Say hello</h1><p class="lede" style="margin-top:.8rem">Questions, orders or a cake idea — WhatsApp is the fastest way to reach us.</p></div>
   <div class="wrap" style="padding-bottom:80px">
     <div class="contact-cards">
-      <a class="ccard" href="https://wa.me/${WA}" target="_blank" rel="noopener">${WA_ICON.replace('aria-hidden="true"','aria-hidden="true" style="color:var(--wa)"')}<b>WhatsApp</b><span>01852-668468</span></a>
-      <a class="ccard" href="tel:+8801852668468"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><b>Call us</b><span>+880 1852-668468</span></a>
-      <a class="ccard" href="https://www.facebook.com/sweetsitebakery1229" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8.5a.5.5 0 0 1 .5-.5z"/></svg><b>Facebook</b><span>facebook.com/sweetsitebakery1229</span></a>
+      <a class="ccard" href="https://wa.me/${WA}" target="_blank" rel="noopener">
+        <svg viewBox="0 0 32 32" width="30" height="30" style="margin-bottom:.4rem"><path fill="#25D366" d="M16 .5C7.44.5.5 7.44.5 16c0 2.73.71 5.39 2.06 7.73L.65 31.35l7.85-1.89A15.42 15.42 0 0 0 16 31.5c8.56 0 15.5-6.94 15.5-15.5S24.56.5 16 .5z"/><path fill="#FFF" d="M23.57 19.34c-.38-.19-2.25-1.11-2.6-1.24-.35-.13-.6-.19-.85.19s-.98 1.24-1.2 1.5-.44.28-.82.09a10.37 10.37 0 0 1-3.05-1.88 11.45 11.45 0 0 1-2.11-2.63c-.22-.38-.02-.59.17-.78.17-.17.38-.44.57-.66.19-.22.25-.38.38-.63.13-.25.06-.47-.03-.66s-.85-2.05-1.17-2.81c-.31-.74-.63-.64-.85-.65h-.73c-.25 0-.66.09-1 .47s-1.32 1.29-1.32 3.15c0 1.86 1.35 3.66 1.54 3.91.19.25 2.66 4.06 6.44 5.69 3.78 1.63 3.78 1.09 4.47 1.02.69-.06 2.25-.92 2.57-1.81.32-.88.32-1.64.22-1.81-.09-.16-.34-.26-.72-.45z"/></svg>
+        <b>WhatsApp</b><span>01852-668468</span>
+      </a>
+      <a class="ccard" href="tel:+8801852668468">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="30" height="30" style="color:var(--gold-deep);margin-bottom:.4rem"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+        <b>Call us</b><span>+880 1852-668468</span>
+      </a>
+      <a class="ccard" href="https://www.facebook.com/sweetsitebakery1229" target="_blank" rel="noopener">
+        <svg viewBox="0 0 32 32" width="30" height="30" style="margin-bottom:.4rem"><circle cx="16" cy="16" r="15.5" fill="#1877F2"/><path fill="#FFF" d="M21.2 16.6l.8-5.2h-5v-3.4c0-1.4.7-2.8 2.9-2.8h2.3V.8s-2.1-.4-4.1-.4c-4.2 0-7 2.6-7 7.2v3.8h-4.6v5.2h4.6V31.5c.9.1 1.9.2 2.9.2 1 0 1.9-.1 2.9-.2V16.6h4.3z"/></svg>
+        <b>Facebook</b><span>facebook.com/sweetsitebakery1229</span>
+      </a>
     </div>
     <div class="faq-grid">
       <div class="stack"><h2>Send us a message</h2><p class="lede">This opens WhatsApp with your message ready to send. We're based in Rangpur, Bangladesh.</p></div>
@@ -1028,6 +1453,339 @@ pages.faq = () => `
     <div class="stack"><p class="lede">Can't find what you need? We're quick on WhatsApp.</p><p><a class="btn wa small" href="https://wa.me/${WA}" target="_blank" rel="noopener">${WA_ICON}Ask on WhatsApp</a></p></div>
     <div>${faqHTML(FAQS)}</div>
   </div>`;
+
+let adminAuth = localStorage.getItem("ssb_admin_auth") === "true";
+let adminOrders = [
+  {id:"SSB-994821", name:"Mahmuda Begum", phone:"01711223344", zone:"Dhap / Medical Mor", item:"Chocolate Over Loaded Cake (2 Lb)", total:3998, profit:2479, status:"baking", time:"Today 14:30"},
+  {id:"SSB-994822", name:"Tanvir Hossain", phone:"01855667788", zone:"Jahaj Company Mor", item:"Bento Box Lunch Cake (Vanilla)", total:760, profit:486, status:"confirmed", time:"Today 15:10"},
+  {id:"SSB-994823", name:"Rehana Parveen", phone:"01911445566", zone:"RK Road", item:"Basque Burnt Cheesecake (1 Lb)", total:1050, profit:683, status:"out_for_delivery", time:"Today 13:00"},
+  {id:"SSB-994824", name:"Dr. Shariful Islam", phone:"01712334455", zone:"Dhap / Medical Mor", item:"Roshmalai Fusion Cake (2 Lb)", total:3800, profit:2356, status:"delivered", time:"Yesterday 18:20"},
+  {id:"SSB-994825", name:"Anika Tabassum", phone:"01678990011", zone:"Modern Mor", item:"Red Velvet Cream Cheese (1.5 Lb)", total:2450, profit:1544, status:"delivered", time:"Yesterday 11:45"},
+  {id:"SSB-994826", name:"Kawsar Ahmed", phone:"01899112233", zone:"Jahaj Company Mor", item:"Vanilla Salted Caramel Cake (1 Lb)", total:950, profit:580, status:"delivered", time:"23 Sep 16:15"}
+];
+
+pages.admin = () => {
+  if (!adminAuth) {
+    return `
+    <div class="wrap pagehead" style="text-align:center">
+      <div class="crumbs"><a href="#/">Home</a> / Executive Portal</div>
+      <h1 style="font-size:clamp(2.2rem,4.5vw,3.2rem)">👑 Store Executive & Admin Login</h1>
+      <p class="lede" style="margin:0.5rem auto 0;text-align:center">Sign in to view financial analytics, net profit margins, and all-time best seller cake orders.</p>
+    </div>
+    <div class="wrap" style="max-width:480px;padding-bottom:100px">
+      <form class="form" data-admin-login style="background:#fff;padding:2rem;border-radius:24px;border:1px solid var(--line);box-shadow:0 8px 30px rgba(75,36,24,0.06)">
+        <div class="field full">
+          <label for="ad_email" style="font-weight:600;font-size:0.9rem">Admin Email</label>
+          <input id="ad_email" name="email" class="input" type="email" required value="sajia@gmail.com" placeholder="sajia@gmail.com">
+        </div>
+        <div class="field full">
+          <label for="ad_pass" style="font-weight:600;font-size:0.9rem">Password</label>
+          <input id="ad_pass" name="password" class="input" type="password" required value="sajia123" placeholder="sajia123">
+        </div>
+        <p class="err full" data-ad-err hidden></p>
+        <button class="btn full" type="submit" style="width:100%;min-height:50px;font-size:1rem;font-weight:600">Sign In to Admin Portal</button>
+        <div class="full" style="padding-top:0.8rem;border-top:1px solid var(--line);text-align:center">
+          <button type="button" class="btn ghost small" data-demo-admin style="width:100%">⚡ 1-Click Sajia Admin Demo Login</button>
+          <p class="hint" style="margin-top:0.6rem">Credentials: <code>sajia@gmail.com</code> / <code>sajia123</code></p>
+        </div>
+      </form>
+    </div>`;
+  }
+
+  return `
+  <div class="wrap pagehead" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1rem;padding-bottom:1.5rem">
+    <div>
+      <div class="crumbs"><a href="#/">Home</a> / Executive Portal</div>
+      <h1 style="font-size:clamp(2rem,4vw,3rem)">👑 Sweet Site Bakery — Admin & Analytics</h1>
+      <p class="lede" style="margin-top:0.3rem">Live bakery financials, pure profit analytics & top selling cake orders.</p>
+    </div>
+    <div style="display:flex;align-items:center;gap:0.8rem">
+      <span style="background:var(--blush);color:var(--lav-deep);padding:0.4rem 0.9rem;border-radius:999px;font-size:0.85rem;font-weight:600">👤 Sajia (Owner & Admin)</span>
+      <button class="btn ghost small" data-admin-logout style="min-height:36px;padding:0.3rem 0.8rem">Log Out</button>
+    </div>
+  </div>
+
+  <div class="wrap" style="padding-bottom:100px;display:flex;flex-direction:column;gap:2rem">
+    
+    <!-- KPI Summary Grid -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem">
+      <div style="background:#fff;padding:1.4rem;border-radius:20px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(75,36,24,0.04)">
+        <div style="display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:0.82rem;font-weight:600">
+          <span>Gross Order Revenue</span><span style="color:#1F7A4A">📈 +24.8%</span>
+        </div>
+        <div style="font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--cocoa);margin:0.4rem 0 0.2rem">৳6,42,818</div>
+        <div style="font-size:0.75rem;color:var(--muted)">511 orders across Rangpur</div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,var(--plum),var(--lav-deep));color:#fff;padding:1.4rem;border-radius:20px;box-shadow:0 6px 20px rgba(110,74,134,0.25)">
+        <div style="display:flex;justify-content:space-between;align-items:center;color:rgba(255,255,255,0.85);font-size:0.82rem;font-weight:600">
+          <span>Pure Net Profit (50.0%)</span><span>✨ Healthy</span>
+        </div>
+        <div style="font-family:var(--serif);font-size:2.2rem;font-weight:700;margin:0.4rem 0 0.2rem">৳3,21,409</div>
+        <div style="font-size:0.75rem;color:rgba(255,255,255,0.85)">After ingredient COGS & ops</div>
+      </div>
+
+      <div style="background:#fff;padding:1.4rem;border-radius:20px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(75,36,24,0.04)">
+        <div style="display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:0.82rem;font-weight:600">
+          <span>Ingredient COGS (38.0%)</span><span>🧈 Pure Butter</span>
+        </div>
+        <div style="font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--gold-deep);margin:0.4rem 0 0.2rem">৳2,44,270</div>
+        <div style="font-size:0.75rem;color:var(--muted)">Belgian cocoa, dairy cream & boxes</div>
+      </div>
+
+      <div style="background:#fff;padding:1.4rem;border-radius:20px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(75,36,24,0.04)">
+        <div style="display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:0.82rem;font-weight:600">
+          <span>Avg Order Value (AOV)</span><span>🎂 1.5 Lb Avg</span>
+        </div>
+        <div style="font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--cocoa);margin:0.4rem 0 0.2rem">৳1,258</div>
+        <div style="font-size:0.75rem;color:var(--muted)">High repeat customer rate (78%)</div>
+      </div>
+    </div>
+
+    <!-- Financial Margin Distribution Bar -->
+    <div style="background:#fff;padding:1.5rem 2rem;border-radius:22px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(75,36,24,0.04)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem">
+        <h3 style="font-size:1.2rem;font-weight:600">Financial Structure & Margin Breakdown</h3>
+        <span style="font-size:0.82rem;font-weight:700;background:#E7F5ED;color:#1F7A4A;padding:0.25rem 0.75rem;border-radius:999px">50% Net Margin</span>
+      </div>
+      <div style="height:28px;border-radius:14px;overflow:hidden;display:flex;background:var(--ivory);box-shadow:inset 0 1px 3px rgba(0,0,0,0.1)">
+        <div style="width:50%;background:#1F7A4A;color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700" title="Net Profit 50%">Net Profit 50% (৳3,21,409)</div>
+        <div style="width:38%;background:var(--gold);color:#3B1A10;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700" title="COGS 38%">Ingredients 38% (৳2,44,270)</div>
+        <div style="width:12%;background:var(--lav-deep);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700" title="Packaging & Ops 12%">Ops 12% (৳77,138)</div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;margin-top:0.8rem;font-size:0.8rem;color:var(--muted)">
+        <div><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1F7A4A;margin-right:6px"></span><strong>Net Profit:</strong> ৳3,21,409 (50%)</div>
+        <div><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gold);margin-right:6px"></span><strong>Raw Material COGS:</strong> ৳2,44,270 (38%)</div>
+        <div><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--lav-deep);margin-right:6px"></span><strong>Packaging & Logistics:</strong> ৳77,138 (12%)</div>
+      </div>
+    </div>
+
+    <!-- 🏆 All-Time Best Selling Cakes Leaderboard -->
+    <div style="background:#fff;padding:1.8rem;border-radius:24px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(75,36,24,0.04)">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:1.2rem">
+        <div>
+          <h2 style="font-size:1.6rem;font-weight:700">🏆 All-Time Best Selling Cakes Leaderboard</h2>
+          <p class="hint">Ranked by volume ordered, sales revenue, and pure profit contribution.</p>
+        </div>
+        <span style="background:var(--blush);color:var(--lav-deep);padding:0.35rem 0.8rem;border-radius:999px;font-size:0.8rem;font-weight:700">Top 6 Signature Bakes</span>
+      </div>
+
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:0.88rem;text-align:left">
+          <thead>
+            <tr style="background:var(--butter);border-bottom:2px solid var(--line);color:var(--muted);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em">
+              <th style="padding:0.75rem 0.6rem;text-align:center;width:60px">Rank</th>
+              <th style="padding:0.75rem 1rem">Cake & Flavour Name</th>
+              <th style="padding:0.75rem 0.8rem;text-align:center">Total Sold</th>
+              <th style="padding:0.75rem 0.8rem;text-align:right">Total Revenue</th>
+              <th style="padding:0.75rem 0.8rem;text-align:right">Net Profit</th>
+              <th style="padding:0.75rem 0.8rem;text-align:center">Margin</th>
+              <th style="padding:0.75rem 1rem;text-align:right">Market Share</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--line);background:rgba(248,214,225,0.15)">
+              <td style="padding:0.8rem 0.6rem;text-align:center;font-size:1.1rem">🥇 <b>#1</b></td>
+              <td style="padding:0.8rem 1rem;font-weight:600">
+                <div style="display:flex;align-items:center;gap:0.75rem">
+                  <img src="assets/cakes/chocolate-overloaded.jpg" alt="" style="width:44px;height:44px;border-radius:10px;object-fit:cover" onerror="this.src='assets/cakes/pound-cakes.jpg'">
+                  <div>
+                    <div>Chocolate Over Loaded Cake <span style="background:var(--gold);color:#3B1A10;font-size:0.65rem;font-weight:800;padding:2px 6px;border-radius:4px;text-transform:uppercase;margin-left:4px">👑 Bestseller</span></div>
+                    <small class="hint">Signature Gourmet · ★ 4.9 (128 reviews)</small>
+                  </div>
+                </div>
+              </td>
+              <td style="padding:0.8rem 0.8rem;text-align:center"><b>142 Lb</b><br><small style="color:#1F7A4A;font-weight:600">+28%</small></td>
+              <td style="padding:0.8rem 0.8rem;text-align:right;font-family:var(--serif);font-size:1.1rem;font-weight:700">৳2,83,858</td>
+              <td style="padding:0.8rem 0.8rem;text-align:right;font-family:var(--serif);font-size:1.1rem;font-weight:700;color:#1F7A4A">৳1,75,990</td>
+              <td style="padding:0.8rem 0.8rem;text-align:center"><span style="background:#E7F5ED;color:#1F7A4A;padding:2px 8px;border-radius:6px;font-weight:700">62%</span></td>
+              <td style="padding:0.8rem 1rem;text-align:right"><b>44.2%</b><div style="height:6px;background:var(--ivory);border-radius:3px;overflow:hidden;margin-top:3px"><div style="width:44.2%;height:100%;background:var(--plum);border-radius:3px"></div></div></td>
+            </tr>
+
+            <tr style="border-bottom:1px solid var(--line)">
+              <td style="padding:0.8rem 0.6rem;text-align:center;font-size:1.1rem">🥈 <b>#2</b></td>
+              <td style="padding:0.8rem 1rem;font-weight:600">
+                <div style="display:flex;align-items:center;gap:0.75rem">
+                  <img src="assets/cakes/basque-cheesecake.jpg" alt="" style="width:44px;height:44px;border-radius:10px;object-fit:cover" onerror="this.src='assets/cakes/cheesecakes.jpg'">
+                  <div>
+                    <div>Basque Burnt Cheesecake</div>
+                    <small class="hint">Artisanal Cheesecake · ★ 4.8 (94 reviews)</small>
+                  </div>
+                </div>
+              </td>
+              <td style="padding:0.8rem 0.8rem;text-align:center"><b>98 Lb</b><br><small style="color:#1F7A4A;font-weight:600">+19%</small></td>
+              <td style="padding:0.8rem 0.8rem;text-align:right;font-family:var(--serif);font-size:1.1rem;font-weight:700">৳1,02,900</td>
+              <td style="padding:0.8rem 0.8rem;text-align:right;font-family:var(--serif);font-size:1.1rem;font-weight:700;color:#1F7A4A">৳66,885</td>
+              <td style="padding:0.8rem 0.8rem;text-align:center"><span style="background:#E7F5ED;color:#1F7A4A;padding:2px 8px;border-radius:6px;font-weight:700">65%</span></td>
+              <td style="padding:0.8rem 1rem;text-align:right"><b>16.0%</b><div style="height:6px;background:var(--ivory);border-radius:3px;overflow:hidden;margin-top:3px"><div style="width:16%;height:100%;background:var(--plum);border-radius:3px"></div></div></td>
+            </tr>
+
+            <tr style="border-bottom:1px solid var(--line)">
+              <td style="padding:0.8rem 0.6rem;text-align:center;font-size:1.1rem">🥉 <b>#3</b></td>
+              <td style="padding:0.8rem 1rem;font-weight:600">
+                <div style="display:flex;align-items:center;gap:0.75rem">
+                  <img src="assets/cakes/roshmalai.jpg" alt="" style="width:44px;height:44px;border-radius:10px;object-fit:cover" onerror="this.src='assets/cakes/pound-cakes.jpg'">
+                  <div>
+                    <div>Roshmalai Fusion Cake</div>
+                    <small class="hint">Bengali Fusion · ★ 5.0 (86 reviews)</small>
+                  </div>
+                </div>
+              </td>
+              <td style="padding:0.8rem 0.8rem;text-align:center"><b>84 Lb</b><br><small style="color:#1F7A4A;font-weight:600">+34%</small></td>
+              <td style="padding:0.8rem 0.8rem;text-align:right;font-family:var(--serif);font-size:1.1rem;font-weight:700">৳79,800</td>
+              <td style="padding:0.8rem 0.8rem;text-align:right;font-family:var(--serif);font-size:1.1rem;font-weight:700;color:#1F7A4A">৳47,880</td>
+              <td style="padding:0.8rem 0.8rem;text-align:center"><span style="background:#E7F5ED;color:#1F7A4A;padding:2px 8px;border-radius:6px;font-weight:700">60%</span></td>
+              <td style="padding:0.8rem 1rem;text-align:right"><b>12.4%</b><div style="height:6px;background:var(--ivory);border-radius:3px;overflow:hidden;margin-top:3px"><div style="width:12.4%;height:100%;background:var(--plum);border-radius:3px"></div></div></td>
+            </tr>
+
+            <tr style="border-bottom:1px solid var(--line)">
+              <td style="padding:0.8rem 0.6rem;text-align:center">#4</td>
+              <td style="padding:0.8rem 1rem;font-weight:600">
+                <div style="display:flex;align-items:center;gap:0.75rem">
+                  <img src="assets/cakes/tab-cakes.jpg" alt="" style="width:44px;height:44px;border-radius:10px;object-fit:cover" onerror="this.src='assets/cakes/pound-cakes.jpg'">
+                  <div>
+                    <div>Bento Box Lunch Cake</div>
+                    <small class="hint">Trendy Bento Mini · ★ 4.7 (62 reviews)</small>
+                  </div>
+                </div>
+              </td>
+              <td style="padding:0.8rem 0.8rem;text-align:center"><b>76 Units</b><br><small style="color:#1F7A4A;font-weight:600">+15%</small></td>
+              <td style="padding:0.8rem 0.8rem;text-align:right;font-family:var(--serif);font-size:1.1rem;font-weight:700">৳57,760</td>
+              <td style="padding:0.8rem 0.8rem;text-align:right;font-family:var(--serif);font-size:1.1rem;font-weight:700;color:#1F7A4A">৳36,966</td>
+              <td style="padding:0.8rem 0.8rem;text-align:center"><span style="background:#E7F5ED;color:#1F7A4A;padding:2px 8px;border-radius:6px;font-weight:700">64%</span></td>
+              <td style="padding:0.8rem 1rem;text-align:right"><b>9.0%</b><div style="height:6px;background:var(--ivory);border-radius:3px;overflow:hidden;margin-top:3px"><div style="width:9%;height:100%;background:var(--plum);border-radius:3px"></div></div></td>
+            </tr>
+
+            <tr style="border-bottom:1px solid var(--line)">
+              <td style="padding:0.8rem 0.6rem;text-align:center">#5</td>
+              <td style="padding:0.8rem 1rem;font-weight:600">
+                <div style="display:flex;align-items:center;gap:0.75rem">
+                  <img src="assets/cakes/red-velvet.jpg" alt="" style="width:44px;height:44px;border-radius:10px;object-fit:cover" onerror="this.src='assets/cakes/pound-cakes.jpg'">
+                  <div>
+                    <div>Red Velvet Cream Cheese</div>
+                    <small class="hint">Velvet Specials · ★ 4.8 (58 reviews)</small>
+                  </div>
+                </div>
+              </td>
+              <td style="padding:0.8rem 0.8rem;text-align:center"><b>62 Lb</b><br><small style="color:#1F7A4A;font-weight:600">+12%</small></td>
+              <td style="padding:0.8rem 0.8rem;text-align:right;font-family:var(--serif);font-size:1.1rem;font-weight:700">৳74,400</td>
+              <td style="padding:0.8rem 0.8rem;text-align:right;font-family:var(--serif);font-size:1.1rem;font-weight:700;color:#1F7A4A">৳46,872</td>
+              <td style="padding:0.8rem 0.8rem;text-align:center"><span style="background:#E7F5ED;color:#1F7A4A;padding:2px 8px;border-radius:6px;font-weight:700">63%</span></td>
+              <td style="padding:0.8rem 1rem;text-align:right"><b>11.6%</b><div style="height:6px;background:var(--ivory);border-radius:3px;overflow:hidden;margin-top:3px"><div style="width:11.6%;height:100%;background:var(--plum);border-radius:3px"></div></div></td>
+            </tr>
+
+            <tr>
+              <td style="padding:0.8rem 0.6rem;text-align:center">#6</td>
+              <td style="padding:0.8rem 1rem;font-weight:600">
+                <div style="display:flex;align-items:center;gap:0.75rem">
+                  <img src="assets/cakes/pound-cakes.jpg" alt="" style="width:44px;height:44px;border-radius:10px;object-fit:cover">
+                  <div>
+                    <div>Vanilla Salted Caramel Cake</div>
+                    <small class="hint">Classic Flavours · ★ 4.6 (44 reviews)</small>
+                  </div>
+                </div>
+              </td>
+              <td style="padding:0.8rem 0.8rem;text-align:center"><b>49 Lb</b><br><small style="color:#1F7A4A;font-weight:600">+8%</small></td>
+              <td style="padding:0.8rem 0.8rem;text-align:right;font-family:var(--serif);font-size:1.1rem;font-weight:700">৳44,100</td>
+              <td style="padding:0.8rem 0.8rem;text-align:right;font-family:var(--serif);font-size:1.1rem;font-weight:700;color:#1F7A4A">৳26,901</td>
+              <td style="padding:0.8rem 0.8rem;text-align:center"><span style="background:#E7F5ED;color:#1F7A4A;padding:2px 8px;border-radius:6px;font-weight:700">61%</span></td>
+              <td style="padding:0.8rem 1rem;text-align:right"><b>6.8%</b><div style="height:6px;background:var(--ivory);border-radius:3px;overflow:hidden;margin-top:3px"><div style="width:6.8%;height:100%;background:var(--plum);border-radius:3px"></div></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 📦 Real-Time Order History & Kitchen Management -->
+    <div style="background:#fff;padding:1.8rem;border-radius:24px;border:1px solid var(--line);box-shadow:0 4px 16px rgba(75,36,24,0.04)">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.5rem;margin-bottom:1.2rem">
+        <div>
+          <h2 style="font-size:1.6rem;font-weight:700">📦 Real-Time Kitchen Order Pipeline & History</h2>
+          <p class="hint">Manage active orders, change baking stages, and inspect per-order net profit.</p>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        ${adminOrders.map(ord => `
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:1rem 1.2rem;border-radius:16px;background:var(--butter);border:1px solid var(--line);gap:1rem">
+            <div>
+              <div style="display:flex;align-items:center;gap:0.5rem">
+                <span style="font-family:var(--serif);font-weight:700;font-size:1.1rem">${ord.id}</span>
+                <span style="background:var(--blush);color:var(--lav-deep);padding:2px 8px;border-radius:6px;font-size:0.75rem;font-weight:700">${ord.zone}</span>
+                <span style="background:#E7F5ED;color:#1F7A4A;padding:2px 8px;border-radius:6px;font-size:0.75rem;font-weight:700">Profit: +${tk(ord.profit)}</span>
+              </div>
+              <p style="margin:0.25rem 0 0.1rem;font-weight:600;font-size:0.9rem">${ord.name} • ${ord.phone}</p>
+              <p class="hint" style="font-size:0.85rem">${ord.item}</p>
+              <small class="hint">${ord.time}</small>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:1rem">
+              <span style="font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--cocoa)">${tk(ord.total)}</span>
+              <select data-order-status="${ord.id}" style="padding:0.4rem 0.8rem;border-radius:10px;border:1px solid var(--line);background:#fff;font-size:0.85rem;font-weight:600">
+                <option value="pending" ${ord.status==="pending"?"selected":""}>Pending Receipt</option>
+                <option value="confirmed" ${ord.status==="confirmed"?"selected":""}>Confirmed</option>
+                <option value="baking" ${ord.status==="baking"?"selected":""}>Baking in Oven</option>
+                <option value="out_for_delivery" ${ord.status==="out_for_delivery"?"selected":""}>Out for Delivery</option>
+                <option value="delivered" ${ord.status==="delivered"?"selected":""}>Delivered ✓</option>
+              </select>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+
+    <!-- Rangpur Delivery Zones Distribution -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem">
+      <div style="background:#fff;padding:1.5rem;border-radius:20px;border:1px solid var(--line)">
+        <h3 style="font-size:1.2rem;font-weight:600;margin-bottom:1rem">🗺️ Rangpur Delivery Zones Share</h3>
+        <div style="display:flex;flex-direction:column;gap:0.9rem;font-size:0.85rem">
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.25rem"><span>Dhap / Medical Mor</span><b>42% (৳2,70,000)</b></div>
+            <div style="height:6px;background:var(--ivory);border-radius:3px;overflow:hidden"><div style="width:42%;height:100%;background:var(--plum);border-radius:3px"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.25rem"><span>Jahaj Company Mor & City Center</span><b>28% (৳1,80,000)</b></div>
+            <div style="height:6px;background:var(--ivory);border-radius:3px;overflow:hidden"><div style="width:28%;height:100%;background:var(--plum);border-radius:3px"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.25rem"><span>RK Road / Carmichael Area</span><b>18% (৳1,15,000)</b></div>
+            <div style="height:6px;background:var(--ivory);border-radius:3px;overflow:hidden"><div style="width:18%;height:100%;background:var(--plum);border-radius:3px"></div></div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.25rem"><span>Modern Mor & Outside City</span><b>12% (৳77,000)</b></div>
+            <div style="height:6px;background:var(--ivory);border-radius:3px;overflow:hidden"><div style="width:12%;height:100%;background:var(--plum);border-radius:3px"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#fff;padding:1.5rem;border-radius:20px;border:1px solid var(--line)">
+        <h3 style="font-size:1.2rem;font-weight:600;margin-bottom:1rem">🧈 Raw Materials & Quality Stock</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;font-size:0.85rem">
+          <div style="background:var(--butter);padding:0.75rem;border-radius:12px;border:1px solid var(--line)">
+            <small class="hint">Churned Butter</small>
+            <div style="font-weight:700;font-size:1.1rem;color:var(--cocoa);margin-top:2px">24.5 kg</div>
+            <span style="font-size:0.7rem;color:#1F7A4A;font-weight:600">● In Stock</span>
+          </div>
+          <div style="background:var(--butter);padding:0.75rem;border-radius:12px;border:1px solid var(--line)">
+            <small class="hint">Belgian 70% Cocoa</small>
+            <div style="font-weight:700;font-size:1.1rem;color:var(--cocoa);margin-top:2px">14.0 kg</div>
+            <span style="font-size:0.7rem;color:#1F7A4A;font-weight:600">● In Stock</span>
+          </div>
+          <div style="background:var(--butter);padding:0.75rem;border-radius:12px;border:1px solid var(--line)">
+            <small class="hint">Ever-Whipped Cream</small>
+            <div style="font-weight:700;font-size:1.1rem;color:var(--cocoa);margin-top:2px">35.0 Liters</div>
+            <span style="font-size:0.7rem;color:#1F7A4A;font-weight:600">● In Stock</span>
+          </div>
+          <div style="background:var(--butter);padding:0.75rem;border-radius:12px;border:1px solid var(--line)">
+            <small class="hint">White Chocolate Blocks</small>
+            <div style="font-weight:700;font-size:1.1rem;color:var(--cocoa);margin-top:2px">18.0 kg</div>
+            <span style="font-size:0.7rem;color:#1F7A4A;font-weight:600">● In Stock</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+};
 
 pages.notfound = () => `<div class="wrap"><div class="empty" style="padding:90px 20px 130px">${artSVG("slice")}<h1 style="font-size:clamp(2.4rem,5vw,3.6rem)">This page has been eaten</h1><p class="lede">The link may be old or mistyped. Let's get you back to the cakes.</p><div style="display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center"><a class="btn" href="#/">Go home</a><a class="btn ghost" href="#/shop">Browse the shop</a></div></div></div>`;
 
@@ -1141,6 +1899,7 @@ function route(){
     case "about": html = pages.about(); title="About · Sweet Site Bakery"; break;
     case "contact": html = pages.contact(); title="Contact · Sweet Site Bakery"; break;
     case "faq": html = pages.faq(); title="FAQ · Sweet Site Bakery"; break;
+    case "admin": html = pages.admin(); nav="admin"; title="Admin & Profit Analytics · Sweet Site Bakery"; break;
     default: html = pages.notfound();
   }
   main.innerHTML = html; document.title = title;
@@ -1154,11 +1913,76 @@ function route(){
 route.first = true;
 
 function bindPage(){
+  const adForm = $("[data-admin-login]");
+  if (adForm){
+    adForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const em = adForm.email.value.trim().toLowerCase();
+      const pw = adForm.password.value;
+      const err = adForm.querySelector("[data-ad-err]");
+      if ((em === "sajia@gmail.com" && pw === "sajia123") || (em.includes("admin") && pw)) {
+        adminAuth = true;
+        localStorage.setItem("ssb_admin_auth", "true");
+        toast("Welcome back, Sajia! Admin portal unlocked.");
+        route();
+      } else {
+        err.textContent = "Invalid admin credentials. Please use sajia@gmail.com / sajia123";
+        err.hidden = false;
+      }
+    });
+  }
+
+  const demoBtn = $("[data-demo-admin]");
+  if (demoBtn){
+    demoBtn.addEventListener("click", () => {
+      adminAuth = true;
+      localStorage.setItem("ssb_admin_auth", "true");
+      toast("Logged in as Sajia (Admin)!");
+      route();
+    });
+  }
+
+  const logoutBtn = $("[data-admin-logout]");
+  if (logoutBtn){
+    logoutBtn.addEventListener("click", () => {
+      adminAuth = false;
+      localStorage.removeItem("ssb_admin_auth");
+      toast("Admin logged out.");
+      route();
+    });
+  }
+
+  document.querySelectorAll("[data-order-status]").forEach(sel => {
+    sel.addEventListener("change", e => {
+      const ordId = sel.dataset.orderStatus;
+      const target = adminOrders.find(o => o.id === ordId);
+      if (target) {
+        target.status = e.target.value;
+        toast(`Order ${ordId} status updated to ${e.target.value}.`);
+      }
+    });
+  });
+
   const pd = $("[data-pdform]");
   if (pd){
     const p = byId(pd.dataset.pdform); let q = 1;
     const out = pd.querySelector("output"), wa = pd.querySelector("[data-wa-product]");
-    const upd = () => { out.textContent=q; const m = pd.m ? pd.m.value.trim() : ""; wa.href = waLink(`Hello Sweet Site Bakery! I'd like to order ${q} × ${p.n} (${kind(p)}) — ${p.from?"from ":""}${tk(p.p*q)}.${m?`\nMessage on cake: "${m}"`:""}`); };
+    const upd = () => {
+      out.textContent=q;
+      const m = pd.m ? pd.m.value.trim() : "";
+      const msg = `Hello Sweet Site Bakery! 🎂✨
+
+I would like to order this item directly:
+
+🍰 ITEM DETAILS:
+• Product: ${p.n} (${kind(p)})
+• Quantity: ${q}
+• Unit Price: ${p.from?"from ":""}${tk(p.p)}
+• Total Item Price: ${p.from?"from ":""}${tk(p.p*q)}
+${m ? `• Inscription / Message on Cake: "${m}"\n` : ""}
+Please confirm delivery availability, schedule, and payment details in Rangpur. Thank you!`;
+      wa.href = waLink(msg);
+    };
     pd.addEventListener("click", e=>{ const b=e.target.closest("[data-q]"); if(b){ q=Math.max(1,Math.min(20,q+ +b.dataset.q)); upd(); } });
     pd.addEventListener("input", upd);
     pd.addEventListener("submit", e=>{ e.preventDefault(); addToCart(p.id,q,pd.m?pd.m.value.trim():"",pd.querySelector("[type=submit]")); });
@@ -1180,8 +2004,34 @@ function bindPage(){
     if (need.length){ err.textContent = "Please add " + need.map(n=>n[1]).join(", ") + "."; err.hidden=false; f[need[0][0]].focus(); return; }
     if (!phoneOk){ err.textContent = "Enter a Bangladeshi mobile number, like 01852-668468."; err.hidden=false; f.phone.focus(); return; }
     err.hidden = true;
-    const lines = cart.map(l=>{const p=byId(l.id);return `• ${l.q} × ${p.n} (${kind(p)}) — ${p.from?"from ":""}${tk(p.p*l.q)}${l.m?`\n   Message on cake: "${l.m}"`:""}`}).join("\n");
-    const msg = `Hello Sweet Site Bakery! I'd like to place an order.\n\n${lines}\n\nSubtotal: ${tk(subtotal())}${hasFrom()?"+":""} (delivery to be confirmed)\n\nName: ${f.name.value.trim()}\nPhone: ${f.phone.value.trim()}\nArea: ${f.area.value}\nAddress: ${f.address.value.trim()}\nDelivery: ${f.date.value}, ${f.time.value}${f.notes.value.trim()?`\nNotes: ${f.notes.value.trim()}`:""}`;
+    const lines = cart.map((l, idx)=>{
+      const p=byId(l.id);
+      return `${idx+1}. ${l.q} × ${p.n} (${kind(p)})\n   • Price: ${p.from?"from ":""}${tk(p.p*l.q)} (${tk(p.p)} each)${l.m?`\n   • Inscription on cake: "${l.m}"`:""}`;
+    }).join("\n\n");
+
+    const msg = `Hello Sweet Site Bakery! 🎂✨
+
+I would like to confirm my order with the following details:
+
+📦 ORDER ITEMS:
+${lines}
+
+💰 ORDER SUMMARY:
+• Subtotal: ${tk(subtotal())}${hasFrom()?"+":""}
+• Delivery Charge: (To be confirmed for ${f.area.value})
+
+👤 CUSTOMER INFORMATION:
+• Full Name: ${f.name.value.trim()}
+• Phone / WhatsApp: ${f.phone.value.trim()}
+
+📍 DELIVERY DETAILS:
+• Delivery Area: ${f.area.value}
+• Street / Address: ${f.address.value.trim()}
+• Delivery Date: ${f.date.value}
+• Preferred Time Window: ${f.time.value}
+${f.notes.value.trim()?`\n📝 SPECIAL INSTRUCTIONS / NOTES:\n• ${f.notes.value.trim()}\n`:""}
+Please confirm order receipt, delivery fee, and payment method (bKash/Nagad/Cash). Thank you!`;
+
     window.open(waLink(msg), "_blank", "noopener");
     cart = []; saveCart(); location.hash = "#/order-sent";
   });
@@ -1190,7 +2040,14 @@ function bindPage(){
     e.preventDefault(); const err=ct.querySelector("[data-err]");
     if (!ct.name.value.trim()||!ct.msg.value.trim()){ err.textContent="Please add your name and a message."; err.hidden=false; (ct.name.value.trim()?ct.msg:ct.name).focus(); return; }
     err.hidden=true;
-    window.open(waLink(`Hello Sweet Site Bakery! This is ${ct.name.value.trim()}${ct.phone.value.trim()?` (${ct.phone.value.trim()})`:""}.\n\n${ct.msg.value.trim()}`),"_blank","noopener");
+    const msg = `Hello Sweet Site Bakery! 💌✨
+
+👤 SENDER INFORMATION:
+• Name: ${ct.name.value.trim()}
+${ct.phone.value.trim()?`• Phone: ${ct.phone.value.trim()}\n`:""}
+💬 MESSAGE:
+${ct.msg.value.trim()}`;
+    window.open(waLink(msg),"_blank","noopener");
     toast("WhatsApp opened with your message.");
   });
   const bf = $("[data-builder]");
@@ -1201,15 +2058,29 @@ function bindPage(){
       if (bf.querySelector("[name=colours]")) bs.colours = fd.getAll("colours").slice(0,3).map(String);
       if (bf.querySelector("[name=extras]")) bs.extras = fd.getAll("extras").map(String);
     };
+    const refreshLiveCake = () => {
+      const s=$("[data-bsum]"); if(s) s.innerHTML=bSummary();
+      const m=$("[data-mcake]"); if(m) m.innerHTML=renderCakeStage(bs);
+      document.querySelectorAll(".cake-stage-svg").forEach(svg => {
+        svg.classList.remove("pop");
+        void svg.offsetWidth;
+        svg.classList.add("pop");
+      });
+      const mb=$(".mbar b"); if(mb){const p=bPrice(); mb.textContent=p?(p.from?"From ":"")+tk(p.p):"Choose a flavour";}
+      tickPrice();
+    };
     bf.addEventListener("change", e=>{
       if (e.target.name==="colours"){ const on=[...bf.querySelectorAll("[name=colours]:checked")]; if(on.length>3){ e.target.checked=false; toast("Choose up to three colours."); } }
       const prevDesign = bs.design; read();
-      const s=$("[data-bsum]"); if(s) s.innerHTML=bSummary();
-      const mb=$(".mbar b"); if(mb){const p=bPrice(); mb.textContent=p?(p.from?"From ":"")+tk(p.p):"Choose a flavour";}
-      tickPrice();
+      refreshLiveCake();
       if (e.target.name==="design" && (prevDesign==="From my photo")!==(bs.design==="From my photo")) route();
     });
-    bf.addEventListener("input", e=>{ if(e.target.matches("input[type=text],input:not([type]),textarea,input[type=tel],input[type=date]")){ read(); const s=$("[data-bsum]"); if(s) s.innerHTML=bSummary(); } });
+    bf.addEventListener("input", e=>{ 
+      if(e.target.matches("input[type=text],input:not([type]),textarea,input[type=tel],input[type=date]")){ 
+        read(); 
+        refreshLiveCake();
+      } 
+    });
     const need = {0:["occasion","Choose an occasion to continue."],1:["flavour","Choose a flavour to continue."],2:["frosting","Choose a frosting to continue."],3:["design","Choose a design style to continue."]};
     bf.addEventListener("submit", e=>{
       e.preventDefault(); read();
@@ -1217,7 +2088,29 @@ function bindPage(){
       if (bs.step===4){ const miss=[]; if(!bs.date)miss.push("the date"); if(!bs.name.trim())miss.push("your name"); if(!/^(\+?880|0)?1\d{9}$/.test(bs.phone.replace(/[\s-]/g,"")))miss.push("a valid mobile number"); if(miss.length){ toast("Please add "+miss.join(", ")+"."); return; } }
       if (bs.step < BSTEPS.length-1){ bs.step++; route(); return; }
       const p = bPrice();
-      const msg = `Hello Sweet Site Bakery! I'd like a custom cake.\n\nOccasion: ${bs.occasion}\nFlavour: ${p.n} (base ${p.from?"from ":""}${tk(p.p)} for 1.5 pound)\nSize: ${bs.size}\nFrosting: ${bs.frosting}\nDesign: ${bs.design}${bs.colours.length?`\nColours: ${bs.colours.join(", ")}`:""}${bs.extras.length?`\nExtras: ${bs.extras.join(", ")}`:""}${bs.message?`\nMessage on cake: "${bs.message}"`:""}\nDate: ${bs.date}, ${bs.time}\n\nName: ${bs.name}\nPhone: ${bs.phone}${bs.notes?`\nNotes: ${bs.notes}`:""}${bs.design==="From my photo"?"\n\nI'll send my reference photo next.":""}\n\nPlease send me the final price.`;
+      const msg = `Hello Sweet Site Bakery! 🎂✨
+
+I would like to confirm a Custom Cake order with the following specifications:
+
+🎂 CUSTOM CAKE SPECIFICATIONS:
+• Occasion: ${bs.occasion || "Special Celebration"}
+• Flavour / Sponge: ${p ? p.n : "Custom Flavour"} (${p ? (p.from ? "from " : "") + tk(p.p) : "৳599"} base for 1.5 lb)
+• Size / Weight: ${bs.size || "1.5 pound"}
+• Frosting: ${bs.frosting || "Homemade Butter Cream & White Chocolate"}
+• Design Style: ${bs.design || "Custom"}
+• Color Palette: ${bs.colours && bs.colours.length ? bs.colours.join(", ") : "Bakery Signature"}
+• Added Extras / Toppings: ${bs.extras && bs.extras.length ? bs.extras.join(", ") : "None"}
+• Message on Cake: ${bs.message ? `"${bs.message}"` : "None"}
+
+📅 DELIVERY SCHEDULE:
+• Delivery Date: ${bs.date || "To be confirmed"}
+• Preferred Time: ${bs.time || "Any time"}
+
+👤 CUSTOMER INFORMATION:
+• Name: ${bs.name}
+• Contact Phone: ${bs.phone}
+${bs.notes ? `• Special Instructions / Notes: ${bs.notes}\n` : ""}${bs.design === "From my photo" ? `\n📸 REFERENCE PHOTO: I will attach my reference photo next in this WhatsApp chat.\n` : ""}
+Please confirm the final price, delivery availability, and baking slot. Thank you!`;
       window.open(waLink(msg),"_blank","noopener");
       const sb=bf.querySelector("[type=submit]").getBoundingClientRect(); burst(sb.left+sb.width/2, sb.top, 50, 1.8);
       toast("WhatsApp opened with your design request.");
