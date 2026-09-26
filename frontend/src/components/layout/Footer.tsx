@@ -10,11 +10,11 @@ export const Footer: React.FC = () => {
           
           {/* Brand Column */}
           <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-3">
+            <Link to="/" className="flex items-center gap-3.5">
               <img 
                 src="/assets/logo.jpg" 
                 alt="Sweet Site Bakery Logo" 
-                className="w-12 h-12 rounded-full object-cover shadow-sm"
+                className="w-16 h-16 rounded-full object-cover shadow-md border-4 border-white bg-white flex-shrink-0"
               />
               <div>
                 <span className="font-serif text-2xl font-bold text-cocoa block leading-none">Sweet Site</span>
